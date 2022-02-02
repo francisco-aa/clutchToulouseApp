@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "/Users/damien/clutch/ClutchApp/components/ColumnTest.tsx",
+    "filePath": "components/ColumnTest.tsx",
     "description": "Form column.",
     "displayName": "Column",
     "methods": [],
@@ -11,12 +11,12 @@
         "description": "CECI EST LA DESCRIPTION PARDI !!!!",
         "name": "prop1",
         "parent": {
-          "fileName": "ClutchApp/components/ColumnTest.tsx",
+          "fileName": "components/ColumnTest.tsx",
           "name": "IColumnProps"
         },
         "declarations": [
           {
-            "fileName": "ClutchApp/components/ColumnTest.tsx",
+            "fileName": "components/ColumnTest.tsx",
             "name": "IColumnProps"
           }
         ],
@@ -39,12 +39,12 @@
         "description": "prop2 description",
         "name": "prop2",
         "parent": {
-          "fileName": "ClutchApp/components/ColumnTest.tsx",
+          "fileName": "components/ColumnTest.tsx",
           "name": "IColumnProps"
         },
         "declarations": [
           {
-            "fileName": "ClutchApp/components/ColumnTest.tsx",
+            "fileName": "components/ColumnTest.tsx",
             "name": "IColumnProps"
           }
         ],
@@ -58,12 +58,12 @@
         "description": "prop3 description",
         "name": "prop3",
         "parent": {
-          "fileName": "ClutchApp/components/ColumnTest.tsx",
+          "fileName": "components/ColumnTest.tsx",
           "name": "IColumnProps"
         },
         "declarations": [
           {
-            "fileName": "ClutchApp/components/ColumnTest.tsx",
+            "fileName": "components/ColumnTest.tsx",
             "name": "IColumnProps"
           }
         ],
@@ -77,12 +77,12 @@
         "description": "prop4 description",
         "name": "prop4",
         "parent": {
-          "fileName": "ClutchApp/components/ColumnTest.tsx",
+          "fileName": "components/ColumnTest.tsx",
           "name": "IColumnProps"
         },
         "declarations": [
           {
-            "fileName": "ClutchApp/components/ColumnTest.tsx",
+            "fileName": "components/ColumnTest.tsx",
             "name": "IColumnProps"
           }
         ],
@@ -8220,7 +8220,7 @@
   },
   {
     "tags": {},
-    "filePath": "/Users/damien/clutch/ClutchApp/components/ColumnTestCopy.tsx",
+    "filePath": "components/ColumnTestCopy.tsx",
     "description": "Form column.",
     "displayName": "Column",
     "methods": [],
@@ -8230,12 +8230,12 @@
         "description": "prop1 description",
         "name": "prop1",
         "parent": {
-          "fileName": "ClutchApp/components/ColumnTestCopy.tsx",
+          "fileName": "components/ColumnTestCopy.tsx",
           "name": "IColumnProps"
         },
         "declarations": [
           {
-            "fileName": "ClutchApp/components/ColumnTestCopy.tsx",
+            "fileName": "components/ColumnTestCopy.tsx",
             "name": "IColumnProps"
           }
         ],
@@ -8258,12 +8258,12 @@
         "description": "prop2 description",
         "name": "prop2",
         "parent": {
-          "fileName": "ClutchApp/components/ColumnTestCopy.tsx",
+          "fileName": "components/ColumnTestCopy.tsx",
           "name": "IColumnProps"
         },
         "declarations": [
           {
-            "fileName": "ClutchApp/components/ColumnTestCopy.tsx",
+            "fileName": "components/ColumnTestCopy.tsx",
             "name": "IColumnProps"
           }
         ],
@@ -8277,12 +8277,12 @@
         "description": "prop3 description",
         "name": "prop3",
         "parent": {
-          "fileName": "ClutchApp/components/ColumnTestCopy.tsx",
+          "fileName": "components/ColumnTestCopy.tsx",
           "name": "IColumnProps"
         },
         "declarations": [
           {
-            "fileName": "ClutchApp/components/ColumnTestCopy.tsx",
+            "fileName": "components/ColumnTestCopy.tsx",
             "name": "IColumnProps"
           }
         ],
@@ -8296,12 +8296,12 @@
         "description": "prop4 description",
         "name": "prop4",
         "parent": {
-          "fileName": "ClutchApp/components/ColumnTestCopy.tsx",
+          "fileName": "components/ColumnTestCopy.tsx",
           "name": "IColumnProps"
         },
         "declarations": [
           {
-            "fileName": "ClutchApp/components/ColumnTestCopy.tsx",
+            "fileName": "components/ColumnTestCopy.tsx",
             "name": "IColumnProps"
           }
         ],

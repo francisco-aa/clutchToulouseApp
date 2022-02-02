@@ -9,8 +9,8 @@ const tsConfigParser = docgen.withCustomConfig("./tsconfig.json", {
 });
 
 fs.readdirSync( folder ).forEach( file => {
-   const absolutePath = path.resolve( folder, file );
-   COMPONENT_TO_SRC.push(absolutePath);
+   const filePath = folder + "/" + file
+   COMPONENT_TO_SRC.push(filePath);
 });
 
 
