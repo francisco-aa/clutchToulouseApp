@@ -3,7 +3,7 @@ SHELL=/bin/bash
 PROJECT_NAME=ClutchApp
 WORKSPACE=$(shell pwd)
 
-.PHONY: build
+.PHONY: init
 
 init:
 	@npm install -g expo-cli
