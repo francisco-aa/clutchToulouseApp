@@ -1,13 +1,21 @@
 import React from 'react';
 import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
 
+// Todo: add favorites button and settings button (if needed)
+
 type Props = {
     bgTexture: ImageSourcePropType;
 };
 
-const Header = ({ bgTexture }: Props) => {
+/** 
+* Clutch Header component
+*
+* @param {ImageSourcePropType} bgTexture - require('{assets_directory}/textures/{texture_name}.png')
+* @return {JSX.Element}
+*/
+const Header = ({ bgTexture }: Props): JSX.Element => {
     return (
-        <View>
+        <View style={styles.container}>
             <Image
                 style={styles.background}
                 source={bgTexture}
@@ -21,17 +29,13 @@ const Header = ({ bgTexture }: Props) => {
 }
 
 const styles = StyleSheet.create({
-    container : {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
+    container: {
+        alignItems: 'center'
     },
     background: {
         height: 175,
     },
     logo : {
-        alignSelf: 'center',
         marginTop: -50,
         marginBottom: 25
     }

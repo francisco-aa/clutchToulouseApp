@@ -6,7 +6,7 @@ import Header from './components/Header';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Header bgTexture={require('./assets/textures/TEXTURE.png')} />
+      <Header bgTexture={require('./assets/textures/TEXTURE6.png')} />
       <Text>Open up App.tsx to start working on your app!</Text>
       <StatusBar style="auto" />
     </View>
