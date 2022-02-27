@@ -1,23 +1,37 @@
 import AppLoading from 'expo-app-loading';
-import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, ListRenderItem, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import * as Font from 'expo-font';
+import CategorieCard from '../components/CategorieCard';
+import { dataAccess } from '../data/dataAccess';
+import { Categorie } from '../types/Categorie';
 
 type Props = {}
 
 export default function Acceuil(props: Props){
-  const getFonts = () =>Font.loadAsync({
-    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.otf'),
-  });
+    const getFonts = () =>Font.loadAsync({
+      'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.otf'),
+    });
     const [fontsloaded, setFontsLoaded] = useState(false);
-  if (fontsloaded) {
+    
+    if (fontsloaded) {
+        const categories:Categorie[] =  new dataAccess().getcategorie()
+        const renderCategorieCard:ListRenderItem<Categorie>=({item})=>{
+            return <CategorieCard categorie={item} />
+        }
         return(
             <View style={styles.container}>
                 <View style={styles.carrouselContainer}>
                     <Text style={styles.carrouselTitle} >Catégories</Text>
+                    <FlatList horizontal showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategorieCard}/>
                 </View>
                 <View style={styles.carrouselContainer}>
-                    <Text style={styles.carrouselTitle}>Catégories</Text>
+                    <Text style={styles.carrouselTitle} >Catégories</Text>
+                    <FlatList horizontal showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategorieCard}/>
+                </View>
+                <View style={styles.carrouselContainer}>
+                    <Text style={styles.carrouselTitle} >Catégories</Text>
+                    <FlatList horizontal showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategorieCard}/>
                 </View>
             </View>
         )
