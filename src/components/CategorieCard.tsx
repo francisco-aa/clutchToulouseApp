@@ -10,7 +10,7 @@ var count:number=0;
 // TODO test du composant 
 export default function(props: Props){
     function ticketNB():number{
-        if (count < 3) {
+        if (count <= 3) {
             return count += 1
         } else {
             return count = 1
@@ -24,6 +24,8 @@ export default function(props: Props){
             return require('../../assets/img/Ticket_2.png')
             case 3:
             return require('../../assets/img/Ticket_3.png')
+            case 4:
+            return require('../../assets/img/Ticket_4.png')
         }
     }
     return (   

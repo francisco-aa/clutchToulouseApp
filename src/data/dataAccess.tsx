@@ -16,6 +16,10 @@ export class dataAccess {
             {
                 id:'3',
                 nom:'test1'
+            },
+            {
+                id:'4',
+                nom:'test2'
             }])
     }
 }
