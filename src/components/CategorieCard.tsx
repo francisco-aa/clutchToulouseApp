@@ -7,6 +7,7 @@ type Props = {
             }
 var count:number=0;
 //TODO redirection vers les détails 
+// TODO test du composant 
 export default function(props: Props){
     function ticketNB():number{
         if (count < 3) {
