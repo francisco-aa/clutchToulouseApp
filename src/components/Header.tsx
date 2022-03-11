@@ -24,7 +24,7 @@ const Header = ({ bgTexture }: Props): JSX.Element => {
             </ImageBackground>
             <Image
                 style={styles.logo}
-                source={require('../assets/logo/Clutch_icon_1.png')}
+                source={require('../../assets/logo/Clutch_icon_1.png')}
             />
         </View>
     );

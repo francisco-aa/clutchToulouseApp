@@ -1,23 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Column } from "./components/ColumnTest";
-import Header from './components/Header';
+import { NavigationContainer } from '@react-navigation/native';
+import { Platform, StatusBar, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import RootNavigator from './src/navigation/RootNavigator';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Header bgTexture={require('./assets/textures/TEXTURE6.png')} />
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={stylesheet.androidSafeArea}>
+      <NavigationContainer  >
+        <RootNavigator />
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
+const stylesheet = StyleSheet.create({
+  androidSafeArea: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    // justifyContent: 'center',
+    // paddingTop: 0,
+    // marginTop: 0
+    // paddingTop: Platform.OS === 'android' ? 25 : 0
   }
 });
