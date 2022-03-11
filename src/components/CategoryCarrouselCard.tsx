@@ -1,14 +1,14 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { Categorie } from '../types/Categorie'
+import React from 'react'
+import { Category } from '../types/Category'
 
 type Props = {
-                categorie:Categorie,
+                category:Category,
             }
 var count:number=0;
 //TODO redirection vers les détails 
 // TODO test du composant 
-export default function(props: Props){
+export default function CategoryCarrouselCard(props: Props){
     function ticketNB():number{
         if (count <= 3) {
             return count += 1
@@ -31,11 +31,10 @@ export default function(props: Props){
     return (   
         
         <View style={styles.carrouselCards}>
-
             <Image style={styles.Ticket}
                 source={getImage(ticketNB())}
             />
-            <Text style={styles.Titre}>{props.categorie.nom}</Text>
+            <Text style={styles.Title}>{props.category.name}</Text>
         </View>
   )
 }
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
         height:87,
         width:143
     },
-    Titre:{
+    Title:{
         position:'absolute',
         fontFamily:'Poppins-Bold',
         textTransform: 'uppercase',

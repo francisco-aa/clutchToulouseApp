@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import Acceuil from "../screens/Acceuil";
+import Acceuil from "../screens/Home";
 import { StyleSheet } from "react-native";
 import Header  from "../components/Header";
 
