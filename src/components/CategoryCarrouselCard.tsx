@@ -31,10 +31,10 @@ export default function CategoryCarrouselCard(props: Props){
     return (   
         
         <View style={styles.carrouselCards}>
-            <Image style={styles.Ticket}
+            <Image style={styles.ticket}
                 source={getImage(ticketNB())}
             />
-            <Text style={styles.Title}>{props.category.name}</Text>
+            <Text style={styles.title}>{props.category.name}</Text>
         </View>
   )
 }
@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center'
     },
-    Ticket:{
+    ticket:{
         height:87,
         width:143
     },
-    Title:{
+    title:{
         position:'absolute',
         fontFamily:'Poppins-Bold',
         textTransform: 'uppercase',
