@@ -1,8 +1,9 @@
 import AppLoading from 'expo-app-loading';
-import {StyleSheet, View } from 'react-native'
+import {ScrollView, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import * as Font from 'expo-font';
 import CarrouselContainer from '../components/CarrouselContainer';
+import Header from '../components/Header';
 
 type Props = {}
 
@@ -14,11 +15,14 @@ export default function Acceuil(props: Props){
     
     if (fontsloaded) {
         return(
-            <View style={styles.container}>
+            
+            <ScrollView showsHorizontalScrollIndicator={false} style={styles.container}>
+                <Header bgTexture={require('../../assets/textures/TEXTURE6.png')} />
                 <CarrouselContainer type='category'/>
                 <CarrouselContainer type='headline'/>
                 <CarrouselContainer type='Today'/>
-            </View>
+                <CarrouselContainer type='Today'/>
+            </ScrollView>
         )
     } else {
         return (
@@ -37,6 +41,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
-    },
-    
+    }
 });
