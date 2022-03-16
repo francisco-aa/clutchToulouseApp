@@ -38,7 +38,7 @@ export default function EventCarrouselCard(props: Props){
   return (
         <View style={{backgroundColor:getColor(ticketNB()),flex:1,height:97,width:160, marginRight: 9,alignItems:'center'}}>
             <View style={styles.titleZone}>
-                <Text style={{position:'absolute',color:getColor(titleNB()), textAlign: 'center',fontFamily:'Poppins-Bold',textTransform: 'uppercase',fontSize:19,margin:2}}>{props.event.name}</Text>
+                <Text style={{position:'absolute',color:getColor(titleNB()), textAlign: 'center',fontFamily:'Poppins-Bold',textTransform: 'uppercase',fontSize:17,margin:2}}>{props.event.name}</Text>
             </View>
             <Image style={styles.image} source={require('../../assets/img/Fant_white.png')}/>
         </View>

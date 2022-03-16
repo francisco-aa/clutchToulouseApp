@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     carrouselContainer:{
         flex: 1,
         marginLeft:15,
+        marginBottom:30,
     },
     carrouselTitle:{
         fontFamily:'Poppins-Bold',
