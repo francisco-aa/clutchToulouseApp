@@ -19,16 +19,17 @@ export type RouteParams = {
 
 const Stack = createNativeStackNavigator<RouteParams>();
 
+
 export default function RootNavigator() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }} >
             <Stack.Group>
-                <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="Search" component={Search}/>
-                <Stack.Screen name="Agenda" component={Agenda}/>
-                <Stack.Screen name="Map" component={Map}/>
-                <Stack.Screen name="Notification" component={Notification}/>
-                <Stack.Screen name="Book" component={Book}/>
+                <Stack.Screen name="Home" component={Home} options={{animation:'fade_from_bottom'}}/>
+                <Stack.Screen name="Search" component={Search} options={{animation:'fade_from_bottom'}}/>
+                <Stack.Screen name="Agenda" component={Agenda} options={{animation:'fade_from_bottom'}}/>
+                <Stack.Screen name="Map" component={Map} options={{animation:'fade_from_bottom'}}/>
+                <Stack.Screen name="Notification" component={Notification} options={{animation:'fade_from_bottom'}}/>
+                <Stack.Screen name="Book" component={Book} options={{animation:'fade_from_bottom'}}/>
             </Stack.Group>
         </Stack.Navigator>
     )
