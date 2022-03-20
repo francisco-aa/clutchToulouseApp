@@ -6,6 +6,12 @@ import { RouteParams } from '../navigation/RootNavigator';
 
 type Props = {}
 
+
+/**
+ * 
+ * @param props 
+ * @returns SplashScreen
+ */
 export default function SplashScreen(props: Props){
   const startAnimation=useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
 
@@ -16,7 +22,6 @@ export default function SplashScreen(props: Props){
   const [stateT, setstateT] = useState(false)
   const [stateC, setstateC] = useState(false)
   const [stateH, setstateH] = useState(false)
-  const [stateClutch, setstateClutch] = useState(true)
   setTimeout(() => {
     setstateL(true)
   }, 250);
@@ -33,6 +38,8 @@ export default function SplashScreen(props: Props){
     setstateH(true)
     setstateCblack(true)
   }, 1250);
+
+
   useEffect(() => {
     setTimeout(() => {
       Animated.parallel([
@@ -63,16 +70,13 @@ export default function SplashScreen(props: Props){
       ]).start();
     }, 2450);
   }, [])
- /* setTimeout(() => {
-    setstateClutch(false)
-  }, 2700);
-  */
+
+
   setTimeout(() => {
     navigation.navigate('Acceuil')
   }, 2650);
   return (
     <View style={{position:'absolute',top:0,bottom:0,left:0,right:0,paddingHorizontal:'10%',justifyContent:'center'}}>
-        {stateClutch ? 
         <Animated.View style={{alignItems:'center',flexDirection:'row',
                 transform: [
                     { translateY: startAnimation.y },
@@ -86,8 +90,6 @@ export default function SplashScreen(props: Props){
             {stateC ? <Text style={styles.lettres}>c</Text>:<Text></Text>}
             {stateH ? <Text style={styles.lettres}>h</Text>:<Text></Text>}
         </Animated.View>
-        :<Text></Text> }
-      
     </View>
   )
 }
