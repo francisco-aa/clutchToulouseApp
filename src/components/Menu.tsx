@@ -4,11 +4,22 @@ import { useNavigation } from '@react-navigation/native';
 import { RouteParams } from '../navigation/RootNavigator';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 type Props = {}
+// TODO test
 
+/**
+ * 
+ * @param  
+ * @returns Menu component
+ */
 export default function Menu(props: Props){
     const navigation=useNavigation<NativeStackNavigationProp<RouteParams>>();
     const [state, setState] = useState({Home:true,Search:false,Agenda:false,Map:false,Notification:false,Book:false})
     
+    /**
+     * 
+     * @param screenName 
+     * @returns get normal or active image dependeing the state  
+     */
     function getImage(screenName:("Home"|"Search"|"Agenda"|"Map"|"Notification"|"Book")){
         switch(screenName){
             case "Home" :
