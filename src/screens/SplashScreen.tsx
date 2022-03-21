@@ -57,20 +57,6 @@ export default function SplashScreen(props: Props){
           ),
       ]).start();
     }, 1500);
-    setTimeout(() => {
-      Animated.parallel([
-          Animated.timing(
-              startAnimation,
-              {
-                  toValue:{
-                            x:  +110,
-                            y: -Dimensions.get('window').height/2+200,
-                        }, 
-                  useNativeDriver: true
-              }
-          ),
-      ]).start();
-    }, 2450);
   }, [])
 
 
