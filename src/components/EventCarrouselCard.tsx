@@ -35,10 +35,11 @@ export default function EventCarrouselCard(props: Props){
             return "#F8BC43"
         }
     }
+    
   return (
-        <View style={{backgroundColor:getColor(ticketNB()),flex:1,height:97,width:160, marginRight: 9,alignItems:'center'}}>
+        <View style={[styles.carrouselCards,{backgroundColor:getColor(ticketNB())}]}>
             <View style={styles.titleZone}>
-                <Text style={{position:'absolute',color:getColor(titleNB()), textAlign: 'center',fontFamily:'Poppins-Bold',textTransform: 'uppercase',fontSize:17,margin:2}}>{props.event.name}</Text>
+                <Text style={[styles.title,{color:getColor(titleNB())}]}>{props.event.name}</Text>
             </View>
             <Image style={styles.image} source={require('../../assets/img/Fant_white.png')}/>
         </View>
@@ -48,8 +49,11 @@ export default function EventCarrouselCard(props: Props){
 
 const styles = StyleSheet.create({
     carrouselCards:{
+        flex:1,
+        height:97,
+        width:160,
         marginRight: 9,
-        justifyContent:'center'
+        alignItems:'center'
     },
     titleZone:{
         backgroundColor:'white',
@@ -59,7 +63,14 @@ const styles = StyleSheet.create({
         top:4,
         justifyContent:'center',
         alignItems:'center'
-       
+    },
+    title:{
+        position:'absolute',
+        textAlign: 'center',
+        fontFamily:'Poppins-Bold',
+        textTransform: 'uppercase',
+        fontSize:17,
+        margin:2
     },
     image:{
         flex:1,
