@@ -26,37 +26,37 @@ export default function Menu(props: Props){
                 if(state.Home){
                     return <Image source={require('../../assets/img/Menu/Home_active.png')}/>
                 }else{
-                return <Image source={require('../../assets/img/Menu/Home.png')}/>
+                    return <Image source={require('../../assets/img/Menu/Home.png')}/>
                 }
             case "Search":
                 if(state.Search){
                     return <Image source={require('../../assets/img/Menu/Search_active.png')}/>
                 }else{
-                return <Image source={require('../../assets/img/Menu/Search.png')}/>
+                    return <Image source={require('../../assets/img/Menu/Search.png')}/>
                 }
             case "Agenda":
                 if(state.Agenda){
                     return <Image source={require('../../assets/img/Menu/Agenda_active.png')}/>
                 }else{
-                return <Image source={require('../../assets/img/Menu/Agenda.png')}/>
+                    return <Image source={require('../../assets/img/Menu/Agenda.png')}/>
                 }
             case "Map":
                 if(state.Map){
                     return <Image source={require('../../assets/img/Menu/Map_active.png')}/>
                 }else{
-                return <Image source={require('../../assets/img/Menu/Map.png')}/>
+                    return <Image source={require('../../assets/img/Menu/Map.png')}/>
                 }
             case "Notification":
                 if(state.Notification){
                     return <Image source={require('../../assets/img/Menu/Notification_active.png')}/>
                 }else{
-                return <Image source={require('../../assets/img/Menu/Notification.png')}/>
+                    return <Image source={require('../../assets/img/Menu/Notification.png')}/>
                 }
             case "Book":
                 if(state.Book){
                     return <Image source={require('../../assets/img/Menu/Book_active.png')}/>
                 }else{
-                return <Image source={require('../../assets/img/Menu/Book.png')}/>
+                    return <Image source={require('../../assets/img/Menu/Book.png')}/>
                 }
         }
     }
