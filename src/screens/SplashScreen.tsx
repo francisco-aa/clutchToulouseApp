@@ -64,12 +64,11 @@ export default function SplashScreen(props: Props){
     navigation.navigate('Acceuil')
   }, 2650);
   return (
-    <View style={{position:'absolute',top:0,bottom:0,left:0,right:0,paddingHorizontal:'10%',justifyContent:'center'}}>
-        <Animated.View style={{alignItems:'center',flexDirection:'row',
-                transform: [
+    <View style={styles.container}>
+        <Animated.View style={[styles.animationContainer,{transform: [
                     { translateY: startAnimation.y },
                     { translateX: startAnimation.x }
-                ]}}>
+                ]}]}>
              {stateCblack ? <Image style={{top:10}} source={require('../../assets/img/Clutch_icon_black.png')}/>
                     : <Image style={{top:10}} source={require('../../assets/img/Clutch_icon_green.png')}/>}
             {stateL ? <Text style={styles.lettres}>l</Text>:<Text></Text>}
@@ -82,5 +81,22 @@ export default function SplashScreen(props: Props){
   )
 }
 const styles = StyleSheet.create({
-  lettres:{fontSize:120,fontWeight:'bold'}
+  container:{
+    position:'absolute',
+    top:0,
+    bottom:0,
+    left:0,
+    right:0,
+    paddingHorizontal:'10%',
+    justifyContent:'center',
+    zIndex:10
+  },
+  lettres:{
+    fontSize:120,
+    fontWeight:'bold'
+  },
+  animationContainer:{
+    alignItems:'center',
+    flexDirection:'row'
+  }
 })

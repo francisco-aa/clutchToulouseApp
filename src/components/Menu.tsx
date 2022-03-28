@@ -14,7 +14,11 @@ type Props = {}
 export default function Menu(props: Props){
     const navigation=useNavigation<NativeStackNavigationProp<RouteParams>>();
     const [state, setState] = useState({Home:true,Search:false,Agenda:false,Map:false,Notification:false,Book:false})
-    
+    const [show, setshow] = useState(false)
+
+    setTimeout(() => {
+        setshow(true)
+    }, 2645);
     /**
      * 
      * @param screenName 
@@ -63,10 +67,11 @@ export default function Menu(props: Props){
 
   return (
     <View style={styles.menuContainer}>
+        {show ?
         <View style={styles.menubackground}>
             <TouchableHighlight 
             onPress={()=>{
-                navigation.navigate('Home');
+                navigation.navigate('Acceuil');
                 setState(state => ({
                      ...state, Home:true, Search:false, Agenda:false,
                       Map:false, Notification:false, Book:false})
@@ -130,7 +135,7 @@ export default function Menu(props: Props){
             }>
                 {getImage("Book")}
             </TouchableHighlight>
-        </View>
+        </View>:<View></View>}
     </View>
   )
 }
