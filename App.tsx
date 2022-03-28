@@ -1,13 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { Platform, StatusBar, StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import RootNavigator from './src/navigation/RootNavigator';
+import Menu from "./src/components/Menu";
 
 export default function App() {
   return (
     <SafeAreaView style={stylesheet.androidSafeArea}>
-      <NavigationContainer  >
+      <NavigationContainer >
         <RootNavigator />
+        <Menu/>
       </NavigationContainer>
     </SafeAreaView>
   );
@@ -16,8 +19,5 @@ export default function App() {
 const stylesheet = StyleSheet.create({
   androidSafeArea: {
     flex: 1,
-    // paddingTop: 0,
-    // marginTop: 0
-    // paddingTop: Platform.OS === 'android' ? 25 : 0
-  }
+  },
 });

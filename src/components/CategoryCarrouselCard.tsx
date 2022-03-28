@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
         position:'absolute',
         fontFamily:'Poppins-Bold',
         textTransform: 'uppercase',
-        fontSize:19,
-        color:'white'
+        fontSize:17,
+        color:'white',
+        margin:15
     }
 })

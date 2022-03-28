@@ -20,7 +20,7 @@ export class dataAccess {
             },
             {
                 id:'4',
-                name:'theater'
+                name:'Théâtre'
             }])
     }
     getHeadlines():Event[]{

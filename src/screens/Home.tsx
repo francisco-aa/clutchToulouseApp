@@ -10,17 +10,18 @@ type Props = {}
 export default function Acceuil(props: Props){
     const getFonts = () =>Font.loadAsync({
       'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.otf'),
+      'Poppins-Italic': require('../../assets/fonts/Poppins-Italic.otf'),
+      'Poppins-SemiBoldItalic': require('../../assets/fonts/Poppins-SemiBoldItalic.otf'),
     });
     const [fontsloaded, setFontsLoaded] = useState(false);
     
     if (fontsloaded) {
         return(
             
-            <ScrollView showsHorizontalScrollIndicator={false} style={styles.container}>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
                 <Header bgTexture={require('../../assets/textures/TEXTURE6.png')} />
                 <CarrouselContainer type='category'/>
                 <CarrouselContainer type='headline'/>
-                <CarrouselContainer type='Today'/>
                 <CarrouselContainer type='Today'/>
             </ScrollView>
         )
@@ -40,6 +41,6 @@ export default function Acceuil(props: Props){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        marginBottom:60
     }
 });
