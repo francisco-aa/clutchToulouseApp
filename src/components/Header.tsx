@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     background: {
-        height: 175,
+        height: 150,
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
