@@ -41,6 +41,6 @@ export default function Acceuil(props: Props){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginBottom:60
+        marginBottom: 50
     }
 });
