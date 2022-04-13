@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useState } from "react";
 import { Image, Pressable, StyleSheet, View } from "react-native";
 import { RouteParams } from "../navigation/RootNavigator";
 
@@ -8,26 +9,21 @@ type Props = {
 };
 
 export default function HeaderActions({ hasBackBtn }: Props) {
+    const [icon, setIcon] = useState(hasBackBtn ? require('../../assets/img/Arrow_up.png') : require('../../assets/img/Menu/Wishlist.png'));
     const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
 
-    if (hasBackBtn) {
-        return (
-            <View style={styles.headerActions}>
-                <Pressable
-                    onPress={() => navigation.goBack()}
-                >
-                    <Image source={require('../../assets/img/Arrow_up.png')} />
-                </Pressable>
-            </View>
-        )
+    const handleAction = () => {
+        if (hasBackBtn) {
+            return navigation.goBack();
+        }
+
+        return navigation.navigate('Favorites');
     }
 
     return (
         <View style={styles.headerActions}>
-            <Pressable
-                onPress={() => navigation.navigate('Favorites')}
-            >
-                <Image source={require('../../assets/img/Menu/Wishlist.png')} />
+            <Pressable onPress={handleAction}>
+                <Image source={icon} />
             </Pressable>
         </View>
     );
