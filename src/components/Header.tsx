@@ -1,7 +1,8 @@
 import React from 'react';
-import { Image, ImageBackground, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
-
-// Todo: add favorites button and settings button (if needed)
+import { Image, ImageBackground, ImageSourcePropType, Pressable, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteParams } from '../navigation/RootNavigator';
 
 type Props = {
     bgTexture: ImageSourcePropType;
@@ -14,6 +15,8 @@ type Props = {
 * @return {JSX.Element}
 */
 const Header = ({ bgTexture }: Props): JSX.Element => {
+    const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
+
     return (
         <View style={styles.container}>
             <ImageBackground
@@ -21,6 +24,12 @@ const Header = ({ bgTexture }: Props): JSX.Element => {
                 resizeMode='cover'
                 source={bgTexture}
             >
+                <Pressable
+                    style={styles.favBtn}
+                    onPress={() => navigation.navigate('Favorites')}
+                >
+                    <Image source={require('../../assets/img/Menu/Wishlist.png')} />
+                </Pressable>
             </ImageBackground>
             <Image
                 style={styles.logo}
@@ -42,9 +51,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    logo : {
+    logo: {
         marginTop: -50,
         marginBottom: 25,
+    },
+    favBtn: {
+        position: 'absolute',
+        left: 10,
+        top: 10
     }
 });
 
