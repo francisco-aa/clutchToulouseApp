@@ -3,6 +3,7 @@ import { Image, ImageBackground, ImageSourcePropType, Pressable, StyleSheet, Vie
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteParams } from '../navigation/RootNavigator';
+import HeaderActions from './HeaderActions';
 
 type Props = {
     bgTexture: ImageSourcePropType;
@@ -24,12 +25,7 @@ const Header = ({ bgTexture }: Props): JSX.Element => {
                 resizeMode='cover'
                 source={bgTexture}
             >
-                <Pressable
-                    style={styles.favBtn}
-                    onPress={() => navigation.navigate('Favorites')}
-                >
-                    <Image source={require('../../assets/img/Menu/Wishlist.png')} />
-                </Pressable>
+                <HeaderActions hasBackBtn={false} />
             </ImageBackground>
             <Image
                 style={styles.logo}
@@ -54,11 +50,6 @@ const styles = StyleSheet.create({
     logo: {
         marginTop: -50,
         marginBottom: 25,
-    },
-    favBtn: {
-        position: 'absolute',
-        left: 10,
-        top: 10
     }
 });
 
