@@ -8,6 +8,7 @@ import Agenda from "../screens/Agenda";
 import Map from "../screens/Map";
 import Notification from "../screens/Notification";
 import Book from "../screens/Book";
+import Favorites from "../screens/Favorites";
 
 export type RouteParams = {
     SplashScreen:undefined,
@@ -17,6 +18,7 @@ export type RouteParams = {
     Map: undefined;
     Notification: undefined;
     Book: undefined;
+    Favorites: undefined;
 }
 
 const Stack = createNativeStackNavigator<RouteParams>();
@@ -33,6 +35,7 @@ export default function RootNavigator() {
                 <Stack.Screen name="Map" component={Map} options={{animation:'fade_from_bottom'}}/>
                 <Stack.Screen name="Notification" component={Notification} options={{animation:'fade_from_bottom'}}/>
                 <Stack.Screen name="Book" component={Book} options={{animation:'fade_from_bottom'}}/>
+                <Stack.Screen name="Favorites" component={Favorites} options={{animation:'fade_from_bottom'}}/>
             </Stack.Group>
         </Stack.Navigator>
     )
