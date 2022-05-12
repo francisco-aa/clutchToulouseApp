@@ -11,7 +11,10 @@ const HeaderIcons = () => {
         <Container style={{
             marginTop: 50
         }} justify={'space-between'}>
-            <AntDesign onPress={() => navigation.navigate(Eroutes.ALERTS_SCREEN)} name="heart" size={30} color="black" />
+            <AntDesign onPress={() => {
+                //TODO: revoir l'implémentation
+                //navigation.navigate(Eroutes.ALERTS_SCREEN)
+            }} name="heart" size={30} color="black" />
             <Feather name="settings" size={30} color="black" />
         </Container>
     )

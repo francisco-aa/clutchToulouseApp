@@ -23,7 +23,8 @@ const EventDetailsScreen = () => {
     const alerts = useAppSelector(state => state.alerts.alerts)
 
     const handleLocationPress = () => {
-       navigation.navigate(Eroutes.LOCATION_DETAILS_SCREEN)
+        //TODO: revoir l'implémentation
+       //navigation.navigate(Eroutes.LOCATION_DETAILS_SCREEN)
     }
     const isFavorite = find(alerts, ["@id", event["@id"]]) !== undefined
 

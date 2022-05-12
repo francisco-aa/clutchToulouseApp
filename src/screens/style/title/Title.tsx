@@ -15,7 +15,7 @@ type TTitle = {
 }
 const Title: FC<TTitle> = ({title, marginTop, weight, transform, align, size, color, marginBottom}) => {
     let [fontsLoaded] = useFonts({
-        'Popins': require('../../../../assets/fonts/Poppins-Bold.ttf'),
+        'Popins': require('../../../../assets/fonts/Poppins-Bold.otf'),
     });
     if (!fontsLoaded) {
         return <AppLoading />;
