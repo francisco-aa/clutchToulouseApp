@@ -4,13 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { RouteParams } from '../navigation/RootNavigator';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 type Props = {}
-// TODO test
 
-/**
- * 
- * @param  
- * @returns Menu component
- */
 export default function Menu(props: Props){
     const navigation=useNavigation<NativeStackNavigationProp<RouteParams>>();
     const [state, setState] = useState({Home:true,Search:false,Agenda:false,Map:false,Notification:false,Book:false})
@@ -20,9 +14,9 @@ export default function Menu(props: Props){
         setshow(true)
     }, 2645);
     /**
-     * 
-     * @param screenName 
-     * @returns get normal or active image dependeing the state  
+     *
+     * @param screenName
+     * @returns get normal or active image dependeing the state
      */
     function getImage(screenName:("Home"|"Search"|"Agenda"|"Map"|"Notification"|"Book")){
         switch(screenName){
@@ -69,7 +63,7 @@ export default function Menu(props: Props){
     <View style={styles.menuContainer}>
         {show ?
         <View style={styles.menubackground}>
-            <TouchableHighlight 
+            <TouchableHighlight
             onPress={()=>{
                 navigation.navigate('Acceuil');
                 setState(state => ({
@@ -80,7 +74,7 @@ export default function Menu(props: Props){
             }>
                 {getImage("Home")}
             </TouchableHighlight>
-            <TouchableHighlight 
+            <TouchableHighlight
             onPress={()=>{
                 navigation.navigate('Search');
                 setState(state => ({
@@ -91,7 +85,7 @@ export default function Menu(props: Props){
             }>
                 {getImage("Search")}
             </TouchableHighlight>
-            <TouchableHighlight 
+            <TouchableHighlight
             onPress={()=>{
                 navigation.navigate('Agenda');
                 setState(state => ({
@@ -102,7 +96,7 @@ export default function Menu(props: Props){
             }>
                 {getImage("Agenda")}
             </TouchableHighlight>
-            <TouchableHighlight 
+            <TouchableHighlight
             onPress={()=>{
                 navigation.navigate('Map');
                 setState(state => ({
@@ -113,7 +107,7 @@ export default function Menu(props: Props){
             }>
                 {getImage("Map")}
             </TouchableHighlight>
-            <TouchableHighlight 
+            <TouchableHighlight
             onPress={()=>{
                 navigation.navigate('Notification');
                 setState(state => ({
@@ -124,7 +118,7 @@ export default function Menu(props: Props){
             }>
                 {getImage("Notification")}
             </TouchableHighlight>
-            <TouchableHighlight 
+            <TouchableHighlight
             onPress={()=>{
                 navigation.navigate('Book');
                 setState(state => ({
