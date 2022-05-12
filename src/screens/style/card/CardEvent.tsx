@@ -26,7 +26,7 @@ const CardEvent: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
     const handlePress = () => {
         dispatch({type: "events/setSelectedEvent", payload: event})
         //TODO: revoir l'implémentation
-        //navigation.navigate(Eroutes.EVENT_DETAILS_SCREEN)
+        navigation.navigate(Eroutes.EVENT_DETAILS_SCREEN)
     }
 
 
