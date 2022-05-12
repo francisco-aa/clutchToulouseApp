@@ -6,6 +6,7 @@ import RootNavigator from './src/navigation/RootNavigator';
 import Menu from "./src/components/Menu";
 import {Provider} from "react-redux";
 import {store} from "./src/redux/store";
+import NotificationsHandler from "./src/screens/alerts/notifications/NotificationsHandler";
 
 const MyTheme = {
   dark: false,
@@ -18,6 +19,7 @@ export default function App() {
   return (
       <Provider store={store}>
         <SafeAreaView style={stylesheet.androidSafeArea}>
+          <NotificationsHandler/>
           <NavigationContainer theme={MyTheme} >
             <RootNavigator />
             <Menu/>
