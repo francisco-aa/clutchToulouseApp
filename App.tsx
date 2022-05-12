@@ -4,6 +4,8 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import RootNavigator from './src/navigation/RootNavigator';
 import Menu from "./src/components/Menu";
+import {Provider} from "react-redux";
+import {store} from "./src/redux/store";
 
 const MyTheme = {
   dark: false,
@@ -14,12 +16,15 @@ const MyTheme = {
 
 export default function App() {
   return (
-    <SafeAreaView style={stylesheet.androidSafeArea}>
-      <NavigationContainer theme={MyTheme} >
-        <RootNavigator />
-        <Menu/>
-      </NavigationContainer>
-    </SafeAreaView>
+      <Provider store={store}>
+        <SafeAreaView style={stylesheet.androidSafeArea}>
+          <NavigationContainer theme={MyTheme} >
+            <RootNavigator />
+            <Menu/>
+          </NavigationContainer>
+        </SafeAreaView>
+      </Provider>
+
   );
 }
 
