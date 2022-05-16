@@ -3,6 +3,7 @@ import {Provider} from "react-redux";
 import {store} from "./src/redux/store";
 import NotificationsHandler from "./src/screens/alerts/notifications/NotificationsHandler";
 import AppNavigation from "./src/routes/AppNavigation";
+import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 
 const MyTheme = {
   dark: false,
@@ -13,10 +14,11 @@ const MyTheme = {
 
 const App = () => {
   return (
-      <Provider store={store}>
-          <NotificationsHandler/>
-          <AppNavigation/>
-      </Provider>
+          <Provider store={store}>
+              <NotificationsHandler/>
+                  <AppNavigation/>
+          </Provider>
+
 
   );
 }

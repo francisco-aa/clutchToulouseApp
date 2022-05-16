@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import Container from "../../style/Container";
+import Container from "../../../components/Container";
 import { Fontisto, Ionicons } from '@expo/vector-icons';
 import {useAppSelector} from "../../../redux/hooks";
 

@@ -1,7 +1,7 @@
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import {TouchableOpacity, View} from "react-native";
 import React, {FC, useEffect, useState} from "react";
-import SearchBar from "../../style/searchBar/SearchBar";
+import SearchBar from "../../../components/searchBar/SearchBar";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {clone, filter, isUndefined} from "lodash";
 import Ievent from "../../../redux/slices/Ievent";

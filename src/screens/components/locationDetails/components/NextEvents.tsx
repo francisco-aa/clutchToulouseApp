@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import CardEvent from "../../../style/card/CardEvent";
+import CardEvent from "../../../../components/card/CardEvent";
 import {useGetAllEventsQuery} from "../../../../api/events.service.";
 import {filter, map} from "lodash";
 import Ievent from "../../../../redux/slices/Ievent";

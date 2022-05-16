@@ -2,16 +2,16 @@ import {ScrollView, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import {HeaderImage, Content} from "./eventDetailsScreen.style";
 import {Ionicons, FontAwesome5, FontAwesome} from '@expo/vector-icons';
-import Title from "../../style/title/Title";
-import Tag from "../../style/tag/Tag"
+import Title from "../../../components/title/Title";
+import Tag from "../../../components/tag/Tag"
 import {find, map} from "lodash";
 import React from "react";
-import Container from "../../style/Container";
-import Information from "../../style/Information";
+import Container from "../../../components/Container";
+import Information from "../../../components/Information";
 import {format} from "date-fns";
 import fr from "date-fns/locale/fr";
-import PreventViewAdress from "../../style/preventViewAdress/PreventViewAdress";
-import {CustomButton} from "../../style/button/button.style";
+import PreventViewAdress from "../../../components/preventViewAdress/PreventViewAdress";
+import {CustomButton} from "../../../components/button/button.style";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import Eroutes from "../../../routes/Eroutes";
 

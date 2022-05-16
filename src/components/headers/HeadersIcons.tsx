@@ -2,8 +2,7 @@ import React from "react";
 import Container from "../Container";
 import { AntDesign, Feather } from '@expo/vector-icons';
 import {useNavigation} from "@react-navigation/native";
-import Eroutes from "../../../routes/Eroutes";
-
+import Eroutes from "../../routes/Eroutes";
 
 const HeaderIcons = () => {
     const navigation = useNavigation()

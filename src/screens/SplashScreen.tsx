@@ -3,18 +3,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteParams } from '../navigation/RootNavigator';
+import Eroutes from "../routes/Eroutes";
 
-type Props = {}
-
-//TODO test
-
-
-/**
- * 
- * @param props 
- * @returns SplashScreen
- */
-export default function SplashScreen(props: Props){
+export const SplashScreen = () =>{
   const startAnimation=useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
 
   const navigation=useNavigation<NativeStackNavigationProp<RouteParams>>();
@@ -38,7 +29,6 @@ export default function SplashScreen(props: Props){
   }, 1000);
   setTimeout(() => {
     setstateH(true)
-    setstateCblack(true)
   }, 1250);
 
 
@@ -61,7 +51,7 @@ export default function SplashScreen(props: Props){
 
 
   setTimeout(() => {
-    navigation.navigate('Acceuil')
+    navigation.navigate(Eroutes.ROOT)
   }, 2650);
   return (
     <View style={styles.container}>
@@ -96,7 +86,10 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
   },
   animationContainer:{
+    display: 'flex',
     alignItems:'center',
+    justifyContent: 'center',
     flexDirection:'row'
   }
 })
+export default SplashScreen

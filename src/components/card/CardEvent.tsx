@@ -9,9 +9,9 @@ import {find, map} from "lodash";
 import {format} from "date-fns";
 import fr from "date-fns/locale/fr";
 import {useNavigation} from "@react-navigation/native";
-import Eroutes from "../../../routes/Eroutes";
-import Ievent from "../../../redux/slices/Ievent";
-import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import Eroutes from "../../routes/Eroutes";
+import Ievent from "../../redux/slices/Ievent";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks";
 
 type TCardEvent = {
     color: string,

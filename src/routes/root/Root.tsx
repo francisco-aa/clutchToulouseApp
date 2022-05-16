@@ -7,6 +7,9 @@ import AlertsStack from "../alertsStack/AlertsStack";
 import ReaderStack from "../readerStack/ReaderStack";
 import React from "react";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import SplashScreen from "../../screens/SplashScreen";
+import Eroutes from "../Eroutes";
+import Acceuil from "../../screens/Acceuil";
 
 const Root = () => {
     const Tab = createBottomTabNavigator()
@@ -20,12 +23,12 @@ const Root = () => {
             tabBarStyle: { backgroundColor: 'black',left: 10, right: 10, position: 'absolute', borderTopLeftRadius: 15, borderTopRightRadius: 15 },
         })} >
 
-            <Tab.Screen name={'Home'} options={{
+            <Tab.Screen name={Eroutes.HOME_SCREEN} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
                     <Ionicons name="home-sharp" size={24} color={color} />
                 )
-            }} component={HomeStack}/>
+            }} component={Acceuil}/>
             <Tab.Screen name={'Research'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (

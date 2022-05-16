@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colors} from "../../../utils/appUtils";
+import {colors} from "../../utils/appUtils";
 
 export const MessageStyle = styled.View`
   position: relative;

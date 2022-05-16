@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect} from "react";
-import {Map, markerStyle} from "../style/map/mapView.style";
+import {Map, markerStyle} from "../../components/map/mapView.style";
 import {useGetAllEventsQuery} from "../../api/events.service.";
 import {Marker} from "react-native-maps";
 import {Image} from "react-native";

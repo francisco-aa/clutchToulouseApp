@@ -5,11 +5,11 @@ import {useNavigation} from "@react-navigation/native";
 import {useAppSelector} from "../../../redux/hooks";
 import IconRounded from "./IconRounded";
 import {Content} from "./locationDetailsScreen.style";
-import Container from '../../style/Container'
-import Title from "../../style/title/Title";
+import Container from '../../../components/Container'
+import Title from "../../../components/title/Title";
 import {map} from "lodash";
-import Tag from "../../style/tag/Tag";
-import Information from "../../style/Information";
+import Tag from "../../../components/tag/Tag";
+import Information from "../../../components/Information";
 import {ScrollView, Text} from "react-native";
 import NextEvents from "./components/NextEvents";
 const LocationDetailsScreen = () => {

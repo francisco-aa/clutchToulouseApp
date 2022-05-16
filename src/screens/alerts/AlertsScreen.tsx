@@ -1,11 +1,11 @@
 import React from "react";
 import {useAppSelector} from "../../redux/hooks";
 import {map, sortBy} from "lodash";
-import ScreenWrapper from "../style/ScreenWrapper";
-import Message from "../style/message/Message";
-import HeaderIcons from "../style/headers/HeadersIcons";
-import TitleWithImage from "../style/title/titleWithImage/TitleWithImage";
-import {MessageContainer} from "../style/message/message.style";
+import ScreenWrapper from "../../components/ScreenWrapper";
+import Message from "../../components/message/Message";
+import HeaderIcons from "../../components/headers/HeadersIcons";
+import TitleWithImage from "../../components/title/titleWithImage/TitleWithImage";
+import {MessageContainer} from "../../components/message/message.style";
 import {ScrollView} from "react-native";
 const AlertsScreen = () => {
 
