@@ -10,6 +10,7 @@ export const eventsApi = createApi({
         getAllEvents: builder.query<Ievent[], void>({
             query: () => `events?`,
             transformResponse: (response, meta, arg) => {
+                console.log(response);
                 return reverse(response["hydra:member"])
             },
         }),

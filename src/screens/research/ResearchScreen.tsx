@@ -6,7 +6,6 @@ import Filters from "./components/Filters";
 import CardEvent from "../../components/card/CardEvent";
 import Container from "../../components/Container";
 import {ScrollView, Text} from "react-native";
-import {useGetAllEventsQuery} from "../../api/events.service.";
 import {clone, map} from "lodash";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks";
 import Loading from "../../components/loading/Loading";
@@ -14,6 +13,7 @@ import Ievent from "../../redux/slices/Ievent";
 import SearchBarCityGuide from "./components/SearchBarCityGuide";
 import {useNavigation} from "@react-navigation/native";
 import Eroutes from "../../routes/Eroutes";
+import { useGetAllEventsQuery } from "../../api/events.service";
 
 const ResearchScreen = () => {
     const dispatch = useAppDispatch()
