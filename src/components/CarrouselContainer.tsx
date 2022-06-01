@@ -15,8 +15,12 @@ type Props = {
 export default function  CarrouselContainer(props: Props){
     const {data, isLoading} = useGetAllEventsQuery('')
     const categories:Icategory[] =  new dataAccess().getcategories()
+    const [todayEvents, setTodayFiletred] = useState<Ievent[]>()
     const [headlinesEvents, setDataFiletred] = useState<Ievent[]>()
-    const todayEvents = data
+    console.log(`
+    
+    `);
+    
     useEffect(() => {
         if (!isLoading){
             const headlinesEvents = map(data, event => {
@@ -24,7 +28,13 @@ export default function  CarrouselContainer(props: Props){
                     return event
                 }
             })
+            const todayEvents = map(data, event => {
+                if (event != undefined && new Date(event.start_date).toISOString().slice(0, 10) == new Date().toISOString().slice(0, 10))
+                    return event
+            })
             setDataFiletred(headlinesEvents)
+            // setTodayFiletred(todayEvents)
+
         }
     }, [isLoading])
 
