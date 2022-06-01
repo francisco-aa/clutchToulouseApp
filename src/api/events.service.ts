@@ -7,9 +7,9 @@ export const eventsApi = createApi({
     refetchOnFocus: true,
     baseQuery: fetchBaseQuery({baseUrl: 'https://clutchmag.fr/api/'}),
     endpoints: (builder) => ({
-        getAllEvents: builder.query<Ievent[], void>({
+        getAllEvents: builder.query<Ievent[], string>({
             query: () => `events?`,
-            transformResponse: (response, meta, arg) => {
+            transformResponse: (response: Ievent[], meta, arg) => {                
                 return reverse(response["hydra:member"])
             },
         }),

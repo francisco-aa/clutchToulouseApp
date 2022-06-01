@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Event } from '../types/Event';
+import Ievent from '../redux/slices/Ievent'
 
 type Props = {
-    event:Event
+    event: Ievent
 }
 var countTicket:number=0;
 var countTitle:number=0;

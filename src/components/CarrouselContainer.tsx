@@ -8,32 +8,22 @@ import { useGetAllEventsQuery } from '../api/events.service'
 import { filter, map, now } from 'lodash'
 import React, {useEffect, useState} from "react";
 
-
 type Props = { 
     type:("category"|"headline"|"Today") ,
 }
 
-
 export default function  CarrouselContainer(props: Props){
-    const {data, isLoading} = useGetAllEventsQuery()
+    const {data, isLoading} = useGetAllEventsQuery('')
     const categories:Icategory[] =  new dataAccess().getcategories()
-
-    // const [headlinesEvents, getDataFiletredByTop] = useState<Ievent[] | null>(null)
-    // const [todayEvents, getDataFiletredByDate] = useState<Ievent[] | null>(null)
-    // const headlinesEvents = data.data?.filter(event => event.is_clutchorama == false).map(event => event.name)
-    const [headlinesEvents, setDataFiletred] = useState<Ievent[] | null>([])
+    const [headlinesEvents, setDataFiletred] = useState<Ievent[]>()
     const todayEvents = data
-
-    // console.log(data.data?.map(event => event.name))
-    // console.log(headlinesEvents)
-
     useEffect(() => {
         if (!isLoading){
             const headlinesEvents = map(data, event => {
-                if (event.name && event.is_clutchorama == false) {
-                    return event.name
+                if (event != undefined && event.name && event.is_clutchorama == false) {
+                    return event
                 }
-            } )
+            })
             setDataFiletred(headlinesEvents)
         }
     }, [isLoading])
@@ -55,12 +45,11 @@ export default function  CarrouselContainer(props: Props){
                 </View>
                 )
         case 'headline':
-            return (
-                <>{console.log("test " + headlinesEvents)}                
+            return (         
                 <View style={styles.carrouselContainer}>
-                <Text style={styles.carrouselTitle} >À LA UNE {headlinesEvents}</Text>
+                <Text style={styles.carrouselTitle} >À LA UNE</Text>
                 <FlatList horizontal showsHorizontalScrollIndicator={false} data={headlinesEvents} renderItem={renderEventCarrouselCard}/>
-            </View></>
+            </View>
 
                 )
         case 'Today':
