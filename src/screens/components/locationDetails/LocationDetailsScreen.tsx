@@ -5,7 +5,7 @@ import {useNavigation} from "@react-navigation/native";
 import {useAppSelector} from "../../../redux/hooks";
 import IconRounded from "./IconRounded";
 import {Content} from "./locationDetailsScreen.style";
-import Container from '../../../components/Container'
+import Container from '../../../components/ContainerTouchable'
 import Title from "../../../components/title/Title";
 import {map} from "lodash";
 import Tag from "../../../components/tag/Tag";

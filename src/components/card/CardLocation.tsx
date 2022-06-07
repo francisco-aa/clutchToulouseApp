@@ -6,7 +6,7 @@ import React, { FC } from "react"
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks"
 import Ievent from "../../../redux/slices/Ievent"
 import Eroutes from "../../../routes/Eroutes"
-import Container from "../Container"
+import Container from "../ContainerTouchable"
 import Information from "../Information"
 import Tag from "../tag/Tag"
 import Title from "../title/Title"
@@ -33,7 +33,7 @@ const CardLocation: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
                            color={'white'}/>
                 </Container>
                 <Container direction={'column'} justify={'center'} align={'flex-start'}>
-                    
+
                     <Information bold underline
                                  text={`${event.location.business_hours}`.length < 4 ? 'Information indisponible' : `${event.location.name}, ${event.location.street_name}`}
                                  icon={'map-marker-alt'}/>

@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../Container";
+import Container from "../ContainerTouchable";
 import { AntDesign, Feather } from '@expo/vector-icons';
 import {useNavigation} from "@react-navigation/native";
 import Eroutes from "../../routes/Eroutes";
@@ -8,7 +8,7 @@ const HeaderIcons = () => {
     const navigation = useNavigation()
     return (
         <Container style={{
-            marginTop: 50
+            marginTop: 20
         }} justify={'space-between'}>
             <AntDesign onPress={() => {
                 //TODO: revoir l'implémentation

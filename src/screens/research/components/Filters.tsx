@@ -1,6 +1,6 @@
 import React, {FC} from "react";
-import Container from "../../../components/Container";
-import { Fontisto, Ionicons } from '@expo/vector-icons';
+import Container from "../../../components/ContainerTouchable";
+import { Fontisto, Ionicons, MaterialIcons} from '@expo/vector-icons';
 import {useAppSelector} from "../../../redux/hooks";
 
 type TFilters = {
@@ -19,6 +19,9 @@ const Filters: FC<TFilters> = ({onChangeFilter}) => {
             <Ionicons onPress={() => onChangeFilter('calendar')} style={{
                 marginLeft: 20
             }} name="md-calendar-sharp" size={34} color={currentFilter === 'calendar' ? '#FA4E74' : "white" } />
+            <MaterialIcons style={{
+                marginLeft: 20
+            }} onPress={() => onChangeFilter('categories')}  name="category" size={34} color={currentFilter === 'categories' ? '#FA4E74' : "white" }  />
         </Container>
     )
 }

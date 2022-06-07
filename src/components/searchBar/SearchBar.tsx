@@ -1,7 +1,6 @@
 import React, {FC} from "react";
 import {SearchBarStyle, SearchBarContainer} from "./searchBar.style";
 import { FontAwesome } from '@expo/vector-icons';
-import {useAppSelector} from "../../../redux/hooks";
 
 type TSearchBar = {
     placeholder: string,
@@ -11,7 +10,6 @@ type TSearchBar = {
     currentSearch: string,
 }
 const SearchBar: FC<TSearchBar> = ({placeholder, iconRight, onSearch, onChange, currentSearch}) => {
-
 
     return (
         <SearchBarContainer>

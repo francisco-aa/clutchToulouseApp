@@ -1,7 +1,7 @@
 import React, {FC} from "react";
-import {CommonCard, EventCardWrapper} from "./card";
+import {CommonCard, CommonCardWrapper, EventCardWrapper} from "./card";
 import Information from "../Information";
-import Container from "../Container";
+import Container from "../ContainerTouchable";
 import Title from "../title/Title";
 import {AntDesign, FontAwesome, FontAwesome5} from "@expo/vector-icons";
 import Tag from "../tag/Tag";
@@ -37,41 +37,39 @@ const CardEvent: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
             marginTop,
         }} onPress={handlePress}>
             <CommonCard color={color}>
-                {isFavorite ? (
-                    <FontAwesome style={{
-                        position: 'absolute',
-                        right: 20,
-                        top: 20,
-                    }} name="heart" onPress={() => dispatch({type: "alerts/disableAlert", payload: event["@id"]})} size={24}
-                                 color="#00ADBB"/>
-                ) : (
-                    <FontAwesome style={{
-                        position: 'absolute',
-                        right: 20,
-                        top: 20,
-                    }} name="heart-o"  onPress={() => dispatch({type: "alerts/setAlerts", payload: event})}  size={24}
-                                 color="black"/>
-                )}
-
-
-                <Container justify={'center'} style={{textAlign: 'center', marginRight: 30}}>
-                    <Title  title={event.name} transform={'uppercase'} marginTop={0} size={20} marginBottom={0}
-                           color={'white'}/>
-                </Container>
-                <Container direction={'column'} justify={'center'} align={'flex-start'}>
-                    <Information text={format(new Date(event.start_date), 'PPpp', {locale: fr})} icon={'clock'}/>
-                    <Information bold underline
-                                 text={`${event.location.name}, ${event.location.street_name}`.length < 4 ? 'Information indisponible' : `${event.location.name}, ${event.location.street_name}`}
-                                 icon={'map-marker-alt'}/>
-                    <Information text={event.price ? event.price : 'Information indisponible'} icon={'tickets-alt'}/>
-                </Container>
-                <Container style={{
-                    marginTop: 15,
-                }} justify={'center'} align={'center'}>
-                    {tags && map(tags, (tag, index) => (
-                        <Tag color={"white"} key={index} title={tag}/>
-                    ))}
-                </Container>
+                    {isFavorite ? (
+                        <FontAwesome style={{
+                            position: 'absolute',
+                            right: 20,
+                            top: 20,
+                        }} name="heart" onPress={() => dispatch({type: "alerts/disableAlert", payload: event["@id"]})} size={24}
+                                     color="#00ADBB"/>
+                    ) : (
+                        <FontAwesome style={{
+                            position: 'absolute',
+                            right: 20,
+                            top: 20,
+                        }} name="heart-o"  onPress={() => dispatch({type: "alerts/setAlerts", payload: event})}  size={24}
+                                     color="black"/>
+                    )}
+                    <Container justify={'center'} style={{textAlign: 'center', marginRight: 30}}>
+                        <Title  title={event.name} transform={'uppercase'} marginTop={0} size={20} marginBottom={0}
+                                color={'white'}/>
+                    </Container>
+                    <Container direction={'column'} justify={'center'} align={'flex-start'}>
+                        <Information isTouchable={false} text={format(new Date(event.start_date), 'PPpp', {locale: fr})} icon={'clock'}/>
+                        <Information bold underline isTouchable={false}
+                                     text={`${event.location.name}, ${event.location.street_name}`.length < 4 ? 'Information indisponible' : `${event.location.name}, ${event.location.street_name}`}
+                                     icon={'map-marker-alt'}/>
+                        <Information isTouchable={false} text={event.price ? event.price : 'Information indisponible'} icon={'ticket-alt'}/>
+                    </Container>
+                    <Container style={{
+                        marginTop: 15,
+                    }} justify={'center'} align={'center'}>
+                        {tags && map(tags, (tag, index) => (
+                            <Tag color={"white"} key={index} title={tag}/>
+                        ))}
+                    </Container>
             </CommonCard>
         </EventCardWrapper>
     )

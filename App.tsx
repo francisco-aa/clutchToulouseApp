@@ -3,14 +3,14 @@ import {Provider} from "react-redux";
 import {store} from "./src/redux/store";
 import NotificationsHandler from "./src/screens/alerts/notifications/NotificationsHandler";
 import AppNavigation from "./src/routes/AppNavigation";
-import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 
-const MyTheme = {
+//à voir plus tard pour les thèmes
+/*const MyTheme = {
   dark: false,
   colors: {
     background: '#fff'
   }
-}
+}*/
 
 const App = () => {
   return (
@@ -18,8 +18,6 @@ const App = () => {
               <NotificationsHandler/>
                   <AppNavigation/>
           </Provider>
-
-
   );
 }
 
