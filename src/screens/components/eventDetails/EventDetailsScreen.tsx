@@ -1,4 +1,4 @@
-import {ScrollView, TouchableOpacity, View} from "react-native";
+import {ScrollView, Text, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import {HeaderImage, Content} from "./eventDetailsScreen.style";
 import {Ionicons, FontAwesome5, FontAwesome} from '@expo/vector-icons';
@@ -22,6 +22,7 @@ const EventDetailsScreen = () => {
     const event = useAppSelector(state => state.events.selectedEvent)
     const alerts = useAppSelector(state => state.alerts.alerts)
 
+    console.log(event)
     const handleLocationPress = () => {
        navigation.navigate(Eroutes.LOCATION_DETAILS_SCREEN)
     }
@@ -29,7 +30,17 @@ const EventDetailsScreen = () => {
 
     return (
         <>
-            <HeaderImage source={{uri: `https://clutchmag.fr/images/locations/${event?.location?.image}`}}>
+            <HeaderImage source={
+                event?.location?.image==null
+                ?
+                    require('../../../../assets/img/Textures/TEXTURE – 6.png')
+                :
+                    event?.location?.image=='clutch.gif'
+                    ?
+                        require('../../../../assets/img/Textures/TEXTURE – 6.png')
+                    :
+                        {uri: `https://clutchmag.fr/images/locations/${event?.location?.image}`}
+                }>
                 <Ionicons onPress={() => navigation.goBack()} name="chevron-back-circle-outline" size={40}
                           color="white" style={{
                     position: 'absolute',
@@ -79,7 +90,7 @@ const EventDetailsScreen = () => {
                                      onPress={handleLocationPress}
                                      text={`${event.location.name}, ${event.location.street_name}`.length < 4 ? 'Information indisponible' : `${event.location.name}, ${event.location.street_name}`}
                                      icon={'map-marker-alt'}/>
-                        <Information text={event.price ? event.price : 'Information indisponible'} icon={'tickets-alt'}/>
+                        <Information text={event.price ? event.price : 'Information indisponible'} icon={'euro-sign'}/>
                     </Container>
                     <Container style={{
                         marginTop: 30,
@@ -89,6 +100,7 @@ const EventDetailsScreen = () => {
                         <CustomButton bold color={"#625A96"} title={"RESERVER"} onPress={() => console.log('test')}/>
 
                     </Container>
+
                     {event?.location?.longitude && event?.location?.latitude && (
                         <PreventViewAdress coordinate={{latitude: event.location.latitude, longitude: event.location.longitude}}/>
                     )}

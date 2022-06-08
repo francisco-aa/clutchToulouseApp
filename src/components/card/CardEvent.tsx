@@ -37,6 +37,7 @@ const CardEvent: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
             marginTop,
         }} onPress={handlePress}>
             <CommonCard color={color}>
+
                     {isFavorite ? (
                         <FontAwesome style={{
                             position: 'absolute',
