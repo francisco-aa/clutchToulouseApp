@@ -43,7 +43,7 @@ const Root = () => {
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
                     <Image source={color=='white' ?require('../../../assets/img/Menu/Agenda.png')
-                                                : require('../../../assets/img/Menu/Home_active.png')}/>
+                                                : require('../../../assets/img/Menu/Agenda_active.png')}/>
                 )
             }} component={AgendaStack}/>
             <Tab.Screen name={'Map'} options={{
