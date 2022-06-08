@@ -63,7 +63,7 @@ const CardEvent: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
                     <Information bold underline
                                  text={`${event.location.name}, ${event.location.street_name}`.length < 4 ? 'Information indisponible' : `${event.location.name}, ${event.location.street_name}`}
                                  icon={'map-marker-alt'}/>
-                    <Information text={event.price ? event.price : 'Information indisponible'} icon={'tickets-alt'}/>
+                    <Information text={event.price ? event.price : 'Information indisponible'} icon={'euro-sign'}/>
                 </Container>
                 <Container style={{
                     marginTop: 15,
