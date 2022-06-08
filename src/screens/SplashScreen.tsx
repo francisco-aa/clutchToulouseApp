@@ -30,6 +30,9 @@ export const SplashScreen = () =>{
   setTimeout(() => {
     setstateH(true)
   }, 1250);
+  setTimeout(() => {
+    setstateCblack(true)
+  }, 1300);
 
 
   useEffect(() => {
@@ -59,13 +62,13 @@ export const SplashScreen = () =>{
                     { translateY: startAnimation.y },
                     { translateX: startAnimation.x }
                 ]}]}>
-             {stateCblack ? <Image style={{top:10}} source={require('../../assets/img/Clutch_icon_black.png')}/>
-                    : <Image style={{top:10}} source={require('../../assets/img/Clutch_icon_green.png')}/>}
-            {stateL ? <Image style={{}} source={require('../../assets/img/logo/L.png')}/>:<Text></Text>}
-            {stateU ? <Image style={{top:10}} source={require('../../assets/img/logo/U.png')}/>:<Text></Text>}
-            {stateT ? <Image style={{}} source={require('../../assets/img/logo/T.png')}/>:<Text></Text>}
-            {stateC ? <Image style={{top:10}} source={require('../../assets/img/logo/C.png')}/>:<Text></Text>}
-            {stateH ? <Image style={{}} source={require('../../assets/img/logo/H.png')}/>:<Text></Text>}
+             {stateCblack ? <Image style={{top:10,margin:4}} source={require('../../assets/images/Clutch_icon_black.png')}/>
+                    : <Image style={{top:10,margin:4}} source={require('../../assets/images/Clutch_icon_green.png')}/>}
+            {stateL ? <Image style={{margin:4}} source={require('../../assets/images/logo/L.png')}/>:<Text></Text>}
+            {stateU ? <Image style={{top:10,margin:4}} source={require('../../assets/images/logo/U.png')}/>:<Text></Text>}
+            {stateT ? <Image style={{margin:4}} source={require('../../assets/images/logo/T.png')}/>:<Text></Text>}
+            {stateC ? <Image style={{top:10,margin:4}} source={require('../../assets/images/logo/C.png')}/>:<Text></Text>}
+            {stateH ? <Image style={{margin:4}} source={require('../../assets/images/logo/H.png')}/>:<Text></Text>}
         </Animated.View>
     </View>
   )
@@ -80,10 +83,6 @@ const styles = StyleSheet.create({
     paddingHorizontal:'10%',
     justifyContent:'center',
     zIndex:10
-  },
-  lettres:{
-    fontSize:120,
-    fontWeight:'bold'
   },
   animationContainer:{
     display: 'flex',

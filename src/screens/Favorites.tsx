@@ -12,7 +12,7 @@ export default function Favorites({ }: Props) {
             <HeaderActions hasBackBtn={true} />
             <View style={styles.headerTitleContainer}>
                 <Text style={styles.headerTitle}>ENVIES</Text>
-                <Image source={require('../../assets/img/Clutch_signature.png')} />
+                <Image source={require('../../assets/images/Clutch_signature.png')} />
             </View>
         </View>
     );
