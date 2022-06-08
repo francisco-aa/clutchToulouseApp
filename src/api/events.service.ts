@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import Ievent from "../redux/slices/Ievent";
-import {filter, map, reverse} from "lodash";
+import {reverse} from "lodash";
 
 export const eventsApi = createApi({
     reducerPath: 'eventsApi',
