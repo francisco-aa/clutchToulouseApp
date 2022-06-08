@@ -7,10 +7,7 @@ import Header from '../components/Header';
 
 type Props = {}
 
-export default function Acceuil(props: Props){
-    BackHandler.addEventListener("hardwareBackPress",function(){
-        return true
-    })
+export default function Accueil(props: Props){
     const getFonts = () =>Font.loadAsync({
       'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.otf'),
       'Poppins-Italic': require('../../assets/fonts/Poppins-Italic.otf'),

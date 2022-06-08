@@ -5,34 +5,28 @@ import Icategory from '../redux/slices/Icategory'
 type Props = {
     category: Icategory,
 }
-var count:number=0;
-//TODO redirection vers les détails 
-// TODO test du composant 
+
 export default function CategoryCarrouselCard(props: Props){
-    function ticketNB():number{
-        if (count <= 3) {
-            return count += 1
-        } else {
-            return count = 1
-        }
-    }
-    function getImage(ticketNB:number) {
-        switch (ticketNB) {
+
+    function getImage(categoryID:number) {
+        switch (categoryID) {
             case 1:
-            return require('../../assets/images/tickets/Ticket_1.png')
+                return require('../../assets/img/Ticket_2.png')
             case 2:
-            return require('../../assets/images/tickets/Ticket_2.png')
+                return require('../../assets/img/Ticket_1.png')
             case 3:
-            return require('../../assets/images/tickets/Ticket_3.png')
+                return require('../../assets/img/Ticket_3.png')
             case 4:
-            return require('../../assets/images/tickets/Ticket_4.png')
+                return require('../../assets/img/Ticket_4.png')
+            case 5:
+                return require('../../assets/img/Ticket_1.png')
         }
     }
     return (   
         
         <View style={styles.carrouselCards}>
             <Image style={styles.ticket}
-                source={getImage(ticketNB())}
+                source={getImage(parseInt(props.category.id))}
             />
             <Text style={styles.title}>{props.category.name}</Text>
         </View>

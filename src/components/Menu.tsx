@@ -65,7 +65,7 @@ export default function Menu(props: Props){
         <View style={styles.menubackground}>
             <TouchableHighlight
             onPress={()=>{
-                navigation.navigate('Acceuil');
+                navigation.navigate('Accueil');
                 setState(state => ({
                      ...state, Home:true, Search:false, Agenda:false,
                       Map:false, Notification:false, Book:false})

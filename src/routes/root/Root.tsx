@@ -9,7 +9,7 @@ import React from "react";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import SplashScreen from "../../screens/SplashScreen";
 import Eroutes from "../Eroutes";
-import Acceuil from "../../screens/Acceuil";
+import Accueil from "../../screens/Accueil";
 import { Image } from "react-native";
 
 const Root = () => {
@@ -30,7 +30,7 @@ const Root = () => {
                     <Image source={color =='white' ? require('../../../assets/images/Menu/Home.png')
                                                 : require('../../../assets/images/Menu/Home_active.png') }/>
                 )
-            }} component={Acceuil}/>
+            }} component={Accueil}/>
             <Tab.Screen name={'Research'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
