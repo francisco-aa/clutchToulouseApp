@@ -1,19 +1,19 @@
-import React from "react";
-import {HeaderImage} from "../eventDetails/eventDetailsScreen.style";
-import {Ionicons} from "@expo/vector-icons";
-import {useNavigation} from "@react-navigation/native";
-import {useAppSelector} from "../../../redux/hooks";
-import IconRounded from "./IconRounded";
-import {Content} from "./locationDetailsScreen.style";
+import {HeaderImage} from "../eventDetails/eventDetailsScreen.style"
 import Container from '../../../components/ContainerTouchable'
-import Title from "../../../components/title/Title";
-import {map} from "lodash";
-import Tag from "../../../components/tag/Tag";
-import Information from "../../../components/Information";
-import {ScrollView, Text} from "react-native";
-import NextEvents from "./components/NextEvents";
-const LocationDetailsScreen = () => {
+import Information from "../../../components/Information"
+import {useNavigation} from "@react-navigation/native"
+import {Content} from "./locationDetailsScreen.style"
+import {useAppSelector} from "../../../redux/hooks"
+import Title from "../../../components/title/Title"
+import NextEvents from "./components/NextEvents"
+import {ScrollView, Text} from "react-native"
+import Tag from "../../../components/tag/Tag"
+import {Ionicons} from "@expo/vector-icons"
+import IconRounded from "./IconRounded"
+import {map} from "lodash"
+import React from "react"
 
+const LocationDetailsScreen = () => {
     const navigation = useNavigation()
     const location = useAppSelector(state => state.events.selectedEvent?.location)
     return (
@@ -24,7 +24,6 @@ const LocationDetailsScreen = () => {
                     position: 'absolute',
                     top: 60,
                     left: 20,
-
                 }}/>
             </HeaderImage>
             <Content>
@@ -43,17 +42,21 @@ const LocationDetailsScreen = () => {
                         marginTop: 30
                     }} direction={'column'} align={'flex-start'}>
                         <Information
-                            text={location.business_hours ? location.business_hours : "numéro de téléphone indisponible"}
-                            icon={'clock'}/>
+                            text={location.business_hours}
+                            icon={'clock'}
+                            display={location.business_hours ? 'flex' : 'none'}/>
                         <Information
-                            text={`${location.street_name}`.length < 4 ? 'Information indisponible' : `${location.street_name}`}
-                            icon={'map-marker-alt'}/>
+                            text={location.street_name}
+                            icon={'map-marker-alt'}
+                            display={`${location.street_name}`.length < 4 ? 'none' : 'flex'}/>
                         <Information
-                            text={location.phone ? location.phone : "numéro de téléphone indisponible"}
-                            icon={'phone'}/>
+                            text={location.phone}
+                            icon={'phone'}
+                            display={location.phone ? 'flex' : 'none'}/>
                         <Information
-                            text={location.website ? location.website : "numéro de téléphone indisponible"}
-                            icon={'link'}/>
+                            text={location.website}
+                            icon={'link'}
+                            display={location.website ? 'flex' : 'none'}/>
                     </Container>
                     <Container style={{
                         marginTop: 30
