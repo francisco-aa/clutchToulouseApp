@@ -65,7 +65,7 @@ export const SplashScreen = () =>{
              {stateCblack ? <Image style={{top:10,margin:4}} source={require('../../assets/images/logo/C1.png')}/>
                     : <Image style={{top:10,margin:4}} source={require('../../assets/images/Clutch_icon_green.png')}/>}
             {stateL ? <Image style={{margin:4}} source={require('../../assets/images/logo/L.png')}/>:<Text></Text>}
-            {stateU ? <Image style={{top:10,margin:4}} source={require('../../assets/images/logo/U.png')}/>:<Text></Text>}
+            {stateU ? <Image style={{top:14,margin:4}} source={require('../../assets/images/logo/U.png')}/>:<Text></Text>}
             {stateT ? <Image style={{margin:4}} source={require('../../assets/images/logo/T.png')}/>:<Text></Text>}
             {stateC ? <Image style={{top:10,margin:4}} source={require('../../assets/images/logo/C.png')}/>:<Text></Text>}
             {stateH ? <Image style={{margin:4}} source={require('../../assets/images/logo/H.png')}/>:<Text></Text>}
