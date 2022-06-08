@@ -7,7 +7,7 @@ import Header from '../components/Header';
 
 type Props = {}
 
-export default function Acceuil(props: Props){
+export default function Accueil(props: Props){
     const getFonts = () =>Font.loadAsync({
       'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.otf'),
       'Poppins-Italic': require('../../assets/fonts/Poppins-Italic.otf'),
