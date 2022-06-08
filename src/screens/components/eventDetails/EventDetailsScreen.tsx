@@ -22,6 +22,7 @@ const EventDetailsScreen = () => {
     const event = useAppSelector(state => state.events.selectedEvent)
     const alerts = useAppSelector(state => state.alerts.alerts)
 
+    console.log(event)
     const handleLocationPress = () => {
        navigation.navigate(Eroutes.LOCATION_DETAILS_SCREEN)
     }
@@ -32,39 +33,51 @@ const EventDetailsScreen = () => {
             <HeaderImage source={
                 event?.location?.image==null
                 ?
-                    require('../../../../assets/img/Textures/TEXTURE – 6.png')
+                    require('../../../../assets/images/Textures/TEXTURE6.png')
                 :
                     event?.location?.image=='clutch.gif'
                     ?
-                        require('../../../../assets/img/Textures/TEXTURE – 6.png')
+                        require('../../../../assets/images/Textures/TEXTURE6.png')
                     :
                         {uri: `https://clutchmag.fr/images/locations/${event?.location?.image}`}
                 }>
-                <Ionicons onPress={() => navigation.goBack()} name="chevron-back-circle-outline" size={40}
-                          color="white" style={{
-                    position: 'absolute',
-                    top: 60,
-                    left: 20,
-
-                }}/>
+                <Ionicons
+                    onPress={() => navigation.goBack()}
+                    name="chevron-back-circle-outline"
+                    size={40}
+                    color="white"
+                    style={{
+                        position: 'absolute',
+                        top: 60,
+                        left: 20,
+                    }}/>
             </HeaderImage>
             <Content>
-                <TouchableOpacity style={{
-                    position: 'absolute',
-                    right: 30,
-                    top: -35,
-                    width: 70,
-                    height: 70,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 50,
-                    backgroundColor: 'white'
-                }}>
+                <TouchableOpacity
+                    style={{
+                        position: 'absolute',
+                        right: 30,
+                        top: -35,
+                        width: 70,
+                        height: 70,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: 50,
+                        backgroundColor: 'white'
+                    }}>
                     {isFavorite ? (
-                        <FontAwesome name="heart" onPress={() => dispatch({type: "alerts/disableAlert", payload: event["@id"]})}  size={35} color="#625A96"/>
+                        <FontAwesome
+                            name="heart"
+                            onPress={() => dispatch({type: "alerts/disableAlert", payload: event["@id"]})}
+                            size={35}
+                            color="#625A96"/>
                     ) : (
-                        <FontAwesome name="heart-o" onPress={() => dispatch({type: "alerts/setAlerts", payload: event})} size={35} color="#625A96"/>
+                        <FontAwesome
+                            name="heart-o"
+                            onPress={() => dispatch({type: "alerts/setAlerts", payload: event})}
+                            size={35}
+                            color="#625A96"/>
                     )}
                 </TouchableOpacity>
                 <ScrollView showsVerticalScrollIndicator={false}>
@@ -75,29 +88,47 @@ const EventDetailsScreen = () => {
                         flexDirection: 'row'
                     }}>
                         {event?.tags && map(event.tags, (tag, index) => (
-                            <Tag key={index} color={"#625A96"} title={tag}/>
+                            <Tag
+                                key={index}
+                                color={"#625A96"}
+                                title={tag}/>
                         ))}
                     </View>
-                    <Container style={{
-                        marginTop: 20
-                    }} direction={'column'} justify={'center'} align={'flex-start'}>
-                        <Information text={format(new Date(event?.start_date), 'PPpp', {locale: fr})} icon={'clock'}/>
+                    <Container
+                        style={{
+                            marginTop: 20
+                        }}
+                        direction={'column'}
+                        justify={'center'}
+                        align={'flex-start'}>
                         <Information
-                            text={event.location.phone ? event.location.phone : "numéro de téléphone indisponible"}
-                            icon={'phone'}/>
-                        <Information bold underline
-                                     onPress={handleLocationPress}
-                                     text={`${event.location.name}, ${event.location.street_name}`.length < 4 ? 'Information indisponible' : `${event.location.name}, ${event.location.street_name}`}
-                                     icon={'map-marker-alt'}/>
-                        <Information text={event.price ? event.price : 'Information indisponible'} icon={'euro-sign'}/>
+                            text={format(new Date(event?.start_date), 'PPp', {locale: fr})}
+                            icon={'clock'}
+                            display={event?.start_date ? 'flex' : 'none'}/>
+                        <Information
+                            text={event.location.phone}
+                            icon={'phone'}
+                            display={event.location.phone ? 'flex' : 'none'}/>
+                        <Information
+                            bold
+                            underline
+                            onPress={handleLocationPress}
+                            text={`${event.location.name}, ${event.location.street_name}`}
+                            icon={'map-marker-alt'}
+                            display={`${event.location.name}, ${event.location.street_name}`.length < 4 ? 'none' : 'flex'}/>
+                        <Information
+                            text={event.price}
+                            icon={'ticket-alt'}
+                            display={event.price ? 'flex' : 'none'}/>
                     </Container>
-                    <Container style={{
-                        marginTop: 30,
-                        marginBottom: 30,
-                    }} justify={'space-between'}>
+                    <Container
+                        style={{
+                            marginTop: 30,
+                            marginBottom: 30,
+                        }}
+                        justify={'space-between'}>
                         <CustomButton bold bgColor={"#625A96"} title={"AJOUTER À L’AGENDA"} onPress={() => console.log('test')}/>
                         <CustomButton bold color={"#625A96"} title={"RESERVER"} onPress={() => console.log('test')}/>
-
                     </Container>
                     {!isNull(event?.location.longitude) && !isNull(event?.location.latitude) && event?.location.latitude !== 0 && event?.location.longitude !== 0 && (
                         <PreventViewAdress coordinate={{latitude: event.location.latitude, longitude: event.location.longitude}}/>

@@ -1,17 +1,17 @@
-import React, {FC} from "react";
-import {CommonCard, CommonCardWrapper, EventCardWrapper} from "./card";
-import Information from "../Information";
-import Container from "../ContainerTouchable";
-import Title from "../title/Title";
-import {AntDesign, FontAwesome, FontAwesome5} from "@expo/vector-icons";
-import Tag from "../tag/Tag";
-import {find, map} from "lodash";
-import {format} from "date-fns";
-import fr from "date-fns/locale/fr";
-import {useNavigation} from "@react-navigation/native";
-import Eroutes from "../../routes/Eroutes";
-import Ievent from "../../redux/slices/Ievent";
-import {useAppDispatch, useAppSelector} from "../../redux/hooks";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks"
+import {useNavigation} from "@react-navigation/native"
+import {CommonCard, EventCardWrapper} from "./card"
+import Ievent from "../../redux/slices/Ievent"
+import {FontAwesome} from "@expo/vector-icons"
+import Container from "../ContainerTouchable"
+import Eroutes from "../../routes/Eroutes"
+import Information from "../Information"
+import fr from "date-fns/locale/fr"
+import Title from "../title/Title"
+import {find, map} from "lodash"
+import React, {FC} from "react"
+import {format} from "date-fns"
+import Tag from "../tag/Tag"
 
 type TCardEvent = {
     color: string,
@@ -19,6 +19,7 @@ type TCardEvent = {
     marginTop: number,
     tags?: string[]
 }
+
 const CardEvent: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
     const navigation = useNavigation()
     const dispatch = useAppDispatch()
@@ -29,43 +30,62 @@ const CardEvent: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
         navigation.navigate(Eroutes.EVENT_DETAILS_SCREEN)
     }
 
-
     const isFavorite = find(alerts, ["@id", event["@id"]]) !== undefined
 
     return (
-        <EventCardWrapper style={{
-            marginTop,
-        }} onPress={handlePress}>
+        <EventCardWrapper 
+            style={{
+                marginTop,
+            }} 
+            onPress={handlePress}>
             <CommonCard color={color}>
                     {isFavorite ? (
-                        <FontAwesome style={{
-                            position: 'absolute',
-                            right: 20,
-                            top: 20,
-                        }} name="heart" onPress={() => dispatch({type: "alerts/disableAlert", payload: event["@id"]})} size={24}
-                                     color="#00ADBB"/>
+                        <FontAwesome 
+                            style={{
+                                position: 'absolute',
+                                right: 20,
+                                top: 20,
+                            }} 
+                            name="heart" 
+                            onPress={() => dispatch({type: "alerts/disableAlert", payload: event["@id"]})} 
+                            size={24}
+                            color="#00ADBB"/>
                     ) : (
-                        <FontAwesome style={{
-                            position: 'absolute',
-                            right: 20,
-                            top: 20,
-                        }} name="heart-o"  onPress={() => dispatch({type: "alerts/setAlerts", payload: event})}  size={24}
-                                     color="black"/>
+                        <FontAwesome 
+                            style={{
+                                position: 'absolute',
+                                right: 20,
+                                top: 20,
+                            }} 
+                            name="heart-o"
+                            onPress={() => dispatch({type: "alerts/setAlerts", payload: event})}
+                            size={24}
+                            color="black"/>
                     )}
                     <Container justify={'center'} style={{textAlign: 'center', marginRight: 30}}>
-                        <Title  title={event.name} transform={'uppercase'} marginTop={0} size={20} marginBottom={0}
-                                color={'white'}/>
+                        <Title title={event.name} transform={'uppercase'} marginTop={0} size={20} marginBottom={0}color={'white'}/>
                     </Container>
                     <Container direction={'column'} justify={'center'} align={'flex-start'}>
-                        <Information isTouchable={false} text={format(new Date(event.start_date), 'PPpp', {locale: fr})} icon={'clock'}/>
-                        <Information bold underline isTouchable={false}
-                                     text={`${event.location.name}, ${event.location.street_name}`.length < 4 ? 'Information indisponible' : `${event.location.name}, ${event.location.street_name}`}
-                                     icon={'map-marker-alt'}/>
-                        <Information isTouchable={false} text={event.price ? event.price : 'Information indisponible'} icon={'ticket-alt'}/>
+                        <Information isTouchable={false} text={format(new Date(event.start_date), 'PPp', {locale: fr})} 
+                            icon={'clock'} 
+                            color={'white'}
+                            display={event.start_date ? 'flex' : 'none'}/>
+                        <Information 
+                            bold
+                            underline
+                            isTouchable={false}
+                            text={`${event.location.name}, ${event.location.street_name}`}
+                            icon={'map-marker-alt'}
+                            color={'white'}
+                            display={`${event.location.name}, ${event.location.street_name}`.length < 4 ? 'none' : 'flex'}/>
+                        <Information 
+                            isTouchable={false}
+                            text={event.price} 
+                            icon={'ticket-alt'}
+                            color={'white'}
+                            display={event.price ? 'flex' : 'none'}/>
                     </Container>
-                    <Container style={{
-                        marginTop: 15,
-                    }} justify={'center'} align={'center'}>
+                    <Container style={{marginTop: 15}} justify={'center'} align={'center'}>
                         {tags && map(tags, (tag, index) => (
                             <Tag color={"white"} key={index} title={tag}/>
                         ))}

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {TouchableOpacity} from "react-native";
 
 export const ContainerTouchable = styled(TouchableOpacity)`
-  display: flex;
+  display: ${({display}) => display ? display : 'flex'};
   flex-direction: ${({direction}) => direction ? direction : 'row'};
   justify-content: ${({justify}) => justify ? justify : 'center'};
   align-items: ${({align}) => align ? align : 'center'};
@@ -10,7 +10,7 @@ export const ContainerTouchable = styled(TouchableOpacity)`
   margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : 0}px;
 `
 export const Container = styled.View`
-  display: flex;
+  display: ${({display}) => display ? display : 'flex'};
   flex-direction: ${({direction}) => direction ? direction : 'row'};
   justify-content: ${({justify}) => justify ? justify : 'center'};
   align-items: ${({align}) => align ? align : 'center'};
