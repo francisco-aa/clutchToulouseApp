@@ -1,9 +1,9 @@
 enum Ecategories {
-    CONCERT_CLUB = 1,
-    SPECTACLE_VIVANT = 2,
-    PROJECTION = 3,
+    MUSIQUE = 1,
+    SPECTACLE = 2,
     ART_VISUEL = 4,
-    AUTRES = 5
+    AUTRES = 5,
+    PROJECTION = 3
 }
 
 export default Ecategories
