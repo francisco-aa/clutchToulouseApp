@@ -61,11 +61,11 @@ export const SplashScreen = () =>{
                 ]}]}>
              {stateCblack ? <Image style={{top:10}} source={require('../../assets/img/Clutch_icon_black.png')}/>
                     : <Image style={{top:10}} source={require('../../assets/img/Clutch_icon_green.png')}/>}
-            {stateL ? <Image style={{top:10}} source={require('../../assets/img/logo/L.png')}/>:<Text></Text>}
+            {stateL ? <Image style={{}} source={require('../../assets/img/logo/L.png')}/>:<Text></Text>}
             {stateU ? <Image style={{top:10}} source={require('../../assets/img/logo/U.png')}/>:<Text></Text>}
-            {stateT ? <Image style={{top:10}} source={require('../../assets/img/logo/T.png')}/>:<Text></Text>}
+            {stateT ? <Image style={{}} source={require('../../assets/img/logo/T.png')}/>:<Text></Text>}
             {stateC ? <Image style={{top:10}} source={require('../../assets/img/logo/C.png')}/>:<Text></Text>}
-            {stateH ? <Image style={{top:10}} source={require('../../assets/img/logo/H.png')}/>:<Text></Text>}
+            {stateH ? <Image style={{}} source={require('../../assets/img/logo/H.png')}/>:<Text></Text>}
         </Animated.View>
     </View>
   )

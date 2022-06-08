@@ -27,37 +27,44 @@ const Root = () => {
             <Tab.Screen name={Eroutes.HOME_SCREEN} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <Image source={require('../../../assets/img/Menu/Home.png')}/>
+                    <Image source={color =='white' ? require('../../../assets/img/Menu/Home.png')
+                                                : require('../../../assets/img/Menu/Home_active.png') }/>
                 )
             }} component={Acceuil}/>
             <Tab.Screen name={'Research'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <Image source={require('../../../assets/img/Menu/Search.png')}/>
+                    <Image source={color=='white' ? require('../../../assets/img/Menu/Search.png')
+                                               : require('../../../assets/img/Menu/Search_active.png')}/>
+
                 )
             }} component={ResearchStack}/>
             <Tab.Screen name={'Agenda'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <Image source={require('../../../assets/img/Menu/Agenda.png')}/>
+                    <Image source={color=='white' ?require('../../../assets/img/Menu/Agenda.png')
+                                                : require('../../../assets/img/Menu/Home_active.png')}/>
                 )
             }} component={AgendaStack}/>
             <Tab.Screen name={'Map'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <Image source={require('../../../assets/img/Menu/Map.png')}/>
+                    <Image source={color=='white' ?require('../../../assets/img/Menu/Map.png')
+                                                : require('../../../assets/img/Menu/Map_active.png')}/>
                 )
             }} component={MapStack}/>
             <Tab.Screen name={'Alerts'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <Image source={require('../../../assets/img/Menu/Notification.png')}/>
+                    <Image source={color=='white' ?require('../../../assets/img/Menu/Notification.png')
+                                                : require('../../../assets/img/Menu/Notification_active.png')}/>
                 )
             }} component={AlertsStack}/>
             <Tab.Screen name={'Reader'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <Image source={require('../../../assets/img/Menu/Book.png')}/>
+                    <Image source={color=='white' ?require('../../../assets/img/Menu/Book.png')
+                                                : require('../../../assets/img/Menu/Book_active.png')}/>
                 )
             }} component={ReaderStack}/>
         </Tab.Navigator>
