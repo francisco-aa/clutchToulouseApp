@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Ievent from "./Ievent";
-import Eroutes from "../../routes/Eroutes";
 
 export interface IeventsSlice {
-    currentFilter: 'place' | 'calendar',
+    currentFilter: 'place' | 'calendar' | 'categories',
+    selectedCategory: string | null,
+    eventsByCategory: Ievent[] | null
+    currentEvents: Ievent[] | null,
     currentResearch: string,
     dateFilter: string,
     selectedEvent: Ievent | null
@@ -11,6 +13,9 @@ export interface IeventsSlice {
 
 const initialState: IeventsSlice = {
     currentFilter: 'place',
+    selectedCategory: null,
+    eventsByCategory: null,
+    currentEvents: null,
     currentResearch: '',
     dateFilter: new Date().toDateString(),
     selectedEvent: null
@@ -31,10 +36,22 @@ export const eventsSlice = createSlice({
         },
         setSelectedEvent: (state, action: PayloadAction<Ievent>) => {
             state.selectedEvent = action.payload
+        },
+
+        setSelectedCategory: (state, action: PayloadAction<string>) => {
+            state.selectedCategory = action.payload
+        },
+
+        setEventsByCategory: (state, action: PayloadAction<Ievent[]>) => {
+            state.eventsByCategory = action.payload;
+        },
+
+        setCurrentEvents: (state, action: PayloadAction<Ievent[]>) => {
+            state.currentEvents = action.payload;
         }
     },
 })
 
-export const { changeCurrentFilter, setCurrentResearch, setSelectedEvent } = eventsSlice.actions
+export const { changeCurrentFilter, setCurrentResearch, setSelectedEvent, setSelectedCategory } = eventsSlice.actions
 
 export default eventsSlice.reducer

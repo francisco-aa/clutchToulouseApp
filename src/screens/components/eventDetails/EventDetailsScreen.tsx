@@ -6,7 +6,7 @@ import Title from "../../../components/title/Title";
 import Tag from "../../../components/tag/Tag"
 import {find, map} from "lodash";
 import React from "react";
-import Container from "../../../components/Container";
+import Container from "../../../components/ContainerTouchable";
 import Information from "../../../components/Information";
 import {format} from "date-fns";
 import fr from "date-fns/locale/fr";
