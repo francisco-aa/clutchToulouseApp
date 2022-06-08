@@ -1,7 +1,7 @@
 import React, {FC} from "react";
-import {CommonCard, EventCardWrapper} from "./card";
+import {CommonCard, CommonCardWrapper, EventCardWrapper} from "./card";
 import Information from "../Information";
-import Container from "../Container";
+import Container from "../ContainerTouchable";
 import Title from "../title/Title";
 import {AntDesign, FontAwesome, FontAwesome5} from "@expo/vector-icons";
 import Tag from "../tag/Tag";
@@ -37,7 +37,8 @@ const CardEvent: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
             marginTop,
         }} onPress={handlePress}>
             <CommonCard color={color}>
-                {isFavorite ? (
+
+                    {isFavorite ? (
                         <FontAwesome style={{
                             position: 'absolute',
                             right: 20,

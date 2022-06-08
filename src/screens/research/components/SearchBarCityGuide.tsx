@@ -15,7 +15,7 @@ type TSearchBarCityGuide = {
     setDataFiltered: () => any
 }
 const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFiltered}) => {
-    const {currentFilter, currentResearch, dateFilter} = useAppSelector(state => state.events)
+    const {currentFilter, currentResearch, dateFilter, eventsByCategory, selectedCategory} = useAppSelector(state => state.events)
     const dispatch = useAppDispatch()
     const [renderDatePicker, setRenderDatePicker] = useState<boolean>(false)
 
@@ -45,6 +45,18 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFi
                     refresh()
                 }
                 break
+            case 'categories':
+                if (eventsByCategory && currentResearch !== ''){
+                        const updatedData = filter(clone(eventsByCategory), event => {
+                            if (event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase()) || event.location.street_name && event.location.street_name.toLowerCase().includes(currentResearch.toLowerCase()) ||  event.name && event.name.toLowerCase().includes(currentResearch.toLowerCase())) {
+                                return event
+                            }
+                        })
+                        dispatch({type: "events/setCurrentEvents", payload: updatedData})
+                }else if (eventsByCategory && currentResearch === '') {
+                    dispatch({type: "events/setCurrentEvents", payload: null})
+                    refresh()
+                }
         }
     }
 
@@ -68,7 +80,7 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFi
                     justifyContent: 'center'
                 }}>
                     <SearchBar style={{position: 'relative'}} onSearch={handleSearch}
-                               currentSearch={format(new Date(dateFilter), 'PPpp', {locale: fr})}
+                               currentSearch={format(new Date(dateFilter), 'PP', {locale: fr})}
                                onChange={searchWord => dispatch({type: "events/setCurrentResearch", payload: searchWord})}
                                placeholder={'Recherche'} iconRight={{
                         color: '#FA4E74',
@@ -78,7 +90,6 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFi
                     {renderDatePicker && (
                         <>
                             <RNDateTimePicker onChange={(event, date) => handleOnChangeDate(date)} display="spinner" value={new Date(dateFilter)}/>
-
                         </>
                     )}
 

@@ -1,15 +1,15 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import Ievent from "../redux/slices/Ievent";
-import {filter, map, reverse} from "lodash";
+import {reverse} from "lodash";
 
 export const eventsApi = createApi({
     reducerPath: 'eventsApi',
     refetchOnFocus: true,
     baseQuery: fetchBaseQuery({baseUrl: 'https://clutchmag.fr/api/'}),
     endpoints: (builder) => ({
-        getAllEvents: builder.query<Ievent[], void>({
+        getAllEvents: builder.query<Ievent[], string>({
             query: () => `events?`,
-            transformResponse: (response, meta, arg) => {
+            transformResponse: (response: Ievent[], meta, arg) => {                
                 return reverse(response["hydra:member"])
             },
         }),

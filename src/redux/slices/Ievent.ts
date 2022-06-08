@@ -46,4 +46,13 @@ export default interface Ievent {
     },
     "start_date": string,
     "tags": string[],
+    "is_free": boolean,
+    "is_free_participation": boolean,
+    "image": string,
+    "category": number,
+    "is_clutchorama": boolean,
+    "artists": string[],
+    "is_recurrent": string,
+    "organisers": string[],
+    "external_url": string[]
 }

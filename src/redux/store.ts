@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import eventsReducer from "./slices/events.slice";
 import alertsReducer from "./slices/alerts.slice"
-import {eventsApi} from "../api/events.service.";
+import { eventsApi } from '../api/events.service';
 
 export const store = configureStore({
     reducer: {
