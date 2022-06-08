@@ -1,23 +1,44 @@
 import { FlatList, ListRenderItem, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Category } from '../types/Category'
 import { dataAccess } from '../data/dataAccess'
 import CategoryCarrouselCard from './CategoryCarrouselCard'
 import EventCarrouselCard from './EventCarrouselCard'
-import { Event } from '../types/Event'
+import Icategory from '../redux/slices/Icategory'
+import Ievent from '../redux/slices/Ievent'
+import { useGetAllEventsQuery } from '../api/events.service'
+import { filter, isEmpty, isUndefined } from 'lodash'
+import React, {useEffect, useState} from "react";
 
 type Props = { 
     type:("category"|"headline"|"Today") ,
 }
 
 export default function  CarrouselContainer(props: Props){
-    const categories:Category[] =  new dataAccess().getcategories()
-    const headlines:Event[] =  new dataAccess().getHeadlines()
-    const TodayEvents:Event[] =  new dataAccess().getTodayEvent()
-    const renderCategoryCarrouselCard:ListRenderItem<Category>=({item})=>{
+    const {data, isLoading} = useGetAllEventsQuery('')
+    const categories:Icategory[] =  new dataAccess().getcategories()
+    const [todayEvents, setTodayFiletred] = useState<Ievent[]>()
+    const [headlinesEvents, setDataFiletred] = useState<Ievent[]>()
+    
+    useEffect(() => {
+        if (!isLoading){
+            const headlinesEvents = filter(data, event => {
+                if (!isEmpty(event.name) && event.is_clutchorama == true) {
+                    return event
+                }
+            })
+            const todayEvents = filter(data, event => {
+                if (new Date(event.start_date).toISOString().slice(0, 10) == new Date().toISOString().slice(0, 10))
+                    return event
+            })
+            setDataFiletred(headlinesEvents)
+            setTodayFiletred(todayEvents)
+        }
+    }, [isLoading])
+
+    const renderCategoryCarrouselCard:ListRenderItem<Icategory>=({item})=>{
             return <CategoryCarrouselCard category={item} />
         }
-    const renderEventCarrouselCard:ListRenderItem<Event>=({item})=>{
+
+    const renderEventCarrouselCard:ListRenderItem<Ievent>=({item})=>{
             return <EventCarrouselCard event={item}/>
         }
 
@@ -28,23 +49,30 @@ export default function  CarrouselContainer(props: Props){
                     <Text style={styles.carrouselTitle} >Catégories</Text>
                     <FlatList horizontal showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategoryCarrouselCard}/>
                 </View>
-                )
+            )
         case 'headline':
-            return (
-                <View style={styles.carrouselContainer}>
-                    <Text style={styles.carrouselTitle} >À LA UNE</Text>
-                    <FlatList horizontal showsHorizontalScrollIndicator={false} data={headlines} renderItem={renderEventCarrouselCard}/>
-                </View>
+            if (!isUndefined(headlinesEvents) && !isEmpty(headlinesEvents)){               
+                return (         
+                    <View style={styles.carrouselContainer}>
+                        <Text style={styles.carrouselTitle} >À LA UNE</Text>
+                        <FlatList horizontal showsHorizontalScrollIndicator={false} data={headlinesEvents} renderItem={renderEventCarrouselCard}/>
+                    </View>
                 )
+            } else {
+                return null
+            }
         case 'Today':
-            return (
-                <View style={styles.carrouselContainer}>
-                    <Text style={styles.carrouselTitle} >aujourd'hui</Text>
-                    <FlatList horizontal showsHorizontalScrollIndicator={false} data={TodayEvents} renderItem={renderEventCarrouselCard}/>
-                </View>
+            if (!isUndefined(todayEvents) && !isEmpty(todayEvents)){               
+                return (
+                    <View style={styles.carrouselContainer}>
+                        <Text style={styles.carrouselTitle} >Aujourd'hui</Text>
+                        <FlatList horizontal showsHorizontalScrollIndicator={false} data={todayEvents} renderItem={renderEventCarrouselCard}/>
+                    </View>
                 )
+            } else {
+                return null
+            }
     }
-  
 }
 
 

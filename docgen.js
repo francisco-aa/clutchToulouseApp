@@ -1,7 +1,9 @@
+// Configuration file for react doc generator
+
 const docgen = require("react-docgen-typescript");
 const path = require( "path" );
 const fs = require( 'fs' );
-const folder = './components';
+const folder = './src/components';
 const COMPONENT_TO_SRC = []
 
 const tsConfigParser = docgen.withCustomConfig("./tsconfig.json", {

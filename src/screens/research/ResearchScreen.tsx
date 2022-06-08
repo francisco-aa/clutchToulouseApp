@@ -6,7 +6,6 @@ import Filters from "./components/Filters";
 import CardEvent from "../../components/card/CardEvent";
 import Container from "../../components/ContainerTouchable";
 import {ScrollView, Text} from "react-native";
-import {useGetAllEventsQuery} from "../../api/events.service.";
 import {clone, map} from "lodash";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks";
 import Loading from "../../components/loading/Loading";
@@ -14,7 +13,7 @@ import Ievent from "../../redux/slices/Ievent";
 import SearchBarCityGuide from "./components/SearchBarCityGuide";
 import {useNavigation} from "@react-navigation/native";
 import Eroutes from "../../routes/Eroutes";
-import CategoryItem from "../../components/categories/list/CategoryItem";
+import { useGetAllEventsQuery } from "../../api/events.service";
 import CategoriesList from "./components/CategoriesList";
 
 const ResearchScreen = () => {
@@ -23,7 +22,7 @@ const ResearchScreen = () => {
     const [dataFiltered, setDataFiltered] = useState<Ievent[] | null>(null)
     const currentFilter = useAppSelector(state => state.events.currentFilter)
 
-    const {data, error, isLoading, refetch} = useGetAllEventsQuery()
+    const {data, error, isLoading, refetch} = useGetAllEventsQuery('')
 
 
     const refresh = () => {

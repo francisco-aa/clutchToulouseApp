@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Category } from '../types/Category'
+import Icategory from '../redux/slices/Icategory'
 
 type Props = {
-                category:Category,
-            }
+    category: Icategory,
+}
 var count:number=0;
 //TODO redirection vers les détails 
 // TODO test du composant 

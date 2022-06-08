@@ -1,64 +1,29 @@
-import { Category } from "../types/Category";
-import { Event } from "../types/Event";
+import Icategory from "../redux/slices/Icategory";
 
 export class dataAccess {
-    static readonly url:String="https://clutchmag.fr/api/";
-    getcategories():Category[]  {
-        // TODO faire un fetch pour récupérer les données 
+    getcategories():Icategory[]  {
         return ([
             {
                 id:'1',
-                name:'CONCERTS'
+                name:'CONCERT CLUB'
             },
             {
                 id:'2',
+                name:'SPECTACLE VIVANT'
+            },
+            {
+                id:'3',
+                name:'PROJECTION'
+            },
+            {
+                id:'4',
+                name:'ART VISUEL'
+            },
+            {
+                id:'5',
                 name:'AUTRES'
-            },
-            {
-                id:'3',
-                name:'SPECTACLES'
-            },
-            {
-                id:'4',
-                name:'Théâtre'
-            }])
-    }
-    getHeadlines():Event[]{
-        return ([
-            {
-                id:'1',
-                name:'ORELSAN'
-            },
-            {
-                id:'2',
-                name:'CASSE NOISETTE'
-            },
-            {
-                id:'3',
-                name:'RETRO GAMING NIGHT'
-            },
-            {
-                id:'4',
-                name:'GLABRE'
-            }])
-    }
-    getTodayEvent():Event[]{
-        return ([
-            {
-                id:'1',
-                name:'ORELSAN'
-            },
-            {
-                id:'2',
-                name:'GLABRE'
-            },
-            {
-                id:'3',
-                name:'EXPOSITION'
-            },
-            {
-                id:'4',
-                name:'CASSE NOISETTE'
-            }])
+            }
+        
+        ])
     }
 }

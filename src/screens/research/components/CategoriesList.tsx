@@ -7,7 +7,7 @@ import {Text} from "react-native";
 import Container from "../../../components/ContainerTouchable";
 import Loading from "../../../components/loading/Loading";
 import CardEvent from "../../../components/card/CardEvent";
-import {useGetAllEventsQuery} from "../../../api/events.service.";
+import {useGetAllEventsQuery} from "../../../api/events.service";
 import Ievent from "../../../redux/slices/Ievent";
 import {batch} from "react-redux";
 
@@ -20,7 +20,7 @@ const CategoriesList = () => {
     const [list, setList] = useState<string[]>([])
     const [events, setEvents] = useState<Ievent[] | null>([])
     const {eventsByCategory, currentResearch}= useAppSelector(state => state.events)
-    const {data, error, isLoading} = useGetAllEventsQuery()
+    const {data, error, isLoading} = useGetAllEventsQuery('')
 
 
     const generateList = () => {
