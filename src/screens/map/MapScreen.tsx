@@ -23,7 +23,7 @@ const MapScreen = () => {
                                     <Image
                                         style={markerStyle.markerImage}
                                         resizeMode={"contain"}
-                                        source={require("../../../assets/images/clutch/markers/Fant_violet.png")}
+                                        source={require("../../../assets/images/markers/Fant_violet.png")}
                                     />
                                 </Marker> : null
                         }

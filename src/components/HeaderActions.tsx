@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function HeaderActions({ hasBackBtn }: Props) {
-    const [icon, setIcon] = useState(hasBackBtn ? require('../../assets/img/Arrow_up.png') : require('../../assets/img/Menu/Wishlist.png'));
+    const [icon, setIcon] = useState(hasBackBtn ? require('../../assets/images/Arrow_up.png') : require('../../assets/images/Menu/Wishlist.png'));
     const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
 
     const handleAction = () => {

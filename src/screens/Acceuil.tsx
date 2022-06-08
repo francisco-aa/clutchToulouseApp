@@ -1,5 +1,5 @@
 import AppLoading from 'expo-app-loading';
-import {ScrollView, StyleSheet } from 'react-native'
+import {BackHandler, ScrollView, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import * as Font from 'expo-font';
 import CarrouselContainer from '../components/CarrouselContainer';
@@ -8,6 +8,9 @@ import Header from '../components/Header';
 type Props = {}
 
 export default function Acceuil(props: Props){
+    BackHandler.addEventListener("hardwareBackPress",function(){
+        return true
+    })
     const getFonts = () =>Font.loadAsync({
       'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.otf'),
       'Poppins-Italic': require('../../assets/fonts/Poppins-Italic.otf'),
@@ -19,7 +22,7 @@ export default function Acceuil(props: Props){
         return(
             
             <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-                <Header bgTexture={require('../../assets/textures/TEXTURE6.png')} />
+                <Header bgTexture={require('../../assets/images/Textures/TEXTURE6.png')} />
                 <CarrouselContainer type='category'/>
                 <CarrouselContainer type='headline'/>
                 <CarrouselContainer type='Today'/>

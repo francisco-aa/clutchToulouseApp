@@ -19,13 +19,13 @@ export default function CategoryCarrouselCard(props: Props){
     function getImage(ticketNB:number) {
         switch (ticketNB) {
             case 1:
-            return require('../../assets/img/Ticket_1.png')
+            return require('../../assets/images/tickets/Ticket_1.png')
             case 2:
-            return require('../../assets/img/Ticket_2.png')
+            return require('../../assets/images/tickets/Ticket_2.png')
             case 3:
-            return require('../../assets/img/Ticket_3.png')
+            return require('../../assets/images/tickets/Ticket_3.png')
             case 4:
-            return require('../../assets/img/Ticket_4.png')
+            return require('../../assets/images/tickets/Ticket_4.png')
         }
     }
     return (   
