@@ -24,8 +24,8 @@ const CardEvent: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
     const dispatch = useAppDispatch()
     const alerts = useAppSelector(state => state.alerts.alerts)
     const handlePress = () => {
+        console.log("AVANT NAVIGATE", event)
         dispatch({type: "events/setSelectedEvent", payload: event})
-        //TODO: revoir l'implémentation
         navigation.navigate(Eroutes.EVENT_DETAILS_SCREEN)
     }
 
@@ -37,7 +37,6 @@ const CardEvent: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
             marginTop,
         }} onPress={handlePress}>
             <CommonCard color={color}>
-
                     {isFavorite ? (
                         <FontAwesome style={{
                             position: 'absolute',

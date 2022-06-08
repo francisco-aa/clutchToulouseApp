@@ -4,7 +4,7 @@ import {HeaderImage, Content} from "./eventDetailsScreen.style";
 import {Ionicons, FontAwesome5, FontAwesome} from '@expo/vector-icons';
 import Title from "../../../components/title/Title";
 import Tag from "../../../components/tag/Tag"
-import {find, map} from "lodash";
+import {find, isNull, map} from "lodash";
 import React from "react";
 import Container from "../../../components/ContainerTouchable";
 import Information from "../../../components/Information";
@@ -22,7 +22,6 @@ const EventDetailsScreen = () => {
     const event = useAppSelector(state => state.events.selectedEvent)
     const alerts = useAppSelector(state => state.alerts.alerts)
 
-    console.log(event)
     const handleLocationPress = () => {
        navigation.navigate(Eroutes.LOCATION_DETAILS_SCREEN)
     }
@@ -69,7 +68,7 @@ const EventDetailsScreen = () => {
                     )}
                 </TouchableOpacity>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <Title color={'#625A96'} align={'left'} title={event?.name} marginTop={10} size={25}
+                    <Title color={'#625A96'} align={'left'} title={event.name ? event.name : '-'} marginTop={10} size={25}
                            marginBottom={0}/>
                     <View style={{
                         display: 'flex',
@@ -100,8 +99,7 @@ const EventDetailsScreen = () => {
                         <CustomButton bold color={"#625A96"} title={"RESERVER"} onPress={() => console.log('test')}/>
 
                     </Container>
-
-                    {event?.location?.longitude && event?.location?.latitude && (
+                    {!isNull(event?.location.longitude) && !isNull(event?.location.latitude) && event?.location.latitude !== 0 && event?.location.longitude !== 0 && (
                         <PreventViewAdress coordinate={{latitude: event.location.latitude, longitude: event.location.longitude}}/>
                     )}
                 </ScrollView>
