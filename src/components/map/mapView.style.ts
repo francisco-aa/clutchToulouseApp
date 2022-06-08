@@ -1,3 +1,4 @@
+// @ts-ignore
 import styled from "styled-components";
 import MapView from 'react-native-maps'
 import {StyleSheet} from "react-native";

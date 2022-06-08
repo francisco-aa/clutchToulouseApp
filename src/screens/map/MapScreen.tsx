@@ -20,11 +20,37 @@ const MapScreen = () => {
                                         title={marker.name}
                                         description={"Lieu : " + marker.location.name}
                                 >
-                                    <Image
-                                        style={markerStyle.markerImage}
-                                        resizeMode={"contain"}
-                                        source={require("../../../assets/images/clutch/markers/Fant_violet.png")}
-                                    />
+                                    { marker.category === 1 &&
+                                        <Image
+                                            style={markerStyle.markerImage}
+                                            resizeMode={"contain"}
+                                            source={require("../../../assets/images/clutch/markers/Fant_violet.png")}
+                                        />
+                                    }{ marker.category === 2 &&
+                                        <Image
+                                            style={markerStyle.markerImage}
+                                            resizeMode={"contain"}
+                                            source={require("../../../assets/images/clutch/markers/Fant_bleu.png")}
+                                        />
+                                    }{ marker.category === 3 &&
+                                        <Image
+                                            style={markerStyle.markerImage}
+                                            resizeMode={"contain"}
+                                            source={require("../../../assets/images/clutch/markers/Fant_black.png")}
+                                        />
+                                    }{ marker.category === 4 &&
+                                        <Image
+                                            style={markerStyle.markerImage}
+                                            resizeMode={"contain"}
+                                            source={require("../../../assets/images/clutch/markers/Fant_jaune.png")}
+                                        />
+                                    }{ marker.category === 5 &&
+                                        <Image
+                                            style={markerStyle.markerImage}
+                                            resizeMode={"contain"}
+                                            source={require("../../../assets/images/clutch/markers/Fant_rose.png")}
+                                        />
+                                    }
                                 </Marker> : null
                         }
                     </Fragment>
