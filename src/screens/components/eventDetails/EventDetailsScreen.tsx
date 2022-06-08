@@ -31,11 +31,11 @@ const EventDetailsScreen = () => {
             <HeaderImage source={
                 event?.location?.image==null
                 ?
-                    require('../../../../assets/img/Textures/TEXTURE – 6.png')
+                    require('../../../../assets/images/Textures/TEXTURE6.png')
                 :
                     event?.location?.image=='clutch.gif'
                     ?
-                        require('../../../../assets/img/Textures/TEXTURE – 6.png')
+                        require('../../../../assets/images/Textures/TEXTURE6.png')
                     :
                         {uri: `https://clutchmag.fr/images/locations/${event?.location?.image}`}
                 }>
