@@ -62,7 +62,7 @@ export const SplashScreen = () =>{
                     { translateY: startAnimation.y },
                     { translateX: startAnimation.x }
                 ]}]}>
-             {stateCblack ? <Image style={{top:10,margin:4}} source={require('../../assets/images/Clutch_icon_black.png')}/>
+             {stateCblack ? <Image style={{top:10,margin:4}} source={require('../../assets/images/logo/C1.png')}/>
                     : <Image style={{top:10,margin:4}} source={require('../../assets/images/Clutch_icon_green.png')}/>}
             {stateL ? <Image style={{margin:4}} source={require('../../assets/images/logo/L.png')}/>:<Text></Text>}
             {stateU ? <Image style={{top:10,margin:4}} source={require('../../assets/images/logo/U.png')}/>:<Text></Text>}
