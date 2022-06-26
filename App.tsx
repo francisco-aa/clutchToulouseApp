@@ -1,16 +1,16 @@
-import React from 'react';
-import {Provider} from "react-redux";
-import {store} from "./src/redux/store";
-import NotificationsHandler from "./src/screens/alerts/notifications/NotificationsHandler";
-import AppNavigation from "./src/routes/AppNavigation";
+import NotificationsHandler from './src/screens/alerts/notifications/NotificationsHandler'
+import AppNavigation from './src/routes/AppNavigation'
+import { store } from './src/redux/store'
+import { Provider } from 'react-redux'
+import React from 'react'
 
-//à voir plus tard pour les thèmes
-/*const MyTheme = {
+// à voir plus tard pour les thèmes
+/* const MyTheme = {
   dark: false,
   colors: {
     background: '#fff'
   }
-}*/
+} */
 
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
               <NotificationsHandler/>
                   <AppNavigation/>
           </Provider>
-  );
+  )
 }
 
 export default App

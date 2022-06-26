@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {TextInput} from "react-native";
+import { TextInput } from 'react-native'
+import styled from 'styled-components'
 
 export const SearchBarStyle = styled(TextInput)`
   height: 50px;
@@ -16,4 +16,3 @@ display: flex;
 
 
 `
-

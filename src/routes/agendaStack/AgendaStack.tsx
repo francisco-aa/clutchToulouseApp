@@ -1,17 +1,17 @@
-import React from "react";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import Eroutes from "../Eroutes";
-import NavigationOptions from "../NavigationOptions";
-import Agenda from "../../screens/Agenda";
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import NavigationOptions from '../NavigationOptions'
+import Agenda from '../../screens/Agenda'
+import Eroutes from '../Eroutes'
+import React from 'react'
 
 const AgendaStack = () => {
-    const Stack = createNativeStackNavigator()
+  const Stack = createNativeStackNavigator()
 
-    return (
+  return (
         <Stack.Navigator screenOptions={NavigationOptions}>
             <Stack.Screen name={Eroutes.AGENDA_SCREEN} component={Agenda}/>
         </Stack.Navigator>
-    )
+  )
 }
 
 export default AgendaStack

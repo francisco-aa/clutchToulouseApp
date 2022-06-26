@@ -25,7 +25,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "test.js"  ],
   "compileOnSave": true,
   "extends": "expo/tsconfig.base"
 }

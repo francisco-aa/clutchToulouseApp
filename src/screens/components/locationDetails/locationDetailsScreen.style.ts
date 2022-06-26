@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {Image} from 'react-native'
+import styled from 'styled-components'
+import { Image } from 'react-native'
 
 export const IconRoundedStyle = styled(Image)`
 border-radius: 75px;
