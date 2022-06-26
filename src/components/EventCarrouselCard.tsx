@@ -26,7 +26,7 @@ export default function EventCarrouselCard (props: Props) {
   return (
         <View style={[styles.carrouselCards, { backgroundColor: GetEventCardColor(props.event.category) }]}>
             <View style={styles.titleZone}>
-                <Text style={[styles.title, { color: colors[0] }]}>{props.event.name}</Text>
+                <Text style={[styles.title, { color: GetEventCardColor(props.event.category) }]}>{props.event.name}</Text>
             </View>
             <Image style={styles.image} source={require('../../assets/images/markers/Fant_white.png')}/>
         </View>
