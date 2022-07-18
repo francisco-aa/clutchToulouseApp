@@ -18,7 +18,13 @@ const LocationDetailsScreen = () => {
   const location = useAppSelector(state => state.events.selectedEvent?.location)
   return (
         <>
-            <HeaderImage source={{ uri: `https://clutchmag.fr/images/locations/${location?.image}` }}>
+            <HeaderImage source={
+                location?.image === null
+                  ? require('../../../../assets/images/Textures/TEXTURE6.png')
+                  : location?.image === 'clutch.gif'
+                    ? require('../../../../assets/images/Textures/TEXTURE6.png')
+                    : { uri: `https://clutchmag.fr/images/locations/${location?.image}` }
+                }>
                 <Ionicons onPress={() => navigation.goBack()} name="chevron-back-circle-outline" size={40}
                           color="white" style={{
                             position: 'absolute',
@@ -30,8 +36,7 @@ const LocationDetailsScreen = () => {
                 <Container justify={'center'}>
                     <IconRounded source={{ uri: `https://clutchmag.fr/images/locations/${location?.image}` }}/>
                 </Container>
-                <Title title={location !== undefined && location !== null ? location!.business_hours : ''} marginTop={100} size={20} marginBottom={20}/>
-
+                <Title title={location !== undefined && location !== null ? location!.name : ''} marginTop={100} size={20} marginBottom={20}/>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Container justify={'space-around'} >
                         {location?.tags && map(location.tags, (tag, key) => (

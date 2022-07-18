@@ -1,13 +1,23 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import React, { useEffect, useState } from 'react'
+import { useAppDispatch } from '../redux/hooks'
 import Ievent from '../redux/slices/Ievent'
 import { colors } from '../utils/appUtils'
-import React, { useEffect, useState } from 'react'
+import Eroutes from '../routes/Eroutes'
 
 type Props = {
     event: Ievent
 }
 
 export default function EventCarrouselCard (props: Props) {
+  const navigation = useNavigation()
+  const dispatch = useAppDispatch()
+  const handlePress = () => {
+    console.log("FROM HOME PAGE", props.event)
+    dispatch({type: "events/setSelectedEvent", payload: props.event})
+    navigation.navigate(Eroutes.EVENT_DETAILS_SCREEN)
+}
   function GetEventCardColor (type:number) {
     switch (type) {
       case 1:
@@ -26,22 +36,22 @@ export default function EventCarrouselCard (props: Props) {
   const [eventName, setEventName] = useState<string>()
 
   function GetEventName (name:string) {
-    if (name.length >= 25 ){
-      return name.substring(0,22) + '...'
+    if (name.length >= 20 ){
+      return name.substring(0,17) + '...'
     } else {
       return name
     }
   }
 
   useEffect(() => {
-    setEventName(GetEventName(props.event.name))
+    setEventName(GetEventName(props.event.name))    
     }
   , [])
 
   return (
         <View style={[styles.carrouselCards, { backgroundColor: GetEventCardColor(props.event.category) }]}>
             <View style={styles.titleZone}>
-                <Text style={[styles.title, { color: GetEventCardColor(props.event.category) }]}>{eventName}</Text>
+                <Text style={[styles.title, { color: GetEventCardColor(props.event.category) }]} onPress={handlePress}>{eventName}</Text>
             </View>
             <Image style={styles.image} source={require('../../assets/images/markers/Fant_white.png')}/>
         </View>
