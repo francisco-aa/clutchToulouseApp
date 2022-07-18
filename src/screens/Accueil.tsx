@@ -1,11 +1,9 @@
 import CarrouselContainer from '../components/CarrouselContainer'
-import { ScrollView, StyleSheet } from 'react-native'
+import { BackHandler, ScrollView, StyleSheet } from 'react-native'
 import Header from '../components/headers/Header'
 import AppLoading from 'expo-app-loading'
 import React, { useState } from 'react'
 import * as Font from 'expo-font';
-import CarrouselContainer from '../components/CarrouselContainer';
-import Header from '../components/Header';
 import { useFocusEffect } from '@react-navigation/native';
 
 type Props = {}
