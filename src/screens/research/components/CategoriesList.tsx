@@ -22,7 +22,7 @@ const CategoriesList = () => {
   const { data, error, isLoading } = useGetAllEventsQuery('')
 
   const generateList = () => {
-    const tempList: Ecategories[] = []
+    const tempList: string[] = []
     for (const key of Object.keys(Ecategories)) {
       if (!+key) {
         tempList.push(key.replace('_', ' '))
@@ -44,7 +44,6 @@ const CategoriesList = () => {
     }
   }
   const getEventsByThematic = (thematicNumber: number) => {
-    console.log('RECUPERATION DES EVENS PAR THEMES', thematicNumber)
     const events = filter(data, event => {
       if (event.category === thematicNumber) {
         return event
@@ -73,7 +72,9 @@ const CategoriesList = () => {
         }
       }
 
-      getEventsByThematic(categoryNumber)
+      if (categoryNumber){
+        getEventsByThematic(categoryNumber)
+      }
     } else {
       colorRef.current = '#FA4E74'
       generateList()
@@ -100,7 +101,7 @@ const CategoriesList = () => {
         <>
             {map(list, (catName, index) => (
                 <>
-                    <CategoryItem color={colorRef.current} key={`${index}_item`} categoryName={catName} onPress={() => handlePress(catName)} marginBottom={index > 0 ? 0 : 20}/>
+                    <CategoryItem color={colorRef.current} key={`${index}_item`} categoryName={catName} onPress={() => handlePress(catName)}/>
                 </>
             ))}
             {selectedCategory && (

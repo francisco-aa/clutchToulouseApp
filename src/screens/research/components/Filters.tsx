@@ -20,7 +20,7 @@ const Filters: FC<TFilters> = ({ onChangeFilter }) => {
             }} name="md-calendar-sharp" size={34} color={currentFilter === 'calendar' ? '#FA4E74' : 'white' } />
             <MaterialIcons style={{
               marginLeft: 20
-            }} onPress={() => onChangeFilter('categories')} name="category" size={34} color={currentFilter === 'categories' ? '#FA4E74' : 'white' } />
+            }} onPress={() => onChangeFilter('categories')} name="star" size={34} color={currentFilter === 'categories' ? '#FA4E74' : 'white' } />
         </Container>
   )
 }
