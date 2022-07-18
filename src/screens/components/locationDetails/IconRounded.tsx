@@ -1,14 +1,14 @@
-import React from "react";
-import {Highlight, IconRoundedStyle} from "./locationDetailsScreen.style"
+import { Highlight, IconRoundedStyle } from './locationDetailsScreen.style'
+import React from 'react'
 
-const IconRounded = ({source}) => {
-    return (
+const IconRounded = ({ source }) => {
+  return (
 <>
     <Highlight>
         <IconRoundedStyle source={source}/>
     </Highlight>
 </>
-    )
+  )
 }
 
 export default IconRounded

@@ -1,17 +1,17 @@
-import React from "react";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import NavigationOptions from "../NavigationOptions";
-import Eroutes from "../Eroutes";
-import AlertsScreen from "../../screens/alerts/AlertsScreen";
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import AlertsScreen from '../../screens/alerts/AlertsScreen'
+import NavigationOptions from '../NavigationOptions'
+import Eroutes from '../Eroutes'
+import React from 'react'
 
 const AlertsStack = () => {
-    const Stack = createNativeStackNavigator()
+  const Stack = createNativeStackNavigator()
 
-    return (
+  return (
         <Stack.Navigator screenOptions={NavigationOptions}>
             <Stack.Screen name={Eroutes.ALERTS_SCREEN} component={AlertsScreen}/>
         </Stack.Navigator>
-    )
+  )
 }
 
 export default AlertsStack

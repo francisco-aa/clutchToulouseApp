@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import {TouchableOpacity} from "react-native";
+import { TouchableOpacity } from 'react-native'
+import styled from 'styled-components'
 
 export const CategoryItemStyle = styled(TouchableOpacity)`
   width: 100%;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: ${({color}) => color};
+  background-color: ${({ color }) => color};
   padding: 25px 10px;
   margin-top: 20px;
 `

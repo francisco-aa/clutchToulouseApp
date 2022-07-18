@@ -1,19 +1,17 @@
-import React, {FC} from "react";
-import {CategoryItemStyle, CategoryName} from "./CategoryItem.style";
-import {Text} from "react-native";
-
+import { CategoryItemStyle, CategoryName } from './CategoryItem.style'
+import React, { FC } from 'react'
 
 type TCategoryItem = {
 categoryName: string,
     onPress: (catName: string) => any,
     color: string
 }
-const CategoryItem: FC<TCategoryItem> = ({categoryName, onPress, color}) => {
-    return (
+const CategoryItem: FC<TCategoryItem> = ({ categoryName, onPress, color }) => {
+  return (
         <CategoryItemStyle color={color} onPress={onPress} >
             <CategoryName>{categoryName}</CategoryName>
         </CategoryItemStyle>
-    )
+  )
 }
 
 export default CategoryItem
