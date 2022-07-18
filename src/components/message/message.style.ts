@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import {colors} from "../../utils/appUtils";
+import { colors } from '../../utils/appUtils'
+import styled from 'styled-components'
 
 export const MessageStyle = styled.View`
   position: relative;
   margin-bottom: 15px;
   width: 80%;
   padding: 10px;
-  background-color: ${({index}) => colors[index % colors.length]};
+  background-color: ${({ index }) => colors[index % colors.length]};
   text-align: left;
   border-radius: 10px;
   &:after {
@@ -56,8 +56,7 @@ export const MessageTimestampLeft = styled.Text`
 export const MessageContainer = styled.View`
   display: flex;
   padding: 0;
-  flex-direction: ${({index}) => index % 2 === 0 ? 'row' : 'row-reverse' };
+  flex-direction: ${({ index }) => index % 2 === 0 ? 'row' : 'row-reverse'};
   justify-content: flex-start;
   width: 100%;
 `
-

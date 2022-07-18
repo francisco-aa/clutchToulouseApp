@@ -1,5 +1,7 @@
-import AppLoading from 'expo-app-loading';
-import {BackHandler, ScrollView, StyleSheet } from 'react-native'
+import CarrouselContainer from '../components/CarrouselContainer'
+import { ScrollView, StyleSheet } from 'react-native'
+import Header from '../components/headers/Header'
+import AppLoading from 'expo-app-loading'
 import React, { useState } from 'react'
 import * as Font from 'expo-font';
 import CarrouselContainer from '../components/CarrouselContainer';
@@ -38,13 +40,13 @@ export default function Accueil(props: Props){
                 <CarrouselContainer type='headline'/>
                 <CarrouselContainer type='Today'/>
             </ScrollView>
-        )
-    } else {
-        return (
+    )
+  } else {
+    return (
         <AppLoading
             startAsync={getFonts}
             onFinish={() => {
-            setFontsLoaded(true);
+              setFontsLoaded(true)
             }}
             onError={console.warn}
         />
@@ -55,8 +57,8 @@ export default function Accueil(props: Props){
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginBottom: 50
-    }
-});
+  container: {
+    flex: 1,
+    marginBottom: 50
+  }
+})

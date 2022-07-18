@@ -1,23 +1,22 @@
-import styled from "styled-components";
-import {TouchableOpacity} from "react-native";
+import { TouchableOpacity } from 'react-native'
+import styled from 'styled-components'
 
 export const ContainerTouchable = styled(TouchableOpacity)`
-  display: ${({display}) => display ? display : 'flex'};
-  flex-direction: ${({direction}) => direction ? direction : 'row'};
-  justify-content: ${({justify}) => justify ? justify : 'center'};
-  align-items: ${({align}) => align ? align : 'center'};
-  position: ${({position}) => position ? position : "relative"};
-  margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : 0}px;
+  display: ${({ display }) => display || 'flex'};
+  flex-direction: ${({ direction }) => direction || 'row'};
+  justify-content: ${({ justify }) => justify || 'center'};
+  align-items: ${({ align }) => align || 'center'};
+  position: ${({ position }) => position || 'relative'};
+  margin-bottom: ${({ marginBottom }) => marginBottom || 0}px;
 `
 export const Container = styled.View`
-  display: ${({display}) => display ? display : 'flex'};
-  flex-direction: ${({direction}) => direction ? direction : 'row'};
-  justify-content: ${({justify}) => justify ? justify : 'center'};
-  align-items: ${({align}) => align ? align : 'center'};
-  position: ${({position}) => position ? position : "relative"};
-  margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : 0}px;
+  display: ${({ display }) => display || 'flex'};
+  flex-direction: ${({ direction }) => direction || 'row'};
+  justify-content: ${({ justify }) => justify || 'center'};
+  align-items: ${({ align }) => align || 'center'};
+  position: ${({ position }) => position || 'relative'};
+  margin-bottom: ${({ marginBottom }) => marginBottom || 0}px;
 `
-
 
 export const Content = styled.View`
   height: 75%;
@@ -27,6 +26,5 @@ export const Content = styled.View`
   position: absolute;
   background-color: white;
 `
-
 
 export default Container

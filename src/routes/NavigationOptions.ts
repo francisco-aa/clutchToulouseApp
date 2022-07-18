@@ -1,5 +1,5 @@
 const NavigationOptions = {
-    headerShown: false
+  headerShown: false
 }
 
 export default NavigationOptions
