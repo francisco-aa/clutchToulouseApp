@@ -1,5 +1,5 @@
 import { CommonCard, EventCardWrapper } from './card'
-import Ievent from '../../../redux/slices/Ievent'
+import Ievent from '../../redux/slices/Ievent'
 import Container from '../ContainerTouchable'
 import Information from '../Information'
 import Title from '../title/Title'
