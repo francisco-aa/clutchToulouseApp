@@ -5,25 +5,25 @@ export class dataAccess {
         return ([
             {
                 id:'1',
-                name:'CONCERT CLUB'
+                name:'MUSIQUE'
             },
             {
                 id:'2',
-                name:'SPECTACLE VIVANT'
+                name:'SPECTACLE'
             },
             {
                 id:'3',
-                name:'PROJECTION'
-            },
-            {
-                id:'4',
                 name:'ART VISUEL'
             },
             {
-                id:'5',
+                id:'4',
                 name:'AUTRES'
-            }
-        
+            },
+            {
+                id:'5',
+                name:'PROJECTION'
+            },
+
         ])
     }
 }
