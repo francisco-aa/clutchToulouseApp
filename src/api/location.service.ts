@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import Ievent from '../redux/slices/Ievent'
+import Ilocations from '../redux/slices/Ilocations'
 import { reverse } from 'lodash'
 
 export const locationApi = createApi({
@@ -7,10 +7,10 @@ export const locationApi = createApi({
   refetchOnFocus: true,
   baseQuery: fetchBaseQuery({ baseUrl: 'https://clutchmag.fr/api/' }),
   endpoints: (builder) => ({
-    getAllEvents: builder.query<Ievent[], void>({
+    getAllEvents: builder.query<Ilocations[], void>({
       query: () => 'locations?',
-      transformResponse: (response, meta, arg) => {
-        return reverse(response['hydra:member'])
+      transformResponse: (response: Ilocations[], meta, arg) => {
+        return reverse(response['hydra:member'] as Ilocations[])
       }
     })
   })

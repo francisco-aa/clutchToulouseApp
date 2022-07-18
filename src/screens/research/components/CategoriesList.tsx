@@ -91,7 +91,7 @@ const CategoriesList = () => {
           return event
         }
       })
-      setEvents(updatedData)
+      setEvents(updatedData as Ievent[])
     } else if (currentResearch === '') {
       setEvents(eventsByCategory)
     }

@@ -28,8 +28,8 @@ export default function CarrouselContainer (props: Props) {
       const todayEvents = filter(data, event => {
         if (new Date(event.start_date).toISOString().slice(0, 10) !== new Date().toISOString().slice(0, 10)) { return event } /* POUR TESTS : A MODIFIER => === */
       })
-      setDataFiletred(headlinesEvents)
-      setTodayFiletred(todayEvents)
+      setDataFiletred(headlinesEvents as Ievent[])
+      setTodayFiletred(todayEvents as Ievent[])
     }
   }, [isLoading])
 
