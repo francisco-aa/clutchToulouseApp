@@ -19,13 +19,13 @@ import CategoriesList from "./components/CategoriesList";
 const ResearchScreen = () => {
     const dispatch = useAppDispatch()
     const navigation = useNavigation()
-    const [dataFiltered, setDataFiltered] = useState<Ievent[] | null>(null)
+    const [dataFiltered, setDataFiltered] = useState<Ievent[] | undefined>(undefined)
     const currentFilter = useAppSelector(state => state.events.currentFilter)
 
     const {data, error, isLoading, refetch} = useGetAllEventsQuery('')
 
     const refresh = () => {
-        setDataFiltered(null)
+        setDataFiltered(undefined)
         return refetch()
     }
 

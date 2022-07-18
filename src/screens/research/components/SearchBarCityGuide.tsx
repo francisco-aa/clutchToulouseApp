@@ -10,9 +10,9 @@ import fr from 'date-fns/locale/fr'
 import {compareAsc} from "date-fns/esm/fp";
 
 type TSearchBarCityGuide = {
-    events: Ievent[],
+    events: Ievent[] | undefined,
     refresh: () => any,
-    setDataFiltered: React.Dispatch<React.SetStateAction<Ievent[]>>
+    setDataFiltered: React.Dispatch<React.SetStateAction<Ievent[] | undefined>>
 }
 const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFiltered}) => {
     const {currentFilter, currentResearch, dateFilter, eventsByCategory} = useAppSelector(state => state.events)
