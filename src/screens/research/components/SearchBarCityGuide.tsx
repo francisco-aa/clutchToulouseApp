@@ -20,46 +20,6 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataF
   const dispatch = useAppDispatch()
   const [renderDatePicker, setRenderDatePicker] = useState<boolean>(false)
 
-  const handleSearch = () => {
-    switch (currentFilter) {
-      case 'place':
-        if (events && currentResearch !== '') {
-          const updatedData = filter(clone(events), event => {
-            if ((event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase())) || (event.location.street_name && event.location.street_name.toLowerCase().includes(currentResearch.toLowerCase()))) {
-              return event
-            }
-          })
-          setDataFiltered(updatedData)
-        } else if (events && currentResearch === '') {
-          refresh()
-        }
-        break
-      case 'calendar':
-        if (events && !isUndefined(dateFilter)) {
-          const updatedData = filter(clone(events), event => {
-            if (event.start_date && compareAsc(new Date(event.start_date), new Date(dateFilter)) === -1) {
-              return event
-            }
-          })
-          setDataFiltered(updatedData)
-        } else if (events && currentResearch === '') {
-          refresh()
-        }
-        break
-      case 'categories':
-        if (eventsByCategory && currentResearch !== '') {
-          const updatedData = filter(clone(eventsByCategory), event => {
-            if ((event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase())) || (event.location.street_name && event.location.street_name.toLowerCase().includes(currentResearch.toLowerCase())) || (event.name && event.name.toLowerCase().includes(currentResearch.toLowerCase()))) {
-              return event
-            }
-          })
-          dispatch({ type: 'events/setCurrentEvents', payload: updatedData })
-        } else if (eventsByCategory && currentResearch === '') {
-          dispatch({ type: 'events/setCurrentEvents', payload: null })
-          refresh()
-        }
-    }
-  }
     const handleSearch = () => {
         switch (currentFilter) {
             case 'place':

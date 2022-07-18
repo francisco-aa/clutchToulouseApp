@@ -16,7 +16,6 @@ import { clone, map } from 'lodash'
 
 const ResearchScreen = () => {
     const dispatch = useAppDispatch()
-    const navigation = useNavigation()
     const [dataFiltered, setDataFiltered] = useState<Ievent[] | undefined>(undefined)
     const currentFilter = useAppSelector(state => state.events.currentFilter)
 
