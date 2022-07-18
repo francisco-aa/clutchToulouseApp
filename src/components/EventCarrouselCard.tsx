@@ -36,15 +36,15 @@ export default function EventCarrouselCard (props: Props) {
   const [eventName, setEventName] = useState<string>()
 
   function GetEventName (name:string) {
-    if (name.length >= 25 ){
-      return name.substring(0,22) + '...'
+    if (name.length >= 20 ){
+      return name.substring(0,17) + '...'
     } else {
       return name
     }
   }
 
   useEffect(() => {
-    setEventName(GetEventName(props.event.name))
+    setEventName(GetEventName(props.event.name))    
     }
   , [])
 
