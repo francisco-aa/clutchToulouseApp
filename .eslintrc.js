@@ -21,8 +21,5 @@ module.exports = {
   ],
   rules: {
     'no-nested-ternary': 'error'
-  },
-  option: {
-    'indent': ['error', 4]
   }
 }
