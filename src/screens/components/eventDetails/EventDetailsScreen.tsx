@@ -1,19 +1,20 @@
-import PreventViewAdress from "../../../components/preventViewAdress/PreventViewAdress"
-import {CustomButton} from "../../../components/button/button.style"
-import {useAppDispatch, useAppSelector} from "../../../redux/hooks"
-import {ScrollView, TouchableOpacity, View} from "react-native"
-import {HeaderImage, Content} from "./eventDetailsScreen.style"
-import Container from "../../../components/ContainerTouchable"
-import Information from "../../../components/Information"
-import {Ionicons, FontAwesome} from '@expo/vector-icons'
-import {useNavigation} from "@react-navigation/native"
-import Title from "../../../components/title/Title"
-import Eroutes from "../../../routes/Eroutes"
+import {ScrollView, Text, TouchableOpacity, View} from "react-native";
+import {useNavigation} from "@react-navigation/native";
+import {HeaderImage, Content} from "./eventDetailsScreen.style";
+import {Ionicons, FontAwesome5, FontAwesome} from '@expo/vector-icons';
+import Title from "../../../components/title/Title";
 import Tag from "../../../components/tag/Tag"
-import fr from "date-fns/locale/fr"
-import {find, map} from "lodash"
-import {format} from "date-fns"
-import React from "react"
+import {find, isNull, map} from "lodash";
+import React from "react";
+import Container from "../../../components/ContainerTouchable";
+import Information from "../../../components/Information";
+import {format} from "date-fns";
+import fr from "date-fns/locale/fr";
+import PreventViewAdress from "../../../components/preventViewAdress/PreventViewAdress";
+import {CustomButton} from "../../../components/button/button.style";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import Eroutes from "../../../routes/Eroutes";
+
 
 const EventDetailsScreen = () => {
     const navigation = useNavigation()
@@ -21,6 +22,7 @@ const EventDetailsScreen = () => {
     const event = useAppSelector(state => state.events.selectedEvent)
     const alerts = useAppSelector(state => state.alerts.alerts)
 
+    console.log(event)
     const handleLocationPress = () => {
        navigation.navigate(Eroutes.LOCATION_DETAILS_SCREEN)
     }
@@ -39,9 +41,9 @@ const EventDetailsScreen = () => {
                     :
                         {uri: `https://clutchmag.fr/images/locations/${event?.location?.image}`}
                 }>
-                <Ionicons 
-                    onPress={() => navigation.goBack()} 
-                    name="chevron-back-circle-outline" 
+                <Ionicons
+                    onPress={() => navigation.goBack()}
+                    name="chevron-back-circle-outline"
                     size={40}
                     color="white"
                     style={{
@@ -51,7 +53,7 @@ const EventDetailsScreen = () => {
                     }}/>
             </HeaderImage>
             <Content>
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={{
                         position: 'absolute',
                         right: 30,
@@ -65,13 +67,13 @@ const EventDetailsScreen = () => {
                         backgroundColor: 'white'
                     }}>
                     {isFavorite ? (
-                        <FontAwesome 
-                            name="heart" 
+                        <FontAwesome
+                            name="heart"
                             onPress={() => dispatch({type: "alerts/disableAlert", payload: event["@id"]})}
                             size={35}
                             color="#625A96"/>
                     ) : (
-                        <FontAwesome 
+                        <FontAwesome
                             name="heart-o"
                             onPress={() => dispatch({type: "alerts/setAlerts", payload: event})}
                             size={35}
@@ -79,31 +81,25 @@ const EventDetailsScreen = () => {
                     )}
                 </TouchableOpacity>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <Title 
-                        color={'#625A96'}
-                        align={'left'}
-                        title={event?.name} 
-                        marginTop={10} 
-                        size={25}
-                        marginBottom={0}/>
-                    <View 
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'row'
-                        }}>
+                    <Title color={'#625A96'} align={'left'} title={event.name ? event.name : '-'} marginTop={10} size={25}
+                           marginBottom={0}/>
+                    <View style={{
+                        display: 'flex',
+                        flexDirection: 'row'
+                    }}>
                         {event?.tags && map(event.tags, (tag, index) => (
-                            <Tag 
+                            <Tag
                                 key={index}
                                 color={"#625A96"}
                                 title={tag}/>
                         ))}
                     </View>
-                    <Container 
+                    <Container
                         style={{
                             marginTop: 20
                         }}
-                        direction={'column'} 
-                        justify={'center'} 
+                        direction={'column'}
+                        justify={'center'}
                         align={'flex-start'}>
                         <Information
                             text={format(new Date(event?.start_date), 'PPp', {locale: fr})}
@@ -113,30 +109,30 @@ const EventDetailsScreen = () => {
                             text={event.location.phone}
                             icon={'phone'}
                             display={event.location.phone ? 'flex' : 'none'}/>
-                        <Information 
-                            bold 
+                        <Information
+                            bold
                             underline
                             onPress={handleLocationPress}
                             text={`${event.location.name}, ${event.location.street_name}`}
                             icon={'map-marker-alt'}
                             display={`${event.location.name}, ${event.location.street_name}`.length < 4 ? 'none' : 'flex'}/>
-                        <Information 
+                        <Information
                             text={event.price}
                             icon={'ticket-alt'}
                             display={event.price ? 'flex' : 'none'}/>
                     </Container>
-                    <Container 
+                    <Container
                         style={{
                             marginTop: 30,
                             marginBottom: 30,
-                        }} 
+                        }}
                         justify={'space-between'}>
                         <CustomButton bold bgColor={"#625A96"} title={"AJOUTER À L’AGENDA"} onPress={() => console.log('test')}/>
                         <CustomButton bold color={"#625A96"} title={"RESERVER"} onPress={() => console.log('test')}/>
                     </Container>
-                        {event?.location?.longitude && event?.location?.latitude && (
-                            <PreventViewAdress coordinate={{latitude: event.location.latitude, longitude: event.location.longitude}}/>
-                        )}
+                    {!isNull(event?.location.longitude) && !isNull(event?.location.latitude) && event?.location.latitude !== 0 && event?.location.longitude !== 0 && (
+                        <PreventViewAdress coordinate={{latitude: event.location.latitude, longitude: event.location.longitude}}/>
+                    )}
                 </ScrollView>
             </Content>
         </>
