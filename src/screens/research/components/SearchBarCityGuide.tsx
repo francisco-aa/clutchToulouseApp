@@ -1,4 +1,4 @@
-import RNDateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import {TouchableOpacity, View} from "react-native";
 import React, {FC, useEffect, useState} from "react";
 import SearchBar from "../../../components/searchBar/SearchBar";
@@ -89,7 +89,7 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFi
                     />
                     {renderDatePicker && (
                         <>
-                            <RNDateTimePicker onChange={(event, date) => handleOnChangeDate(date)} display="spinner" value={new Date(dateFilter)}/>
+                            <DateTimePicker onChange={(event, date) => handleOnChangeDate(date)} display="spinner" value={new Date(dateFilter)}/>
                         </>
                     )}
 
