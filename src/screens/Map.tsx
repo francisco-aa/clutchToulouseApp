@@ -23,5 +23,6 @@ const styles = StyleSheet.create({
     fontFamily:'Poppins-SemiBoldItalic',
     textTransform: 'uppercase',
     fontSize:40,
+    color: '#ff0000'
   }
 })
