@@ -30,9 +30,9 @@ const EventDetailsScreen = () => {
         <>
             <HeaderImage source={
                 event?.location?.image === null
-                  ? require('../../../../assets/images/Textures/TEXTURE6.png')
+                  ? require('../../../../assets/images/textures/TEXTURE6.png')
                   : event?.location?.image === 'clutch.gif'
-                    ? require('../../../../assets/images/Textures/TEXTURE6.png')
+                    ? require('../../../../assets/images/textures/TEXTURE6.png')
                     : { uri: `https://clutchmag.fr/images/locations/${event?.location?.image}` }
                 }>
                 <Ionicons
