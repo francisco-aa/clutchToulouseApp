@@ -12,10 +12,10 @@ import {compareAsc} from "date-fns/esm/fp";
 type TSearchBarCityGuide = {
     events: Ievent[],
     refresh: () => any,
-    setDataFiltered: () => any
+    setDataFiltered: React.Dispatch<React.SetStateAction<Ievent[]>>
 }
 const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFiltered}) => {
-    const {currentFilter, currentResearch, dateFilter, eventsByCategory, selectedCategory} = useAppSelector(state => state.events)
+    const {currentFilter, currentResearch, dateFilter, eventsByCategory} = useAppSelector(state => state.events)
     const dispatch = useAppDispatch()
     const [renderDatePicker, setRenderDatePicker] = useState<boolean>(false)
 
@@ -28,7 +28,7 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFi
                             return event
                         }
                     })
-                    setDataFiltered(updatedData)
+                    setDataFiltered(updatedData as Ievent[])
                 } else if (events && currentResearch === '') {
                     refresh()
                 }
@@ -40,7 +40,7 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFi
                             return event
                         }
                     })
-                    setDataFiltered(updatedData)
+                    setDataFiltered(updatedData as Ievent[])
                 } else if (events && currentResearch === '') {
                     refresh()
                 }
@@ -60,7 +60,7 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFi
         }
     }
 
-    const handleOnChangeDate = (date: Date | undefined) => {
+    const handleOnChangeDate = (event: Event, date: Date | undefined) => {
         if (date){
             dispatch({type: "events/setDateFilter", payload: date?.toDateString()})
         }
@@ -89,11 +89,11 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFi
                     />
                     {renderDatePicker && (
                         <>
-                            <DateTimePicker onChange={(event, date) => handleOnChangeDate(date)} display="spinner" value={new Date(dateFilter)}/>
+                            <DateTimePicker onChange={handleOnChangeDate}  value={new Date(dateFilter)}/>
                         </>
                     )}
 
-                    <TouchableOpacity style={{position: 'absolute', height: 50, width: 320}} onPress={() => setRenderDatePicker(true)}>
+                    <TouchableOpacity style={{position: 'absolute', height: 50, width: 310}} onPress={() => setRenderDatePicker(true)}>
                     </TouchableOpacity>
                 </View>
             ) : (
