@@ -15,16 +15,17 @@ import React, { useState } from 'react'
 import { clone, map } from 'lodash'
 
 const ResearchScreen = () => {
-  const dispatch = useAppDispatch()
-  const [dataFiltered, setDataFiltered] = useState<Ievent[] | null>(null)
-  const currentFilter = useAppSelector(state => state.events.currentFilter)
+    const dispatch = useAppDispatch()
+    const navigation = useNavigation()
+    const [dataFiltered, setDataFiltered] = useState<Ievent[] | undefined>(undefined)
+    const currentFilter = useAppSelector(state => state.events.currentFilter)
 
   const { data, error, isLoading, refetch } = useGetAllEventsQuery('')
 
-  const refresh = () => {
-    setDataFiltered(null)
-    return refetch()
-  }
+    const refresh = () => {
+        setDataFiltered(undefined)
+        return refetch()
+    }
 
   return (
         <ScreenWrapper bg={'#085066'}>

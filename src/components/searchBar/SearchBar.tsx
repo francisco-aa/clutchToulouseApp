@@ -1,10 +1,10 @@
-import { SearchBarStyle, SearchBarContainer } from './searchBar.style'
-import { FontAwesome } from '@expo/vector-icons'
-import React, { FC } from 'react'
+import React, {FC} from "react";
+import {SearchBarStyle, SearchBarContainer} from "./searchBar.style";
+import { FontAwesome } from '@expo/vector-icons';
 
 type TSearchBar = {
     placeholder: string,
-    iconRight: {name: string, color: string},
+    iconRight: {name: keyof typeof FontAwesome.glyphMap, color: string},
     onSearch: (status: boolean) => any,
     onChange: (value: string) => any,
     currentSearch: string,

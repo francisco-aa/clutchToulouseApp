@@ -10,9 +10,9 @@ import { format } from 'date-fns'
 import fr from 'date-fns/locale/fr'
 
 type TSearchBarCityGuide = {
-    events: Ievent[],
+    events: Ievent[] | undefined,
     refresh: () => any,
-    setDataFiltered: () => any
+    setDataFiltered: React.Dispatch<React.SetStateAction<Ievent[] | undefined>>
 }
 
 const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataFiltered }) => {
@@ -60,13 +60,53 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataF
         }
     }
   }
-
-  const handleOnChangeDate = (date: Date | undefined) => {
-    if (date) {
-      dispatch({ type: 'events/setDateFilter', payload: date?.toDateString() })
+    const handleSearch = () => {
+        switch (currentFilter) {
+            case 'place':
+                if (events && currentResearch !== '') {
+                    const updatedData = filter(clone(events), event => {
+                        if (event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase()) || event.location.street_name && event.location.street_name.toLowerCase().includes(currentResearch.toLowerCase())) {
+                            return event
+                        }
+                    })
+                    setDataFiltered(updatedData as Ievent[])
+                } else if (events && currentResearch === '') {
+                    refresh()
+                }
+                break
+            case 'calendar':
+                if (events && !isUndefined(dateFilter)) {
+                    const updatedData = filter(clone(events), event => {
+                        if (event.start_date && compareAsc(new Date(event.start_date), new Date(dateFilter)) === -1) {
+                            return event
+                        }
+                    })
+                    setDataFiltered(updatedData as Ievent[])
+                } else if (events && currentResearch === '') {
+                    refresh()
+                }
+                break
+            case 'categories':
+                if (eventsByCategory && currentResearch !== ''){
+                        const updatedData = filter(clone(eventsByCategory), event => {
+                            if (event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase()) || event.location.street_name && event.location.street_name.toLowerCase().includes(currentResearch.toLowerCase()) ||  event.name && event.name.toLowerCase().includes(currentResearch.toLowerCase())) {
+                                return event
+                            }
+                        })
+                        dispatch({type: "events/setCurrentEvents", payload: updatedData})
+                }else if (eventsByCategory && currentResearch === '') {
+                    dispatch({type: "events/setCurrentEvents", payload: null})
+                    refresh()
+                }
+        }
     }
-    return setRenderDatePicker(false)
-  }
+
+    const handleOnChangeDate = (event: Event, date: Date | undefined) => {
+        if (date){
+            dispatch({type: "events/setDateFilter", payload: date?.toDateString()})
+        }
+        return setRenderDatePicker(false)
+    }
 
   useEffect(() => {
     if (currentFilter === 'place' && renderDatePicker) {
@@ -91,11 +131,11 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataF
                     />
                     {renderDatePicker && (
                         <>
-                            <DateTimePicker onChange={(event, date) => handleOnChangeDate(date)} display="spinner" value={new Date(dateFilter)}/>
+                            <DateTimePicker onChange={handleOnChangeDate}  value={new Date(dateFilter)}/>
                         </>
                     )}
 
-                    <TouchableOpacity style={{ position: 'absolute', height: 50, width: 320 }} onPress={() => setRenderDatePicker(true)}>
+                    <TouchableOpacity style={{position: 'absolute', height: 50, width: 310}} onPress={() => setRenderDatePicker(true)}>
                     </TouchableOpacity>
                 </View>
                 )
