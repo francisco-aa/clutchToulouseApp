@@ -1,7 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, SerializedError } from '@reduxjs/toolkit'
 import eventsReducer from './slices/events.slice'
 import alertsReducer from './slices/alerts.slice'
 import { eventsApi } from '../api/events.service'
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
 export const store = configureStore({
   reducer: {
@@ -19,3 +20,4 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
+export type TGetDataError = FetchBaseQueryError | SerializedError | undefined

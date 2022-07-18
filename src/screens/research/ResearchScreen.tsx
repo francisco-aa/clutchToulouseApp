@@ -5,26 +5,24 @@ import { useGetAllEventsQuery } from '../../api/events.service'
 import Container from '../../components/ContainerTouchable'
 import ScreenWrapper from '../../components/ScreenWrapper'
 import CategoriesList from './components/CategoriesList'
-import CardEvent from '../../components/card/CardEvent'
-import Loading from '../../components/loading/Loading'
 import Title from '../../components/title/Title'
-import { ScrollView, Text } from 'react-native'
+import { ScrollView } from 'react-native'
 import Ievent from '../../redux/slices/Ievent'
 import Filters from './components/Filters'
 import React, { useState } from 'react'
-import { clone, map } from 'lodash'
+import ResearchContent from './components/ResearchContent/ResearchContent'
 
 const ResearchScreen = () => {
-    const dispatch = useAppDispatch()
-    const [dataFiltered, setDataFiltered] = useState<Ievent[] | undefined>(undefined)
-    const currentFilter = useAppSelector(state => state.events.currentFilter)
+  const dispatch = useAppDispatch()
+  const [dataFiltered, setDataFiltered] = useState<Ievent[] | undefined>(undefined)
+  const currentFilter = useAppSelector(state => state.events.currentFilter)
 
   const { data, error, isLoading, refetch } = useGetAllEventsQuery('')
 
-    const refresh = () => {
-        setDataFiltered(undefined)
-        return refetch()
-    }
+  const refresh = () => {
+    setDataFiltered(undefined)
+    return refetch()
+  }
 
   return (
         <ScreenWrapper bg={'#085066'}>
@@ -40,36 +38,7 @@ const ResearchScreen = () => {
                     )
                   : (
                     <Container direction={'column'}>
-                        {error
-                          ? (
-                            <Text>Une erreur est survenue</Text>
-                            )
-                          : isLoading
-                            ? (
-                            <Loading color={'#625A96'}/>
-                              )
-                            : data && !dataFiltered
-                              ? (
-                            <>
-                                {map(clone(data), (event, index) => (
-                                    <CardEvent key={index} color={'#625A96'} marginTop={10}
-                                               event={event}
-                                               tags={event.tags}/>
-                                ))}
-                            </>
-                                )
-                              : dataFiltered && dataFiltered.length > 0
-                                ? (
-                            <>
-                                {map(dataFiltered, (event, index) => (
-                                    <CardEvent event={event} key={index} tags={event.tags} color={'#625A96'} marginTop={10}
-                                    />
-                                ))}
-                            </>
-                                  )
-                                : (
-                            <Text>Désolé, aucun évènement ne correspond à votre recherche</Text>
-                                  )}
+                        <ResearchContent error={error} data={!dataFiltered ? data : dataFiltered} isLoading={isLoading}/>
                     </Container>
                     )}
             </ScrollView>
