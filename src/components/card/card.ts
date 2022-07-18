@@ -5,7 +5,7 @@ export const EventCardWrapper = styled(TouchableOpacity)`
 width: 100%;
 `
 
-export const CommonCard = styled.View`
+export const CommonCard = styled.view`
   background-color: ${({ color }) => color};
   padding: 20px;
   width: 100%;
