@@ -1,13 +1,27 @@
 import CarrouselContainer from '../components/CarrouselContainer'
-import { ScrollView, StyleSheet } from 'react-native'
+import { BackHandler, ScrollView, StyleSheet } from 'react-native'
 import Header from '../components/headers/Header'
 import React, { useEffect, useState, useCallback} from 'react'
 import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen';
+import { useFocusEffect } from '@react-navigation/native';
 
 type Props = {}
 
 export default function Accueil (props: Props) {
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () =>{
+          BackHandler.exitApp()
+          return true
+      };
+
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, [])
+  );
   const getFonts = async () => await Font.loadAsync({
     'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.otf'),
     'Poppins-Italic': require('../../assets/fonts/Poppins-Italic.otf'),

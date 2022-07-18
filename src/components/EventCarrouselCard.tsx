@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import Ievent from '../redux/slices/Ievent'
 import { colors } from '../utils/appUtils'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 type Props = {
     event: Ievent
@@ -23,10 +23,25 @@ export default function EventCarrouselCard (props: Props) {
     }
   }
 
+  const [eventName, setEventName] = useState<string>()
+
+  function GetEventName (name:string) {
+    if (name.length >= 25 ){
+      return name.substring(0,22) + '...'
+    } else {
+      return name
+    }
+  }
+
+  useEffect(() => {
+    setEventName(GetEventName(props.event.name))
+    }
+  , [])
+
   return (
         <View style={[styles.carrouselCards, { backgroundColor: GetEventCardColor(props.event.category) }]}>
             <View style={styles.titleZone}>
-                <Text style={[styles.title, { color: GetEventCardColor(props.event.category) }]}>{props.event.name}</Text>
+                <Text style={[styles.title, { color: GetEventCardColor(props.event.category) }]}>{eventName}</Text>
             </View>
             <Image style={styles.image} source={require('../../assets/images/markers/Fant_white.png')}/>
         </View>
