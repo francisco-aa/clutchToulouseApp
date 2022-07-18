@@ -3,8 +3,8 @@ import { filter } from 'lodash'
 import Ievent from './Ievent'
 
 interface IinitialState {
-    alerts: Ievent[],
-    notificationsSend: Ievent[]
+  alerts: Ievent[],
+  notificationsSend: Ievent[]
 }
 
 const initialState: IinitialState = {

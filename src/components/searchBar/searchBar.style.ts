@@ -8,11 +8,9 @@ export const SearchBarStyle = styled(TextInput)`
 `
 
 export const SearchBarContainer = styled.View`
-display: flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
   padding-right: 10px;
   background-color: white;
-
-
 `

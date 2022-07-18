@@ -14,19 +14,19 @@ type Props = {
 */
 const Header = ({ bgTexture }: Props): JSX.Element => {
   return (
-        <View style={styles.container}>
-            <ImageBackground
-                style={styles.background}
-                resizeMode='cover'
-                source={bgTexture}
-            >
-                <HeaderActions hasBackBtn={false} />
-            </ImageBackground>
-            <Image
-                style={styles.logo}
-                source={require('../../../assets/images/clutch/Clutch_icon_1.png')}
-            />
-        </View>
+    <View style={styles.container}>
+      <ImageBackground
+        style={styles.background}
+        resizeMode='cover'
+        source={bgTexture}
+      >
+        <HeaderActions hasBackBtn={false} />
+      </ImageBackground>
+      <Image
+          style={styles.logo}
+          source={require('../../../assets/images/clutch/Clutch_icon_1.png')}
+      />
+    </View>
   )
 }
 

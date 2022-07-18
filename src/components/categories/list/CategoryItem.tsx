@@ -8,9 +8,9 @@ categoryName: string,
 }
 const CategoryItem: FC<TCategoryItem> = ({ categoryName, onPress, color }) => {
   return (
-        <CategoryItemStyle color={color} onPress={onPress} >
-            <CategoryName>{categoryName}</CategoryName>
-        </CategoryItemStyle>
+      <CategoryItemStyle color={color} onPress={onPress} >
+          <CategoryName>{categoryName}</CategoryName>
+      </CategoryItemStyle>
   )
 }
 

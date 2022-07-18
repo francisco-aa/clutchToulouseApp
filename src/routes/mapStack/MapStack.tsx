@@ -8,9 +8,9 @@ const MapStack = () => {
   const Stack = createNativeStackNavigator()
 
   return (
-        <Stack.Navigator screenOptions={NavigationOptions}>
-            <Stack.Screen name={Eroutes.MAP_SCREEN} component={MapScreen}/>
-        </Stack.Navigator>
+    <Stack.Navigator screenOptions={NavigationOptions}>
+      <Stack.Screen name={Eroutes.MAP_SCREEN} component={MapScreen}/>
+    </Stack.Navigator>
   )
 }
 

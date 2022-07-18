@@ -3,7 +3,7 @@ import Icategory from '../redux/slices/Icategory'
 import React from 'react'
 
 type Props = {
-    category: Icategory,
+  category: Icategory,
 }
 
 export default function CategoryCarrouselCard (props: Props) {
@@ -21,14 +21,14 @@ export default function CategoryCarrouselCard (props: Props) {
         return require('../../assets/images/tickets/Ticket_1.png')
     }
   }
-  return (
 
-        <View style={styles.carrouselCards}>
-            <Image style={styles.ticket}
-                source={getImage(props.category.id)}
-            />
-            <Text style={styles.title}>{props.category.name}</Text>
-        </View>
+  return (
+    <View style={styles.carrouselCards}>
+      <Image style={styles.ticket}
+        source={getImage(props.category.id)}
+      />
+      <Text style={styles.title}>{props.category.name}</Text>
+    </View>
   )
 }
 

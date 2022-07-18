@@ -13,15 +13,15 @@ const AppNavigation = () => {
 
   return (
     <NavigationContainer >
-        <StatusBar/>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name={'SpashScreen'} options={{
-              headerShown: false
-            }} component={SplashScreen}/>
-            <Stack.Screen name={Eroutes.ROOT} component={Root}/>
-            <Stack.Screen name={Eroutes.EVENT_DETAILS_SCREEN} component={EventDetailsScreen}/>
-            <Stack.Screen name={Eroutes.LOCATION_DETAILS_SCREEN} component={LocationDetailsScreen}/>
-        </Stack.Navigator>
+      <StatusBar/>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name={'SpashScreen'} options={{
+          headerShown: false
+        }} component={SplashScreen}/>
+        <Stack.Screen name={Eroutes.ROOT} component={Root}/>
+        <Stack.Screen name={Eroutes.EVENT_DETAILS_SCREEN} component={EventDetailsScreen}/>
+        <Stack.Screen name={Eroutes.LOCATION_DETAILS_SCREEN} component={LocationDetailsScreen}/>
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }

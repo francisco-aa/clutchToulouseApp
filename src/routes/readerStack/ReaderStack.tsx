@@ -8,9 +8,9 @@ const ReaderStack = () => {
   const Stack = createNativeStackNavigator()
 
   return (
-        <Stack.Navigator screenOptions={NavigationOptions}>
-            <Stack.Screen name={Eroutes.READER_SCREEN} component={Book}/>
-        </Stack.Navigator>
+    <Stack.Navigator screenOptions={NavigationOptions}>
+      <Stack.Screen name={Eroutes.READER_SCREEN} component={Book}/>
+    </Stack.Navigator>
   )
 }
 
