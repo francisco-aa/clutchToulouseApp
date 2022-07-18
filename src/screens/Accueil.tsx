@@ -4,10 +4,24 @@ import React, { useState } from 'react'
 import * as Font from 'expo-font';
 import CarrouselContainer from '../components/CarrouselContainer';
 import Header from '../components/Header';
+import { useFocusEffect } from '@react-navigation/native';
 
 type Props = {}
 
 export default function Accueil(props: Props){
+    useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () =>{
+          BackHandler.exitApp()
+          return true
+      };
+
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, [])
+  );
     const getFonts = () =>Font.loadAsync({
       'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.otf'),
       'Poppins-Italic': require('../../assets/fonts/Poppins-Italic.otf'),
@@ -35,7 +49,9 @@ export default function Accueil(props: Props){
             onError={console.warn}
         />
         );
-    } 
+    }
+    
+    BackHandler.removeEventListener("hardwareBackPress",()=>true)
 };
 
 const styles = StyleSheet.create({
