@@ -80,7 +80,7 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({events, refresh, setDataFi
                     justifyContent: 'center'
                 }}>
                     <SearchBar style={{position: 'relative'}} onSearch={handleSearch}
-                               currentSearch={format(new Date(dateFilter), 'PPpp', {locale: fr})}
+                               currentSearch={format(new Date(dateFilter), 'PP', {locale: fr})}
                                onChange={searchWord => dispatch({type: "events/setCurrentResearch", payload: searchWord})}
                                placeholder={'Recherche'} iconRight={{
                         color: '#FA4E74',

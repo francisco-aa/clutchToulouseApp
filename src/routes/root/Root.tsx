@@ -9,7 +9,8 @@ import React from "react";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import SplashScreen from "../../screens/SplashScreen";
 import Eroutes from "../Eroutes";
-import Acceuil from "../../screens/Acceuil";
+import Accueil from "../../screens/Accueil";
+import { Image } from "react-native";
 
 const Root = () => {
     const Tab = createBottomTabNavigator()
@@ -26,37 +27,44 @@ const Root = () => {
             <Tab.Screen name={Eroutes.HOME_SCREEN} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <Ionicons name="home-sharp" size={24} color={color} />
+                    <Image source={color =='white' ? require('../../../assets/images/Menu/Home.png')
+                                                : require('../../../assets/images/Menu/Home_active.png') }/>
                 )
-            }} component={Acceuil}/>
+            }} component={Accueil}/>
             <Tab.Screen name={'Research'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <AntDesign name="search1" size={24} color={color} />
+                    <Image source={color=='white' ? require('../../../assets/images/Menu/Search.png')
+                                               : require('../../../assets/images/Menu/Search_active.png')}/>
+
                 )
             }} component={ResearchStack}/>
             <Tab.Screen name={'Agenda'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <Ionicons name="md-calendar-sharp" size={size} color={color} />
+                    <Image source={color=='white' ?require('../../../assets/images/Menu/Agenda.png')
+                                                : require('../../../assets/images/Menu/Agenda_active.png')}/>
                 )
             }} component={AgendaStack}/>
             <Tab.Screen name={'Map'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <Fontisto name="map-marker-alt" size={24} color={color} />
+                    <Image source={color=='white' ?require('../../../assets/images/Menu/Map.png')
+                                                : require('../../../assets/images/Menu/Map_active.png')}/>
                 )
             }} component={MapStack}/>
             <Tab.Screen name={'Alerts'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <MaterialCommunityIcons name="bell" size={24} color={color} />
+                    <Image source={color=='white' ?require('../../../assets/images/Menu/Notification.png')
+                                                : require('../../../assets/images/Menu/Notification_active.png')}/>
                 )
             }} component={AlertsStack}/>
             <Tab.Screen name={'Reader'} options={{
                 headerShown: false,
                 tabBarIcon: ({color, size}) => (
-                    <AntDesign name="book" size={24} color={color} />
+                    <Image source={color=='white' ?require('../../../assets/images/Menu/Book.png')
+                                                : require('../../../assets/images/Menu/Book_active.png')}/>
                 )
             }} component={ReaderStack}/>
         </Tab.Navigator>
