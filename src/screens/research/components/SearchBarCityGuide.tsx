@@ -91,7 +91,7 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataF
                     />
                     {renderDatePicker && (
                         <>
-                            <DateTimePicker onChange={handleOnChangeDate}  value={new Date(dateFilter)}/>
+                            <RNDateTimePicker onChange={handleOnChangeDate}  value={new Date(dateFilter)}/>
                         </>
                     )}
 
