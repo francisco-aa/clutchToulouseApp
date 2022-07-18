@@ -1,7 +1,6 @@
-import React, {FC} from "react";
-import TitleStyle from "./titleStyle";
-import AppLoading from 'expo-app-loading';
-import {useFonts} from "expo-font";
+import TitleStyle from './titleStyle'
+import { useFonts } from 'expo-font'
+import React, { FC } from 'react'
 
 type TTitle = {
     title: string,
@@ -13,22 +12,16 @@ type TTitle = {
     color?: string,
     marginBottom: number
 }
-const Title: FC<TTitle> = ({title, marginTop, weight, transform, align, size, color, marginBottom}) => {
-    let [fontsLoaded] = useFonts({
-        'Popins': require('../../../assets/fonts/Poppins-Bold.otf'),
-    });
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    } else {
-        return (
+const Title: FC<TTitle> = ({ title, marginTop, weight, transform, align, size, color, marginBottom }) => {
+  
+    return (
             <TitleStyle style={{
-                marginTop,
-                marginBottom
-            }} font={'Popins'} align={align} weight={weight} transform={transform} size={size} color={color}>
+              marginTop,
+              marginBottom
+            }} font={'Poppins-Bold'} align={align} weight={weight} transform={transform} size={size} color={color}>
                 {title}
             </TitleStyle>
-        )
-    }
+    )
 }
 
 export default Title

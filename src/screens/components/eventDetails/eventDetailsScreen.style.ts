@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import {Image, ImageBackground} from "react-native";
+import { ImageBackground } from 'react-native'
+import styled from 'styled-components'
 
 export const HeaderImage = styled(ImageBackground)`
-width: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
-  height: 40%;
+  height: 60%;
 `
 export const Content = styled.View`
   height: 70%;

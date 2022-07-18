@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import {ImageBackground} from "react-native";
+import { ImageBackground } from 'react-native'
+import styled from 'styled-components'
 
-export const HeaderImage = styled(ImageBackground).attrs(({source}) => {
-    source
+export const HeaderImage = styled(ImageBackground).attrs(({ source }) => {
+  source
 })`
   width: 100%;
   display: flex;
