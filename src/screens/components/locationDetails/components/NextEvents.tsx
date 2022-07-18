@@ -1,7 +1,7 @@
 import { useGetAllEventsQuery } from '../../../../api/events.service'
 import CardEvent from '../../../../components/card/CardEvent'
 import Ievent from '../../../../redux/slices/Ievent'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { filter, map } from 'lodash'
 
 const NextEvents = (locationId: string) => {

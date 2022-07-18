@@ -5,7 +5,8 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'standard'
+    'standard',
+    'plugin:react/jsx-runtime'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -20,6 +21,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    'no-nested-ternary': 'error'
+    'no-nested-ternary': 'error',
+    indent: ['error', 2]
   }
 }

@@ -1,7 +1,6 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { Image, Pressable, StyleSheet, View } from 'react-native'
-import { RouteParams } from '../navigation/RootNavigator'
 import { useNavigation } from '@react-navigation/native'
+import Eroutes from '../../routes/Eroutes'
 import { useState } from 'react'
 
 type Props = {
@@ -10,20 +9,19 @@ type Props = {
 
 export default function HeaderActions ({ hasBackBtn }: Props) {
   const [icon] = useState(hasBackBtn ? require('../../../assets/images/Arrow_up.png') : require('../../../assets/images/Menu/Wishlist.png'))
-  const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>()
-
+  const navigation = useNavigation()
   const handleAction = () => {
     if (hasBackBtn) {
       return navigation.goBack()
     }
-    return navigation.navigate('Favorites')
+    return navigation.navigate(Eroutes.ALERTS_SCREEN)
   }
 
   return (
     <View style={styles.headerActions}>
-        <Pressable onPress={handleAction}>
-            <Image source={icon} />
-        </Pressable>
+      <Pressable onPress={handleAction}>
+        <Image source={icon} />
+      </Pressable>
     </View>
   )
 }
