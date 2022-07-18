@@ -1,8 +1,8 @@
 import { Animated, Dimensions, Image, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import React, { useEffect, useRef, useState } from 'react'
 import { RouteParams } from '../navigation/RootNavigator'
+import { useNavigation } from '@react-navigation/native'
 import Eroutes from '../routes/Eroutes'
 
 export const SplashScreen = () => {
@@ -56,24 +56,25 @@ export const SplashScreen = () => {
   }, 2650)
   return (
     <View style={styles.container}>
-        <Animated.View style={[styles.animationContainer, {
-          transform: [
-            { translateY: startAnimation.y },
-            { translateX: startAnimation.x }
-          ]
-        }]}>
-             {stateCblack
-               ? <Image style={{ top: 10, margin: 4 }} source={require('../../assets/images/logo/C1.png')}/>
-               : <Image style={{ top: 10, margin: 4 }} source={require('../../assets/images/Clutch_icon_green.png')}/>}
-            {stateL ? <Image style={{ margin: 4 }} source={require('../../assets/images/logo/L.png')}/> : <Text></Text>}
-            {stateU ? <Image style={{ top: 14, margin: 4 }} source={require('../../assets/images/logo/U.png')}/> : <Text></Text>}
-            {stateT ? <Image style={{ margin: 4 }} source={require('../../assets/images/logo/T.png')}/> : <Text></Text>}
-            {stateC ? <Image style={{ top: 10, margin: 4 }} source={require('../../assets/images/logo/C.png')}/> : <Text></Text>}
-            {stateH ? <Image style={{ margin: 4 }} source={require('../../assets/images/logo/H.png')}/> : <Text></Text>}
-        </Animated.View>
+      <Animated.View style={[styles.animationContainer, {
+        transform: [
+          { translateY: startAnimation.y },
+          { translateX: startAnimation.x }
+        ]
+      }]}>
+          {stateCblack
+            ? <Image style={{ top: 10, margin: 4 }} source={require('../../assets/images/logo/C1.png')}/>
+            : <Image style={{ top: 10, margin: 4 }} source={require('../../assets/images/Clutch_icon_green.png')}/>}
+        {stateL ? <Image style={{ margin: 4 }} source={require('../../assets/images/logo/L.png')}/> : <Text></Text>}
+        {stateU ? <Image style={{ top: 14, margin: 4 }} source={require('../../assets/images/logo/U.png')}/> : <Text></Text>}
+        {stateT ? <Image style={{ margin: 4 }} source={require('../../assets/images/logo/T.png')}/> : <Text></Text>}
+        {stateC ? <Image style={{ top: 10, margin: 4 }} source={require('../../assets/images/logo/C.png')}/> : <Text></Text>}
+        {stateH ? <Image style={{ margin: 4 }} source={require('../../assets/images/logo/H.png')}/> : <Text></Text>}
+      </Animated.View>
     </View>
   )
 }
+
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
@@ -92,4 +93,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   }
 })
+
 export default SplashScreen

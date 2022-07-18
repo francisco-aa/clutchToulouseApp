@@ -5,5 +5,4 @@ const ScreenWrapper = styled.View`
   background-color: ${({ bg }) => bg || 'white'};
   flex: 1;
 `
-
 export default ScreenWrapper

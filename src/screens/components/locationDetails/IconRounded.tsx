@@ -3,11 +3,11 @@ import React from 'react'
 
 const IconRounded = (source: any) => {
   return (
-<>
-    <Highlight>
+    <>
+      <Highlight>
         <IconRoundedStyle source={source}/>
-    </Highlight>
-</>
+      </Highlight>
+    </>
   )
 }
 

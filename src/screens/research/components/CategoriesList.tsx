@@ -72,7 +72,7 @@ const CategoriesList = () => {
         }
       }
 
-      if (categoryNumber){
+      if (categoryNumber) {
         getEventsByThematic(categoryNumber)
       }
     } else {

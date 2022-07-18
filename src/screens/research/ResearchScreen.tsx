@@ -25,24 +25,24 @@ const ResearchScreen = () => {
   }
 
   return (
-        <ScreenWrapper bg={'#085066'}>
-            <HeaderIcons/>
-            <Title marginBottom={15} marginTop={50} title={'rechercher un évènement'} weight={'bold'}
-                   transform={'uppercase'} size={25} color={'white'}/>
-            <SearchBarCityGuide refresh={refresh} events={data} setDataFiltered={setDataFiltered}/>
-            <Filters onChangeFilter={(filter) => dispatch({ type: 'events/changeCurrentFilter', payload: filter })}/>
-            <ScrollView style={{ marginTop: 30, marginBottom: 60 }}>
-                {currentFilter === 'categories'
-                  ? (
-                    <CategoriesList/>
-                    )
-                  : (
-                    <Container direction={'column'}>
-                        <ResearchContent error={error} data={!dataFiltered ? data : dataFiltered} isLoading={isLoading}/>
-                    </Container>
-                    )}
-            </ScrollView>
-        </ScreenWrapper>
+    <ScreenWrapper bg={'#085066'}>
+      <HeaderIcons/>
+      <Title marginBottom={15} marginTop={50} title={'rechercher un évènement'} weight={'bold'}
+        transform={'uppercase'} size={25} color={'white'}/>
+      <SearchBarCityGuide refresh={refresh} events={data} setDataFiltered={setDataFiltered}/>
+      <Filters onChangeFilter={(filter) => dispatch({ type: 'events/changeCurrentFilter', payload: filter })}/>
+      <ScrollView style={{ marginTop: 30, marginBottom: 60 }}>
+        {currentFilter === 'categories'
+          ? (
+            <CategoriesList/>
+            )
+          : (
+            <Container direction={'column'}>
+              <ResearchContent error={error} data={!dataFiltered ? data : dataFiltered} isLoading={isLoading}/>
+            </Container>
+            )}
+      </ScrollView>
+    </ScreenWrapper>
   )
 }
 

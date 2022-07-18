@@ -8,9 +8,9 @@ const AlertsStack = () => {
   const Stack = createNativeStackNavigator()
 
   return (
-        <Stack.Navigator screenOptions={NavigationOptions}>
-            <Stack.Screen name={Eroutes.ALERTS_SCREEN} component={AlertsScreen}/>
-        </Stack.Navigator>
+    <Stack.Navigator screenOptions={NavigationOptions}>
+      <Stack.Screen name={Eroutes.ALERTS_SCREEN} component={AlertsScreen}/>
+    </Stack.Navigator>
   )
 }
 

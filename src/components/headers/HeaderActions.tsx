@@ -16,16 +16,15 @@ export default function HeaderActions ({ hasBackBtn }: Props) {
     if (hasBackBtn) {
       return navigation.goBack()
     }
-
     return navigation.navigate('Favorites')
   }
 
   return (
-        <View style={styles.headerActions}>
-            <Pressable onPress={handleAction}>
-                <Image source={icon} />
-            </Pressable>
-        </View>
+    <View style={styles.headerActions}>
+        <Pressable onPress={handleAction}>
+            <Image source={icon} />
+        </Pressable>
+    </View>
   )
 }
 

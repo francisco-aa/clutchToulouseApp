@@ -9,7 +9,7 @@ import { dataAccess } from '../data/dataAccess'
 import Ievent from '../redux/slices/Ievent'
 
 type Props = {
-    type:('category'|'headline'|'Today'),
+  type:('category'|'headline'|'Today'),
 }
 
 export default function CarrouselContainer (props: Props) {
@@ -44,18 +44,18 @@ export default function CarrouselContainer (props: Props) {
   switch (props.type) {
     case 'category':
       return (
-                <View style={styles.carrouselContainer}>
-                    <Text style={styles.carrouselTitle} >Catégories</Text>
-                    <FlatList horizontal showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategoryCarrouselCard}/>
-                </View>
+        <View style={styles.carrouselContainer}>
+          <Text style={styles.carrouselTitle} >Catégories</Text>
+          <FlatList horizontal showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategoryCarrouselCard}/>
+        </View>
       )
     case 'headline':
       if (!isUndefined(headlinesEvents) && !isEmpty(headlinesEvents)) {
         return (
-                    <View style={styles.carrouselContainer}>
-                        <Text style={styles.carrouselTitle} >À LA UNE</Text>
-                        <FlatList horizontal showsHorizontalScrollIndicator={false} data={headlinesEvents} renderItem={renderEventCarrouselCard}/>
-                    </View>
+          <View style={styles.carrouselContainer}>
+            <Text style={styles.carrouselTitle} >À LA UNE</Text>
+            <FlatList horizontal showsHorizontalScrollIndicator={false} data={headlinesEvents} renderItem={renderEventCarrouselCard}/>
+          </View>
         )
       } else {
         return null
@@ -63,10 +63,10 @@ export default function CarrouselContainer (props: Props) {
     case 'Today':
       if (!isUndefined(todayEvents) && !isEmpty(todayEvents)) {
         return (
-                    <View style={styles.carrouselContainer}>
-                        <Text style={styles.carrouselTitle} >Aujourd'hui</Text>
-                        <FlatList horizontal showsHorizontalScrollIndicator={false} data={todayEvents} renderItem={renderEventCarrouselCard}/>
-                    </View>
+          <View style={styles.carrouselContainer}>
+            <Text style={styles.carrouselTitle}>Aujourd'hui</Text>
+            <FlatList horizontal showsHorizontalScrollIndicator={false} data={todayEvents} renderItem={renderEventCarrouselCard}/>
+          </View>
         )
       } else {
         return null

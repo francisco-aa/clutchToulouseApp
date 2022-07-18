@@ -14,13 +14,13 @@ const NextEvents = (locationId: string) => {
       setDataFiletred(updatedData)
     }
   }, [data])
-  return (
-        <>
-            {dataFiltered && map(dataFiltered, (event, index) => (
-                <CardEvent key={index} color={'#FA4E74'} event={event} marginTop={10}/>
 
-            ))}
-        </>
+  return (
+    <>
+      {dataFiltered && map(dataFiltered, (event, index) => (
+        <CardEvent key={index} color={'#FA4E74'} event={event} marginTop={10}/>
+      ))}
+    </>
   )
 }
 

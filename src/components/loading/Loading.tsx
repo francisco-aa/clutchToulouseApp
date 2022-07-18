@@ -1,7 +1,6 @@
 import { StyleSheet, View, ActivityIndicator } from 'react-native'
 import React, { FC } from 'react'
 
-
 type TLoading = {
     color: string
 }
@@ -19,10 +18,9 @@ const Loading: FC<TLoading> = ({ color }) => {
   })
 
   return (
-
-        <View style={[styles.container, styles.horizontal]}>
-            <ActivityIndicator size="large" color={color} />
-        </View>
+    <View style={[styles.container, styles.horizontal]}>
+        <ActivityIndicator size="large" color={color} />
+    </View>
   )
 }
 

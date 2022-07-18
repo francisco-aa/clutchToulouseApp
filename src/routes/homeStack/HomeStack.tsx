@@ -8,9 +8,9 @@ const HomeStack = () => {
   const Stack = createNativeStackNavigator()
 
   return (
-        <Stack.Navigator screenOptions={NavigationOptions}>
-            <Stack.Screen name={Eroutes.HOME_SCREEN} component={Accueil}/>
-        </Stack.Navigator>
+    <Stack.Navigator screenOptions={NavigationOptions}>
+      <Stack.Screen name={Eroutes.HOME_SCREEN} component={Accueil}/>
+    </Stack.Navigator>
   )
 }
 

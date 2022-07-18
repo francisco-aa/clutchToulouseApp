@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Ievent from './Ievent'
 
 export interface IeventsSlice {
-    currentFilter: 'place' | 'calendar' | 'categories',
-    selectedCategory: string | null,
-    eventsByCategory: Ievent[] | null
-    currentEvents: Ievent[] | null,
-    currentResearch: string,
-    dateFilter: string,
-    selectedEvent: Ievent | null
+  currentFilter: 'place' | 'calendar' | 'categories',
+  selectedCategory: string | null,
+  eventsByCategory: Ievent[] | null
+  currentEvents: Ievent[] | null,
+  currentResearch: string,
+  dateFilter: string,
+  selectedEvent: Ievent | null
 }
 
 const initialState: IeventsSlice = {
@@ -37,15 +37,12 @@ export const eventsSlice = createSlice({
     setSelectedEvent: (state, action: PayloadAction<Ievent>) => {
       state.selectedEvent = action.payload
     },
-
     setSelectedCategory: (state, action: PayloadAction<string>) => {
       state.selectedCategory = action.payload
     },
-
     setEventsByCategory: (state, action: PayloadAction<Ievent[]>) => {
       state.eventsByCategory = action.payload
     },
-
     setCurrentEvents: (state, action: PayloadAction<Ievent[]>) => {
       state.currentEvents = action.payload
     }

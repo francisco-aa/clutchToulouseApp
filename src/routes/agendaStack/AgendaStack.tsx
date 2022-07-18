@@ -8,9 +8,9 @@ const AgendaStack = () => {
   const Stack = createNativeStackNavigator()
 
   return (
-        <Stack.Navigator screenOptions={NavigationOptions}>
-            <Stack.Screen name={Eroutes.AGENDA_SCREEN} component={Agenda}/>
-        </Stack.Navigator>
+    <Stack.Navigator screenOptions={NavigationOptions}>
+        <Stack.Screen name={Eroutes.AGENDA_SCREEN} component={Agenda}/>
+    </Stack.Navigator>
   )
 }
 
