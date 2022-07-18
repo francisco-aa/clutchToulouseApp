@@ -11,11 +11,10 @@ type TSearchBar = {
 }
 const SearchBar: FC<TSearchBar> = ({ placeholder, iconRight, onSearch, onChange, currentSearch }) => {
   return (
-
-                <SearchBarContainer>
-                    <SearchBarStyle value={currentSearch} onChange={(e) => onChange(e.nativeEvent.text)} placeholder={placeholder.toUpperCase()}/>
-                    <FontAwesome onPress={() => onSearch(true)} name={iconRight.name} size={24} color={iconRight.color} />
-                </SearchBarContainer>
+    <SearchBarContainer>
+        <SearchBarStyle value={currentSearch} onChange={(e) => onChange(e.nativeEvent.text)} placeholder={placeholder.toUpperCase()}/>
+        <FontAwesome onPress={() => onSearch(true)} name={iconRight.name} size={24} color={iconRight.color} />
+    </SearchBarContainer>
 
   )
 }
