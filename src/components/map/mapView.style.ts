@@ -17,7 +17,7 @@ export const markerStyle = StyleSheet.create({
     popup: {
         flexDirection: 'column',
         alignSelf: 'flex-start',
-        width: 150,
-        padding: 0,
+        width: 125,
+        padding: 0
     },
 })

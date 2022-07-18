@@ -9,7 +9,7 @@ export const eventsApi = createApi({
     endpoints: (builder) => ({
         getAllEvents: builder.query<Ievent[], string>({
             query: () => `events?`,
-            transformResponse: (response: Ievent[], meta, arg) => {                
+            transformResponse: (response: Ievent[], meta, arg) => {
                 return reverse(response["hydra:member"])
             },
         }),

@@ -19,7 +19,7 @@ export default function Accueil(props: Props){
         return(
             
             <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-                <Header bgTexture={require('../../assets/images/Textures/TEXTURE6.png')} />
+                <Header bgTexture={require('../../assets/images/textures/TEXTURE6.png')} />
                 <CarrouselContainer type='category'/>
                 <CarrouselContainer type='headline'/>
                 <CarrouselContainer type='Today'/>
