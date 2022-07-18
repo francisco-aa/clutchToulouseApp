@@ -32,39 +32,19 @@ const MapScreen = () => {
                 new Date(date).getFullYear() == today.getFullYear());
         }
 
-        /*function samePlace(marker) {
+        function samePlace(marker) {
             markers.forEach((m, index) => {
                 if (marker.location.name === m.location.name && new Date(marker.start_date) < new Date(m.start_date)) {
-                    markersSameLocation.push(m);
                     markers.splice(index, 1);
                 }
             })
-        }*/
-
-        /*function doublonExist(marker) {
-            if (markersDoublons.length > 0) {
-                console.log('DOUBLON', markersDoublons.find(m => isToday(new Date(m.start_date)) && marker.location.name !== m.location.name))
-                return markersDoublons.find(m => isToday(new Date(m.start_date)) && marker.location.name !== m.location.name);
-            }
-        }*/
+        }
 
         if (data) {
-            // markers = data.filter(d => (isToday(new Date(d.start_date))))
-            data.forEach(d => {
-                if (isToday(new Date(d.start_date))) {
-                    const eventDateExist = markers.find(m => isToday(new Date(m.start_date)) === isToday(new Date(d.start_date)))
-                    if (eventDateExist) {
-                        markers[markers.findIndex(eventDateExist)].content.push(d)
-                    } else {
-                        markers.push({date: new Date(d.start_date), content: [d]})
-                    }
-                }
-            })
-            console.log('========================= LOGS ========================= ')
-            console.log('NB EVENTS', markers.length)
-            console.log('MARKERS', markers)
+            markers = data.filter(d => (isToday(new Date(d.start_date))))
+            markers.forEach(marker => samePlace(marker))
         }
-       /* return (
+        return (
             <>
                 {markers && markers.map((marker) => (
                     <Fragment key={marker.id}>
@@ -120,13 +100,6 @@ const MapScreen = () => {
                                                 hour: '2-digit',
                                                 minute: '2-digit'
                                             })}</Text>
-                                            {doublonExist(marker) &&
-                                                <View style={markerStyle.popup}>
-                                                    <Text style={styles.title}>
-                                                        {doublonExist(marker).name}
-                                                    </Text>
-                                                </View>
-                                            }
                                         </View>
                                     </Callout>
                                 </Marker> : null
@@ -135,7 +108,7 @@ const MapScreen = () => {
                 ))
                 }
             </>
-        )*/
+        )
     }
     return (
         <>
