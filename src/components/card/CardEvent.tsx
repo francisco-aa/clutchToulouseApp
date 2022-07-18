@@ -20,15 +20,15 @@ type TCardEvent = {
     tags?: string[]
 };
 
-const CardEvent: FC<TCardEvent> = ({ color, tags, marginTop = 20, event }) => {
-  const navigation = useNavigation()
-  const dispatch = useAppDispatch()
-  const alerts = useAppSelector(state => state.alerts.alerts)
-  const handlePress = () => {
-    dispatch({ type: 'events/setSelectedEvent', payload: event })
-    // TODO: revoir l'implémentation
-    navigation.navigate(Eroutes.EVENT_DETAILS_SCREEN)
-  }
+const CardEvent: FC<TCardEvent> = ({color, tags, marginTop = 20, event}) => {
+    const navigation = useNavigation()
+    const dispatch = useAppDispatch()
+    const alerts = useAppSelector(state => state.alerts.alerts)
+    const handlePress = () => {
+        console.log("AVANT NAVIGATE", event)
+        dispatch({type: "events/setSelectedEvent", payload: event})
+        navigation.navigate(Eroutes.EVENT_DETAILS_SCREEN)
+    }
 
   const isFavorite = find(alerts, ['@id', event['@id']]) !== undefined
 
