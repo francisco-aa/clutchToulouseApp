@@ -4,8 +4,8 @@ import Ievent from '../../../../redux/slices/Ievent'
 import React, { useEffect, useState } from 'react'
 import { filter, map } from 'lodash'
 
-const NextEvents = ({ locationId }) => {
-  const { data } = useGetAllEventsQuery()
+const NextEvents = (locationId: string) => {
+  const { data } = useGetAllEventsQuery('')
   const [dataFiltered, setDataFiletred] = useState<Ievent[] | null>(null)
 
   useEffect(() => {

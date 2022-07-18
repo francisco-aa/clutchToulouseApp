@@ -24,7 +24,7 @@ const EventDetailsScreen = () => {
   const handleLocationPress = () => {
     navigation.navigate(Eroutes.LOCATION_DETAILS_SCREEN)
   }
-  const isFavorite = find(alerts, ['@id', event['@id']]) !== undefined
+  const isFavorite = find(alerts, ['@id', event !== undefined && event !== null ? event!['@id'] : '']) !== undefined
 
   return (
         <>
@@ -64,7 +64,7 @@ const EventDetailsScreen = () => {
                       ? (
                         <FontAwesome
                             name="heart"
-                            onPress={() => dispatch({ type: 'alerts/disableAlert', payload: event['@id'] })}
+                            onPress={() => dispatch({ type: 'alerts/disableAlert', payload: event !== undefined && event !== null ? event!['@id'] : '' })}
                             size={35}
                             color="#625A96"/>
                         )
@@ -80,7 +80,7 @@ const EventDetailsScreen = () => {
                     <Title
                         color={'#625A96'}
                         align={'left'}
-                        title={event?.name}
+                        title={event!.name}
                         marginTop={10}
                         size={25}
                         marginBottom={0}/>
@@ -104,24 +104,24 @@ const EventDetailsScreen = () => {
                         justify={'center'}
                         align={'flex-start'}>
                         <Information
-                            text={format(new Date(event?.start_date), 'PPp', { locale: fr })}
+                            text={format(new Date(event!.start_date), 'PPp', { locale: fr })}
                             icon={'clock'}
                             display={event?.start_date ? 'flex' : 'none'}/>
                         <Information
-                            text={event.location.phone}
+                            text={event!.location.phone}
                             icon={'phone'}
-                            display={event.location.phone ? 'flex' : 'none'}/>
+                            display={event!.location.phone ? 'flex' : 'none'}/>
                         <Information
                             bold
                             underline
                             onPress={handleLocationPress}
-                            text={`${event.location.name}, ${event.location.street_name}`}
+                            text={`${event!.location.name}, ${event!.location.street_name}`}
                             icon={'map-marker-alt'}
-                            display={`${event.location.name}, ${event.location.street_name}`.length < 4 ? 'none' : 'flex'}/>
+                            display={`${event!.location.name}, ${event!.location.street_name}`.length < 4 ? 'none' : 'flex'}/>
                         <Information
-                            text={event.price}
+                            text={event!.price}
                             icon={'ticket-alt'}
-                            display={event.price ? 'flex' : 'none'}/>
+                            display={event!.price ? 'flex' : 'none'}/>
                     </Container>
                     <Container
                         style={{

@@ -6,7 +6,7 @@ import { Image } from 'react-native'
 
 const MapScreen = () => {
   const MapMarkers = () => {
-    const { data } = useGetAllEventsQuery()
+    const { data } = useGetAllEventsQuery('')
     return (
             <>
                 {data && data.map((marker) => (

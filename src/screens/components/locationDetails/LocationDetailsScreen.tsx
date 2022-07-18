@@ -30,7 +30,7 @@ const LocationDetailsScreen = () => {
                 <Container justify={'center'}>
                     <IconRounded source={{ uri: `https://clutchmag.fr/images/locations/${location?.image}` }}/>
                 </Container>
-                <Title title={location?.name} marginTop={100} size={20} marginBottom={20}/>
+                <Title title={location !== undefined && location !== null ? location!.business_hours : ''} marginTop={100} size={20} marginBottom={20}/>
 
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Container justify={'space-around'} >
@@ -42,29 +42,29 @@ const LocationDetailsScreen = () => {
                       marginTop: 30
                     }} direction={'column'} align={'flex-start'}>
                         <Information
-                            text={location.business_hours}
+                            text={location !== undefined && location !== null ? location!.business_hours : ''}
                             icon={'clock'}
-                            display={location.business_hours ? 'flex' : 'none'}/>
+                            display={location!.business_hours ? 'flex' : 'none'}/>
                         <Information
-                            text={location.street_name}
+                            text={location !== undefined && location !== null ? location!.street_name : ''}
                             icon={'map-marker-alt'}
-                            display={`${location.street_name}`.length < 4 ? 'none' : 'flex'}/>
+                            display={`${location!.street_name}`.length < 4 ? 'none' : 'flex'}/>
                         <Information
-                            text={location.phone}
+                            text={location !== undefined && location !== null ? location!.phone : ''}
                             icon={'phone'}
-                            display={location.phone ? 'flex' : 'none'}/>
+                            display={location!.phone ? 'flex' : 'none'}/>
                         <Information
-                            text={location.website}
+                            text={location !== undefined && location !== null ? location!.website : ''}
                             icon={'link'}
-                            display={location.website ? 'flex' : 'none'}/>
+                            display={location!.website ? 'flex' : 'none'}/>
                     </Container>
                     <Container style={{
                       marginTop: 30
                     }} >
-                        <Text>{location.content}</Text>
+                        <Text>{location !== undefined && location !== null ? location!.content : ''}</Text>
                     </Container>
                     <Title title={'LES PROCHAINS EVENEMENTS DANS CE LIEU'} color={'#085066'} marginTop={20} size={15} marginBottom={0}/>
-                    <NextEvents locationId={location['@id']}/>
+                    <NextEvents locationId={location !== undefined && location !== null ? location!['@id'] : ''}/>
                 </ScrollView>
             </Content>
         </>
