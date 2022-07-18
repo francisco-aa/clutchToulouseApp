@@ -1,5 +1,5 @@
 import { MessageStyle, MessageContentStyle, MessageTimestampLeft } from './message.style'
-import Ievent from '../../../redux/slices/Ievent'
+import Ievent from '../../redux/slices/Ievent'
 import { format, getHours } from 'date-fns'
 import { Text } from 'react-native'
 import fr from 'date-fns/locale/fr'
@@ -23,21 +23,21 @@ const Message: FC<TMessage> = ({ event, index }) => {
   }
   return (
     <MessageStyle index={index}>
-        <MessageContentStyle>
-            <Text style={{
-              color: 'white',
-              fontWeight: 'bold'
-            }}>
-                {capitalize(format(new Date(event.start_date), 'PPPPp', { locale: fr })) }
-            </Text>
-            <Text style={{
-              color: 'white'
-            }}>
-                {whenEventIs(event.start_date)} {event.name.toUpperCase()} AU {event.location.name.toUpperCase()}
-            </Text>
-        </MessageContentStyle>
-        <MessageTimestampLeft>
-        </MessageTimestampLeft>
+      <MessageContentStyle>
+        <Text style={{
+          color: 'white',
+          fontWeight: 'bold'
+        }}>
+          {capitalize(format(new Date(event.start_date), 'PPPPp', { locale: fr })) }
+        </Text>
+        <Text style={{
+          color: 'white'
+        }}>
+          {whenEventIs(event.start_date)} {event.name.toUpperCase()} AU {event.location.name.toUpperCase()}
+        </Text>
+      </MessageContentStyle>
+      <MessageTimestampLeft>
+      </MessageTimestampLeft>
     </MessageStyle>
   )
 }

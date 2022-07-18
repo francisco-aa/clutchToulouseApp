@@ -1,7 +1,7 @@
 import { Image, StyleSheet, View, TouchableHighlight } from 'react-native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { useNavigation } from '@react-navigation/native'
 import { RouteParams } from '../navigation/RootNavigator'
+import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 
 type Props = {}

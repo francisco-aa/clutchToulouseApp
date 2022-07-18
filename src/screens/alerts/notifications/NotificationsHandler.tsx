@@ -42,7 +42,7 @@ const NotificationsHandler = () => {
       trigger: { seconds: 2 }
     })
   }
-
   return null
 }
+
 export default NotificationsHandler

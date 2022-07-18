@@ -3,16 +3,17 @@ import TagStyle from './tag.style'
 import React, { FC } from 'react'
 
 type TButton = {
-    title: string,
-    color: string
+  title: string,
+  color: string
 }
+
 const Tag: FC<TButton> = ({ title, color = 'white' }) => {
   return (
-        <TagStyle color={color}>
-            <Text style={{
-              color
-            }}>{title.toUpperCase()}</Text>
-        </TagStyle>
+    <TagStyle color={color}>
+      <Text style={{
+        color
+      }}>{title.toUpperCase()}</Text>
+    </TagStyle>
   )
 }
 

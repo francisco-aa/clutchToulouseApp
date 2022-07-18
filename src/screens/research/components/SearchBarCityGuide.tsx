@@ -10,9 +10,9 @@ import { format } from 'date-fns'
 import fr from 'date-fns/locale/fr'
 
 type TSearchBarCityGuide = {
-    events: Ievent[] | undefined,
-    refresh: () => any,
-    setDataFiltered: React.Dispatch<React.SetStateAction<Ievent[] | undefined>>
+  events: Ievent[] | undefined,
+  refresh: () => any,
+  setDataFiltered: React.Dispatch<React.SetStateAction<Ievent[] | undefined>>
 }
 
 const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataFiltered }) => {
@@ -74,42 +74,41 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataF
     }
   }, [currentFilter, renderDatePicker])
   return (
-        <>
-            {currentFilter === 'calendar'
-              ? (
-                <View style={{
-                  display: 'flex',
-                  justifyContent: 'center'
-                }}>
-                    <SearchBar style={{ position: 'relative' }} onSearch={handleSearch}
-                               currentSearch={format(new Date(dateFilter), 'PP', { locale: fr })}
-                               onChange={searchWord => dispatch({ type: 'events/setCurrentResearch', payload: searchWord })}
-                               placeholder={'Recherche'} iconRight={{
-                                 color: '#FA4E74',
-                                 name: 'search'
-                               }}
-                    />
-                    {renderDatePicker && (
-                        <>
-                            <RNDateTimePicker onChange={handleOnChangeDate} value={new Date(dateFilter)}/>
-                        </>
-                    )}
-
-                    <TouchableOpacity style={{ position: 'absolute', height: 50, width: 310 }} onPress={() => setRenderDatePicker(true)}>
-                    </TouchableOpacity>
-                </View>
-                )
-              : (
-                <SearchBar onSearch={handleSearch}
-                           currentSearch={currentResearch}
-                           onChange={searchWord => dispatch({ type: 'events/setCurrentResearch', payload: searchWord })}
-                           placeholder={'Recherche'} iconRight={{
-                             color: '#FA4E74',
-                             name: 'search'
-                           }}
-                />
-                )}
-        </>
+    <>
+      {currentFilter === 'calendar'
+        ? (
+          <View style={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <SearchBar style={{ position: 'relative' }} onSearch={handleSearch}
+              currentSearch={format(new Date(dateFilter), 'PP', { locale: fr })}
+              onChange={searchWord => dispatch({ type: 'events/setCurrentResearch', payload: searchWord })}
+              placeholder={'Recherche'} iconRight={{
+                color: '#FA4E74',
+                name: 'search'
+              }}
+            />
+              {renderDatePicker && (
+                <>
+                  <RNDateTimePicker onChange={handleOnChangeDate} value={new Date(dateFilter)}/>
+                </>
+              )}
+              <TouchableOpacity style={{ position: 'absolute', height: 50, width: 310 }} onPress={() => setRenderDatePicker(true)}>
+              </TouchableOpacity>
+          </View>
+          )
+        : (
+          <SearchBar onSearch={handleSearch}
+            currentSearch={currentResearch}
+            onChange={searchWord => dispatch({ type: 'events/setCurrentResearch', payload: searchWord })}
+            placeholder={'Recherche'} iconRight={{
+              color: '#FA4E74',
+              name: 'search'
+            }}
+          />
+          )}
+    </>
   )
 }
 

@@ -8,9 +8,9 @@ const ResearchStack = () => {
   const Stack = createNativeStackNavigator()
 
   return (
-        <Stack.Navigator screenOptions={NavigationOptions}>
-            <Stack.Screen name={Eroutes.RESEARCH_SCREEN} component={ResearchScreen}/>
-        </Stack.Navigator>
+    <Stack.Navigator screenOptions={NavigationOptions}>
+      <Stack.Screen name={Eroutes.RESEARCH_SCREEN} component={ResearchScreen}/>
+    </Stack.Navigator>
   )
 }
 
