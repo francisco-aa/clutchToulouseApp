@@ -9,7 +9,7 @@ type Props = {
 /**
 * Clutch Header component
 *
-* @param {ImageSourcePropType} bgTexture - require('{assets_directory}/textures/{texture_name}.png')
+* @param {ImageSourcePropType} bgTexture - require('{assets_directory}/Textures/{texture_name}.png')
 * @return {JSX.Element}
 */
 const Header = ({ bgTexture }: Props): JSX.Element => {
