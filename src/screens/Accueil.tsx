@@ -10,7 +10,7 @@ type Props = {}
 
 export default function Accueil (props: Props) {
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       const onBackPress = () =>{
           BackHandler.exitApp()
           return true
