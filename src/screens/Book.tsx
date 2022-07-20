@@ -6,6 +6,7 @@ export default function Book (props: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Book</Text>
+      <Text style={styles.comming_soon}>Bientôt dispo</Text>
     </View>
   )
 }
@@ -22,5 +23,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-SemiBoldItalic',
     textTransform: 'uppercase',
     fontSize: 40
+  },
+  comming_soon: {
+    fontFamily: 'Poppins-SemiBoldItalic',
+    textTransform: 'lowercase',
+    fontSize: 20
   }
 })

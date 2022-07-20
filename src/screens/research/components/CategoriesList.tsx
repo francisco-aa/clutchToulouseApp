@@ -4,9 +4,9 @@ import { useGetAllEventsQuery } from '../../../api/events.service'
 import Container from '../../../components/ContainerTouchable'
 import Ecategories from '../../../redux/slices/Ecategories'
 import CardEvent from '../../../components/card/CardEvent'
-import React, { useEffect, useRef, useState } from 'react'
 import Loading from '../../../components/loading/Loading'
 import { clone, cloneDeep, filter, map } from 'lodash'
+import { useEffect, useRef, useState } from 'react'
 import Ievent from '../../../redux/slices/Ievent'
 import { Text } from 'react-native'
 import { batch } from 'react-redux'
@@ -31,17 +31,10 @@ const CategoriesList = () => {
     setList(tempList)
   }
   const handlePress = (catName: string) => {
-    if (catName === selectedCategory) {
-      batch(() => {
-        dispatch({ type: 'events/setEventsByCategory', payload: null })
-        dispatch({ type: 'events/setSelectedCategory', payload: null })
-      })
-    } else {
-      batch(() => {
-        dispatch({ type: 'events/setEventsByCategory', payload: null })
-        dispatch({ type: 'events/setSelectedCategory', payload: catName })
-      })
-    }
+    batch(() => {
+      dispatch({ type: 'events/setEventsByCategory', payload: null })
+      dispatch({ type: 'events/setSelectedCategory', payload: catName === selectedCategory ? null : catName })
+    })
   }
   const getEventsByThematic = (thematicNumber: number) => {
     const events = filter(data, event => {
@@ -88,7 +81,9 @@ const CategoriesList = () => {
   useEffect(() => {
     if (currentResearch !== '') {
       const updatedData = filter(clone(eventsByCategory), event => {
-        if ((event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase())) || (event.location.street_name && event.location.street_name.toLowerCase().includes(currentResearch.toLowerCase())) || (event.name && event.name.toLowerCase().includes(currentResearch.toLowerCase()))) {
+        if ((event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase())) ||
+         (event.location.street_name && event.location.street_name.toLowerCase().includes(currentResearch.toLowerCase())) ||
+         (event.name && event.name.toLowerCase().includes(currentResearch.toLowerCase()))) {
           return event
         }
       })
@@ -97,40 +92,36 @@ const CategoriesList = () => {
       setEvents(eventsByCategory)
     }
   }, [eventsByCategory, currentResearch])
-  return (
-        <>
-            {map(list, (catName, index) => (
-                <>
-                    <CategoryItem color={colorRef.current} key={`${index}_item`} categoryName={catName} onPress={() => handlePress(catName)}/>
-                </>
-            ))}
-            {selectedCategory && (
-                <Container direction={'column'}>
-                    {error
-                      ? (
-                        <Text>Une erreur est survenue</Text>
-                        )
-                      : isLoading
-                        ? (
-                        <Loading color={'#625A96'}/>
-                          )
-                        : events
-                          ? (
-                        <>
-                            {map(clone(events || eventsByCategory), (event, index) => (
-                                <CardEvent key={`${index}_event`} color={'#625A96'} marginTop={10}
-                                           event={event}
-                                           tags={event.tags}/>
-                            ))}
-                        </>
-                            )
-                          : (
-                        <Text>Désolé, aucun évènement ne correspond à votre recherche</Text>
-                            )}
-                </Container>
-            )}
-        </>
 
+  const listEvents = () => {
+    if (isLoading) {
+      return <Loading color={'#625A96'}/>
+    }
+    return (
+      events
+        ? map(clone(events || eventsByCategory), (event, index) => (
+          <CardEvent key={`${index}_event`} color={'#625A96'} marginTop={10}
+            event={event}
+            tags={event.tags}/>
+        ))
+        : <Text>Désolé, aucun évènement ne correspond à votre recherche</Text>
+    )
+  }
+
+  return (
+    <>
+      {map(list, (catName, index) => (
+        <CategoryItem color={colorRef.current} key={`${index}_item`} categoryName={catName} onPress={() => handlePress(catName)}/>
+      ))}
+      {selectedCategory && (
+        <Container direction={'column'}>
+          {error
+            ? (<Text>Une erreur est yo</Text>)
+            : listEvents()
+          }
+        </Container>
+      )}
+    </>
   )
 }
 

@@ -4,7 +4,7 @@ import AgendaStack from '../agendaStack/AgendaStack'
 import AlertsStack from '../alertsStack/AlertsStack'
 import ReaderStack from '../readerStack/ReaderStack'
 import MapStack from '../mapStack/MapStack'
-import Accueil from '../../screens/Accueil'
+import AccueilStack from '../accueilStack/AccueilStack'
 import { Image } from 'react-native'
 import Eroutes from '../Eroutes'
 
@@ -25,7 +25,7 @@ const Root = () => {
             ? require('../../../assets/images/Menu/Home.png')
             : require('../../../assets/images/Menu/Home_active.png') }/>
         )
-      }} component={Accueil}/>
+      }} component={AccueilStack}/>
       <Tab.Screen name={'Research'} options={{
         headerShown: false,
         tabBarIcon: ({ color, size }) => (

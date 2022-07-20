@@ -127,8 +127,8 @@ const EventDetailsScreen = () => {
               marginBottom: 30
             }}
             justify={'space-between'}>
-            <CustomButton bold bgColor={'#625A96'} title={'AJOUTER À L’AGENDA'} onPress={() => console.log('test')}/>
-            <CustomButton bold color={'#625A96'} title={'RESERVER'} onPress={() => console.log('test')}/>
+            {/* <CustomButton bold bgColor={'#625A96'} title={'AJOUTER À L’AGENDA'} onPress={() => console.log('test')}/>
+            <CustomButton bold color={'#625A96'} title={'RESERVER'} onPress={() => console.log('test')}/> */}
           </Container>
           {event?.location?.longitude && event?.location?.latitude && (
             <PreventViewAdress coordinate={{ latitude: event.location.latitude, longitude: event.location.longitude }}/>

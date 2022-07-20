@@ -1,8 +1,7 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import ResearchScreen from '../../screens/research/ResearchScreen'
 import EventDetailsScreen from '../../screens/components/eventDetails/EventDetailsScreen'
-
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import NavigationOptions from '../NavigationOptions'
+import Accueil from '../../screens/Accueil'
 import Eroutes from '../Eroutes'
 
 const ResearchStack = () => {
@@ -10,7 +9,7 @@ const ResearchStack = () => {
 
   return (
     <Stack.Navigator screenOptions={NavigationOptions}>
-      <Stack.Screen name={Eroutes.RESEARCH_SCREEN} component={ResearchScreen}/>
+      <Stack.Screen name={'Accueil'} component={Accueil}/>
       <Stack.Screen name={Eroutes.EVENT_DETAILS_SCREEN} component={EventDetailsScreen}/>
     </Stack.Navigator>
   )
