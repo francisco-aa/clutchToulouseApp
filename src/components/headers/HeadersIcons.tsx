@@ -1,6 +1,5 @@
 import { AntDesign, Feather } from '@expo/vector-icons'
 import Container from '../ContainerTouchable'
-import React from 'react'
 
 const HeaderIcons = () => {
   return (

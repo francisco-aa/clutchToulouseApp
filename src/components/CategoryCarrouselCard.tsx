@@ -1,6 +1,5 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import Icategory from '../redux/slices/Icategory'
-import React from 'react'
 
 type Props = {
   category: Icategory,
@@ -9,16 +8,16 @@ type Props = {
 export default function CategoryCarrouselCard (props: Props) {
   function getImage (categoryID:number) {
     switch (categoryID) {
-      case 1:
-        return require('../../assets/images/tickets/Ticket_2.png')
-      case 2:
-        return require('../../assets/images/tickets/Ticket_1.png')
-      case 3:
-        return require('../../assets/images/tickets/Ticket_3.png')
-      case 4:
-        return require('../../assets/images/tickets/Ticket_4.png')
-      case 5:
-        return require('../../assets/images/tickets/Ticket_1.png')
+    case 1:
+      return require('../../assets/images/tickets/Ticket_2.png')
+    case 2:
+      return require('../../assets/images/tickets/Ticket_1.png')
+    case 3:
+      return require('../../assets/images/tickets/Ticket_3.png')
+    case 4:
+      return require('../../assets/images/tickets/Ticket_4.png')
+    case 5:
+      return require('../../assets/images/tickets/Ticket_1.png')
     }
   }
 

@@ -1,7 +1,7 @@
 import Container, { ContainerTouchable } from './ContainerTouchable'
 import { FontAwesome5 } from '@expo/vector-icons'
 import styled from 'styled-components'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 type TInformation = {
   text: string,
@@ -30,7 +30,7 @@ const Information: FC<TInformation> = ({ text, icon, bold, underline, color, onP
             <FontAwesome5 style={{ marginRight: 15 }} name={icon} size={18} color="black" />
             <TextStyle bold={bold} underline={underline} color={color}>{text}</TextStyle>
           </ContainerTouchable>
-          )
+        )
         : (
           <Container display={display} onPress={onPress} position={'relative'} justify={'space-around'} align={'center'} style={{
             marginTop: 5
@@ -38,7 +38,7 @@ const Information: FC<TInformation> = ({ text, icon, bold, underline, color, onP
             <FontAwesome5 style={{ marginRight: 15 }} name={icon} size={18} color="black" />
             <TextStyle bold={bold} underline={underline} color={color}>{text}</TextStyle>
           </Container>
-          )}
+        )}
     </>
   )
 }

@@ -6,7 +6,6 @@ import SplashScreen from '../screens/SplashScreen'
 import { StatusBar } from 'react-native'
 import Eroutes from './Eroutes'
 import Root from './root/Root'
-import React from 'react'
 
 const AppNavigation = () => {
   const Stack = createNativeStackNavigator()

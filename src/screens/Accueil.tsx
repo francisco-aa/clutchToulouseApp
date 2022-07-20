@@ -1,10 +1,10 @@
-import CarrouselContainer from '../components/CarrouselContainer'
 import { BackHandler, ScrollView, StyleSheet } from 'react-native'
-import Header from '../components/headers/Header'
-import React, { useEffect, useState, useCallback } from 'react'
-import * as Font from 'expo-font'
-import * as SplashScreen from 'expo-splash-screen'
+import CarrouselContainer from '../components/CarrouselContainer'
 import { useFocusEffect } from '@react-navigation/native'
+import { useEffect, useState, useCallback } from 'react'
+import * as SplashScreen from 'expo-splash-screen'
+import Header from '../components/headers/Header'
+import * as Font from 'expo-font'
 
 type Props = {}
 
@@ -15,10 +15,10 @@ export default function Accueil (props: Props) {
         BackHandler.exitApp()
         return true
       }
-      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+      BackHandler.addEventListener('hardwareBackPress', onBackPress)
 
       return () =>
-        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress)
     }, [])
   )
 

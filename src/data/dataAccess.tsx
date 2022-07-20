@@ -1,6 +1,6 @@
 import Icategory from '../redux/slices/Icategory'
 
-export class dataAccess {
+export class DataAccess {
   getcategories ():Icategory[] {
     return ([
       {

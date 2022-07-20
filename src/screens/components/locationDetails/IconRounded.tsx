@@ -1,5 +1,4 @@
 import { Highlight, IconRoundedStyle } from './locationDetailsScreen.style'
-import React from 'react'
 
 const IconRounded = (source: any) => {
   return (

@@ -21,14 +21,14 @@ type CustomButton = {
 };
 export const CustomButton: FC<CustomButton> = ({ title, bold, onPress, bgColor = '', color = 'white' }) => {
   return (
-        <ButtonStyle color={color} bold={bold} onPress={onPress} bgColor={bgColor}>
-            <Text style={{
-              fontSize: 16,
-              lineHeight: 21,
-              fontWeight: 'bold',
-              letterSpacing: 0.25,
-              color
-            }}>{title}</Text>
-        </ButtonStyle>
+    <ButtonStyle color={color} bold={bold} onPress={onPress} bgColor={bgColor}>
+      <Text style={{
+        fontSize: 16,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color
+      }}>{title}</Text>
+    </ButtonStyle>
   )
 }

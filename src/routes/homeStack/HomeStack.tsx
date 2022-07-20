@@ -2,7 +2,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import NavigationOptions from '../NavigationOptions'
 import Accueil from '../../screens/Accueil'
 import Eroutes from '../Eroutes'
-import React from 'react'
 
 const HomeStack = () => {
   const Stack = createNativeStackNavigator()

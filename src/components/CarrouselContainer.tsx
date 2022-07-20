@@ -3,10 +3,10 @@ import { useGetAllEventsQuery } from '../api/events.service'
 import CategoryCarrouselCard from './CategoryCarrouselCard'
 import { filter, isEmpty, isUndefined } from 'lodash'
 import EventCarrouselCard from './EventCarrouselCard'
-import React, { useEffect, useState } from 'react'
 import Icategory from '../redux/slices/Icategory'
-import { dataAccess } from '../data/dataAccess'
+import { DataAccess } from '../data/DataAccess'
 import Ievent from '../redux/slices/Ievent'
+import { useEffect, useState } from 'react'
 
 type Props = {
   type:('category'|'headline'|'Today'),
@@ -14,7 +14,7 @@ type Props = {
 
 export default function CarrouselContainer (props: Props) {
   const { data, isLoading } = useGetAllEventsQuery('')
-  const categories:Icategory[] = new dataAccess().getcategories()
+  const categories:Icategory[] = new DataAccess().getcategories()
   const [todayEvents, setTodayFiletred] = useState<Ievent[]>()
   const [headlinesEvents, setDataFiletred] = useState<Ievent[]>()
 
@@ -42,35 +42,35 @@ export default function CarrouselContainer (props: Props) {
   }
 
   switch (props.type) {
-    case 'category':
+  case 'category':
+    return (
+      <View style={styles.carrouselContainer}>
+        <Text style={styles.carrouselTitle} >Catégories</Text>
+        <FlatList horizontal showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategoryCarrouselCard}/>
+      </View>
+    )
+  case 'headline':
+    if (!isUndefined(headlinesEvents) && !isEmpty(headlinesEvents)) {
       return (
         <View style={styles.carrouselContainer}>
-          <Text style={styles.carrouselTitle} >Catégories</Text>
-          <FlatList horizontal showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategoryCarrouselCard}/>
+          <Text style={styles.carrouselTitle} >À LA UNE</Text>
+          <FlatList horizontal showsHorizontalScrollIndicator={false} data={headlinesEvents} renderItem={renderEventCarrouselCard}/>
         </View>
       )
-    case 'headline':
-      if (!isUndefined(headlinesEvents) && !isEmpty(headlinesEvents)) {
-        return (
-          <View style={styles.carrouselContainer}>
-            <Text style={styles.carrouselTitle} >À LA UNE</Text>
-            <FlatList horizontal showsHorizontalScrollIndicator={false} data={headlinesEvents} renderItem={renderEventCarrouselCard}/>
-          </View>
-        )
-      } else {
-        return null
-      }
-    case 'Today':
-      if (!isUndefined(todayEvents) && !isEmpty(todayEvents)) {
-        return (
-          <View style={styles.carrouselContainer}>
-            <Text style={styles.carrouselTitle}>Aujourd'hui</Text>
-            <FlatList horizontal showsHorizontalScrollIndicator={false} data={todayEvents} renderItem={renderEventCarrouselCard}/>
-          </View>
-        )
-      } else {
-        return null
-      }
+    } else {
+      return null
+    }
+  case 'Today':
+    if (!isUndefined(todayEvents) && !isEmpty(todayEvents)) {
+      return (
+        <View style={styles.carrouselContainer}>
+          <Text style={styles.carrouselTitle}>Aujourd hui</Text>
+          <FlatList horizontal showsHorizontalScrollIndicator={false} data={todayEvents} renderItem={renderEventCarrouselCard}/>
+        </View>
+      )
+    } else {
+      return null
+    }
   }
 }
 

@@ -7,7 +7,6 @@ import MapStack from '../mapStack/MapStack'
 import Accueil from '../../screens/Accueil'
 import { Image } from 'react-native'
 import Eroutes from '../Eroutes'
-import React from 'react'
 
 const Root = () => {
   const Tab = createBottomTabNavigator()
