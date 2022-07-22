@@ -38,31 +38,17 @@ const CardEvent: FC<TCardEvent> = ({ color, tags, marginTop = 20, event }) => {
       }}
       onPress={handlePress}>
       <CommonCard color={color}>
-        {isFavorite
-          ? (
-            <FontAwesome
-              style={{
-                position: 'absolute',
-                right: 20,
-                top: 20
-              }}
-              name="heart"
-              onPress={() => dispatch({ type: 'alerts/disableAlert', payload: event['@id'] })}
-              size={24}
-              color="#00ADBB"/>
-          )
-          : (
-            <FontAwesome
-              style={{
-                position: 'absolute',
-                right: 20,
-                top: 20
-              }}
-              name="heart-o"
-              onPress={() => dispatch({ type: 'alerts/setAlerts', payload: event })}
-              size={24}
-              color="black"/>
-          )}
+        <FontAwesome
+          style={{
+            position: 'absolute',
+            right: 20,
+            top: 20
+          }}
+          name={isFavorite ? 'heart' : 'heart-o'}
+          onPress={() => dispatch(isFavorite ? { type: 'alerts/disableAlert', payload: event['@id'] } : { type: 'alerts/setAlerts', payload: event })}
+          size={24}
+          color={isFavorite ? '#00ADBB' : 'black'}
+        />
         <Container justify={'center'} style={{ textAlign: 'center', marginRight: 30 }}>
           <Title title={event.name} transform={'uppercase'} marginTop={0} size={20} marginBottom={0}color={'white'}/>
         </Container>
