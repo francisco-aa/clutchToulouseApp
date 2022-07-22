@@ -1,5 +1,5 @@
 import PreventViewAdress from '../../../components/preventViewAdress/PreventViewAdress'
-import { CustomButton } from '../../../components/button/button.style'
+// import { CustomButton } from '../../../components/button/button.style'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import { ScrollView, TouchableOpacity, View } from 'react-native'
 import { HeaderImage, Content } from './eventDetailsScreen.style'

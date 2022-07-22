@@ -116,7 +116,7 @@ const CategoriesList = () => {
       {selectedCategory && (
         <Container direction={'column'}>
           {error
-            ? (<Text>Une erreur est yo</Text>)
+            ? (<Text>Une erreur est survenue</Text>)
             : listEvents()
           }
         </Container>

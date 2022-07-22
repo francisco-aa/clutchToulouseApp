@@ -6,8 +6,8 @@ import { TouchableOpacity, View } from 'react-native'
 import { clone, filter, isUndefined } from 'lodash'
 import Ievent from '../../../redux/slices/Ievent'
 import { compareAsc } from 'date-fns/esm/fp'
-import { format } from 'date-fns'
 import fr from 'date-fns/locale/fr'
+import { format } from 'date-fns'
 
 type TSearchBarCityGuide = {
   events: Ievent[] | undefined,

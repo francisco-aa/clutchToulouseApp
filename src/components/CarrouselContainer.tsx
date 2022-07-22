@@ -34,7 +34,7 @@ export default function CarrouselContainer (props: Props) {
   }, [isLoading])
 
   const renderCategoryCarrouselCard:ListRenderItem<Icategory> = ({ item }) => {
-    return <CategoryCarrouselCard category={item} />
+    return <CategoryCarrouselCard category={item}/>
   }
 
   const renderEventCarrouselCard:ListRenderItem<Ievent> = ({ item }) => {
