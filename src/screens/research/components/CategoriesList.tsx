@@ -2,38 +2,30 @@ import CategoryItem from '../../../components/categories/list/CategoryItem'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import { useGetAllEventsQuery } from '../../../api/events.service'
 import Container from '../../../components/ContainerTouchable'
-import Ecategories from '../../../redux/slices/Ecategories'
 import CardEvent from '../../../components/card/CardEvent'
 import Loading from '../../../components/loading/Loading'
-import { clone, cloneDeep, filter, map } from 'lodash'
+import { clone, filter, map } from 'lodash'
 import { useEffect, useRef, useState } from 'react'
 import Ievent from '../../../redux/slices/Ievent'
 import { Text } from 'react-native'
 import { batch } from 'react-redux'
+import { CATEGORIES_LIST } from '../../home/Home.config'
+import Icategory from '../../../redux/slices/Icategory'
 
 const CategoriesList = () => {
   const dispatch = useAppDispatch()
   const selectedCategory = useAppSelector(state => state.events.selectedCategory)
   const colorRef = useRef<string>('#FA4E74')
 
-  const [list, setList] = useState<string[]>([])
+  const [list, setList] = useState<Icategory[]>(CATEGORIES_LIST)
   const [events, setEvents] = useState<Ievent[] | null>([])
   const { eventsByCategory, currentResearch } = useAppSelector(state => state.events)
   const { data, error, isLoading } = useGetAllEventsQuery('')
 
-  const generateList = () => {
-    const tempList: string[] = []
-    for (const key of Object.keys(Ecategories)) {
-      if (!+key) {
-        tempList.push(key.replace('_', ' '))
-      }
-    }
-    setList(tempList)
-  }
-  const handlePress = (catName: string) => {
+  const handlePress = (category: Icategory) => {
     batch(() => {
       dispatch({ type: 'events/setEventsByCategory', payload: null })
-      dispatch({ type: 'events/setSelectedCategory', payload: catName === selectedCategory ? null : catName })
+      dispatch({ type: 'events/setSelectedCategory', payload: category.name === selectedCategory?.name ? null : category })
     })
   }
   const getEventsByThematic = (thematicNumber: number) => {
@@ -51,32 +43,18 @@ const CategoriesList = () => {
   useEffect(() => {
     // lors de la sélection du thème
     if (selectedCategory) {
+      console.log('FILTER LIST', list)
       // garde le thème sélectionné uniquement
-      const updatedList = filter(list, cat => cat === selectedCategory)
+      const updatedList = filter(list, cat => cat.name === selectedCategory.name)
       setList(updatedList)
       // change la couleur de fond
       colorRef.current = '#F8BC43'
-
-      const formatedSelectedCategory = cloneDeep(selectedCategory).replace(' ', '_')
-      let categoryNumber
-      for (const log in Ecategories) {
-        if (+log && Ecategories[+log] === formatedSelectedCategory) {
-          categoryNumber = +log
-        }
-      }
-
-      if (categoryNumber) {
-        getEventsByThematic(categoryNumber)
-      }
+      getEventsByThematic(selectedCategory.id)
     } else {
+      setList(CATEGORIES_LIST)
       colorRef.current = '#FA4E74'
-      generateList()
     }
   }, [selectedCategory, data])
-
-  useEffect(() => {
-    generateList()
-  }, [])
 
   useEffect(() => {
     if (currentResearch !== '') {
@@ -110,8 +88,8 @@ const CategoriesList = () => {
 
   return (
     <>
-      {map(list, (catName, index) => (
-        <CategoryItem color={colorRef.current} key={`${index}_item`} categoryName={catName} onPress={() => handlePress(catName)}/>
+      {map(list, (category, index) => (
+        <CategoryItem color={colorRef.current} key={`${index}_item`} categoryName={category.name} onPress={() => handlePress(category)}/>
       ))}
       {selectedCategory && (
         <Container direction={'column'}>

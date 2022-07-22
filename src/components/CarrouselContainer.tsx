@@ -1,12 +1,16 @@
 import { FlatList, ListRenderItem, StyleSheet, Text, View } from 'react-native'
 import { useGetAllEventsQuery } from '../api/events.service'
-import CategoryCarrouselCard from './CategoryCarrouselCard'
+import CategoryCarrouselCard from './card/carrousel/CategoryCarrouselCard'
 import { filter, isEmpty, isUndefined } from 'lodash'
 import EventCarrouselCard from './EventCarrouselCard'
 import Icategory from '../redux/slices/Icategory'
-import { DataAccess } from '../data/DataAccess'
 import Ievent from '../redux/slices/Ievent'
 import { useEffect, useState } from 'react'
+import { CATEGORIES_LIST } from '../screens/home/Home.config'
+import { useNavigation } from '@react-navigation/native'
+import { useAppDispatch } from '../redux/hooks'
+import { batch } from 'react-redux'
+import Eroutes from '../routes/Eroutes'
 
 type Props = {
   type:('category'|'headline'|'Today'),
@@ -14,9 +18,11 @@ type Props = {
 
 export default function CarrouselContainer (props: Props) {
   const { data, isLoading } = useGetAllEventsQuery('')
-  const categories:Icategory[] = new DataAccess().getcategories()
   const [todayEvents, setTodayFiletred] = useState<Ievent[]>()
   const [headlinesEvents, setDataFiletred] = useState<Ievent[]>()
+
+  const navigation = useNavigation()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (!isLoading) {
@@ -34,7 +40,17 @@ export default function CarrouselContainer (props: Props) {
   }, [isLoading])
 
   const renderCategoryCarrouselCard:ListRenderItem<Icategory> = ({ item }) => {
-    return <CategoryCarrouselCard category={item} />
+    const handleOnPress = (categoryData: Icategory) => {
+      batch(() => {
+        dispatch({ type: 'events/changeCurrentFilter', payload: 'categories' })
+        dispatch({ type: 'events/setSelectedCategory', payload: categoryData })
+      })
+      navigation.setOptions({
+        state: { state: 'Research' }
+      })
+      navigation.navigate(Eroutes.RESEARCH_SCREEN)
+    }
+    return <CategoryCarrouselCard onPress={handleOnPress} category={item} />
   }
 
   const renderEventCarrouselCard:ListRenderItem<Ievent> = ({ item }) => {
@@ -46,7 +62,7 @@ export default function CarrouselContainer (props: Props) {
     return (
       <View style={styles.carrouselContainer}>
         <Text style={styles.carrouselTitle} >Catégories</Text>
-        <FlatList horizontal showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategoryCarrouselCard}/>
+        <FlatList horizontal showsHorizontalScrollIndicator={false} data={CATEGORIES_LIST} renderItem={renderCategoryCarrouselCard}/>
       </View>
     )
   case 'headline':
