@@ -69,6 +69,7 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataF
   const handleOnChangeDate = (event: Event, date: Date | undefined) => {
     if (date) {
       dispatch({ type: 'events/setDateFilter', payload: date?.toDateString() })
+      handleSearch()
     }
     return setRenderDatePicker(false)
   }
