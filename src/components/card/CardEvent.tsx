@@ -12,7 +12,6 @@ import { find, map } from 'lodash'
 import { format } from 'date-fns'
 import Tag from '../tag/Tag'
 import { FC } from 'react'
-import { ListRenderItem } from 'react-native'
 
 type TCardEvent = {
     color: string,

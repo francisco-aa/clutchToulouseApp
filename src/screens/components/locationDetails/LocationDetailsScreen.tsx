@@ -35,34 +35,32 @@ const LocationDetailsScreen = () => {
         </Container>
         <Title title={location !== undefined && location !== null ? location!.name : ''} marginTop={100} size={20} marginBottom={20}/>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Container justify={'space-around'} >
-            {location?.tags && map(location.tags, (tag, key) => (
-              <Tag title={tag} color={'#625A96'} key={key}/>
-            ))}
-          </Container>
-          <Container style={{
-            marginTop: 30
-          }} direction={'column'} align={'flex-start'}>
-            <Information
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <Container justify={'space-around'} align={'center'}>
+              {location?.tags && map(location.tags, (tag, key) => (
+                <Tag title={tag} color={'#625A96'} key={key}/>
+              ))}
+            </Container>
+          </ScrollView>
+          <Container style={{ marginTop: 30 }} direction={'column'} align={'flex-start'}>
+            <Information isTouchable={false}
               text={location !== undefined && location !== null ? location!.business_hours : ''}
               icon={'clock'}
               display={location!.business_hours ? 'flex' : 'none'}/>
-            <Information
+            <Information isTouchable={false}
               text={location !== undefined && location !== null ? location!.street_name : ''}
               icon={'map-marker-alt'}
               display={`${location!.street_name}`.length < 4 ? 'none' : 'flex'}/>
-            <Information
+            <Information isTouchable={false}
               text={location !== undefined && location !== null ? location!.phone : ''}
               icon={'phone'}
               display={location!.phone ? 'flex' : 'none'}/>
-            <Information
+            <Information isTouchable={false}
               text={location !== undefined && location !== null ? location!.website : ''}
               icon={'link'}
               display={location!.website ? 'flex' : 'none'}/>
           </Container>
-          <Container style={{
-            marginTop: 30
-          }} >
+          <Container style={{ marginTop: 30 }} >
             <Text>{location !== undefined && location !== null ? location!.content : ''}</Text>
           </Container>
           {/* <Title title={'LES PROCHAINS EVENEMENTS DANS CE LIEU'} color={'#085066'} marginTop={20} size={15} marginBottom={0}/> */}

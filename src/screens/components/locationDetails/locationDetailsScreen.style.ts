@@ -8,7 +8,6 @@ export const IconRoundedStyle = styled(Image)`
   width: 165px;
   height: 165px;
   position: absolute;
-  background-position: center;
   top: -80px;
 `
 

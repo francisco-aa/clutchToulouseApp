@@ -82,18 +82,13 @@ const EventDetailsScreen = () => {
             marginTop={10}
             size={25}
             marginBottom={0}/>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row'
-            }}>
-            {event?.tags && map(event.tags, (tag, index) => (
-              <Tag
-                key={index}
-                color={'#625A96'}
-                title={tag}/>
-            ))}
-          </View>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View style={{ display: 'flex', flexDirection: 'row' }}>
+              {event?.tags && map(event.tags, (tag, index) => (
+                <Tag key={index} color={'#625A96'} title={tag}/>
+              ))}
+            </View>
+          </ScrollView>
           <Container
             style={{
               marginTop: 20
