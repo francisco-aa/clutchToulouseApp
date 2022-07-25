@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   date: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 15,
+    fontSize: 12,
     color: '#ffffff',
     padding: 5
   }
@@ -30,21 +30,18 @@ const styles = StyleSheet.create({
 const styleDateBox = StyleSheet.create({
   dateBox: {
     position: 'absolute',
-    top: 50,
+    top: 35,
+    right: 5,
     alignSelf: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgb(0,0,0)',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
     flexDirection: 'row',
-    padding: 5
+    padding: 2
   }
 })
-// const today = new Date(Date.UTC(2022, 9, 22))
-// const options = { year: 'numeric', month: 'long', day: 'numeric'}
-
-const today = new Date(22, 10, 2022)
 
 const MapScreen = () => {
   const MapMarkers = () => {
@@ -213,10 +210,8 @@ const MapScreen = () => {
                           name="clock-o"
                           size={10}
                           color='#000000'/>
-                        {'  ' + new Date(evt.start_date).toLocaleTimeString('fr', {
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}</Text>
+                        {'  ' + capitalize(format(new Date(evt.start_date), 'p', { locale: fr }))}
+                      </Text>
                     </View>
                   ))
                   }
@@ -247,9 +242,9 @@ const MapScreen = () => {
         <Text style={styles.date}>
           <FontAwesome
             name="calendar-o"
-            size={18}
+            size={13}
             color='#ffff'/>
-          {'  ' + capitalize(format(new Date(2022, 9, 22), 'PPPP', { locale: fr }))}
+          {'  ' + capitalize(format(new Date(2022, 9, 22), 'P', { locale: fr }))}
         </Text>
       </View>
     </>
