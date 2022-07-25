@@ -210,7 +210,7 @@ const MapScreen = () => {
                           name="clock-o"
                           size={10}
                           color='#000000'/>
-                        {'  ' + capitalize(format(new Date(evt.start_date), 'p', { locale: fr }))}
+                        {'  ' + format(new Date(evt!.start_date), 'p', { locale: fr })}
                       </Text>
                     </View>
                   ))
