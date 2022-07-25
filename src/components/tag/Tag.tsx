@@ -1,6 +1,6 @@
 import { Text } from 'react-native'
 import TagStyle from './tag.style'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 type TButton = {
   title: string,

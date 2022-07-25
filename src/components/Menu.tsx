@@ -1,13 +1,12 @@
 import { Image, StyleSheet, View, TouchableHighlight } from 'react-native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { RouteParams } from '../navigation/RootNavigator'
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
+import { useState } from 'react'
+import Eroutes from '../routes/Eroutes'
 
 type Props = {}
 
 export default function Menu (props: Props) {
-  const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>()
+  const navigation = useNavigation()
   const [state, setState] = useState({ Home: true, Search: false, Agenda: false, Map: false, Notification: false, Book: false })
   const [show, setshow] = useState(false)
 
@@ -21,52 +20,52 @@ export default function Menu (props: Props) {
      */
   function getImage (screenName:('Home'|'Search'|'Agenda'|'Map'|'Notification'|'Book')) {
     switch (screenName) {
-      case 'Home' :
-        if (state.Home) {
-          return <Image source={require('../../assets/images/Menu/Home_active.png')}/>
-        } else {
-          return <Image source={require('../../assets/images/Menu/Home.png')}/>
-        }
-      case 'Search':
-        if (state.Search) {
-          return <Image source={require('../../assets/images/Menu/Search_active.png')}/>
-        } else {
-          return <Image source={require('../../assets/images/Menu/Search.png')}/>
-        }
-      case 'Agenda':
-        if (state.Agenda) {
-          return <Image source={require('../../assets/images/Menu/Agenda_active.png')}/>
-        } else {
-          return <Image source={require('../../assets/images/Menu/Agenda.png')}/>
-        }
-      case 'Map':
-        if (state.Map) {
-          return <Image source={require('../../assets/images/Menu/Map_active.png')}/>
-        } else {
-          return <Image source={require('../../assets/images/Menu/Map.png')}/>
-        }
-      case 'Notification':
-        if (state.Notification) {
-          return <Image source={require('../../assets/images/Menu/Notification_active.png')}/>
-        } else {
-          return <Image source={require('../../assets/images/Menu/Notification.png')}/>
-        }
-      case 'Book':
-        if (state.Book) {
-          return <Image source={require('../../assets/images/Menu/Book_active.png')}/>
-        } else {
-          return <Image source={require('../../assets/images/Menu/Book.png')}/>
-        }
+    case 'Home' :
+      if (state.Home) {
+        return <Image source={require('../../assets/images/Menu/Home_active.png')}/>
+      } else {
+        return <Image source={require('../../assets/images/Menu/Home.png')}/>
+      }
+    case 'Search':
+      if (state.Search) {
+        return <Image source={require('../../assets/images/Menu/Search_active.png')}/>
+      } else {
+        return <Image source={require('../../assets/images/Menu/Search.png')}/>
+      }
+    case 'Agenda':
+      if (state.Agenda) {
+        return <Image source={require('../../assets/images/Menu/Agenda_active.png')}/>
+      } else {
+        return <Image source={require('../../assets/images/Menu/Agenda.png')}/>
+      }
+    case 'Map':
+      if (state.Map) {
+        return <Image source={require('../../assets/images/Menu/Map_active.png')}/>
+      } else {
+        return <Image source={require('../../assets/images/Menu/Map.png')}/>
+      }
+    case 'Notification':
+      if (state.Notification) {
+        return <Image source={require('../../assets/images/Menu/Notification_active.png')}/>
+      } else {
+        return <Image source={require('../../assets/images/Menu/Notification.png')}/>
+      }
+    case 'Book':
+      if (state.Book) {
+        return <Image source={require('../../assets/images/Menu/Book_active.png')}/>
+      } else {
+        return <Image source={require('../../assets/images/Menu/Book.png')}/>
+      }
     }
   }
 
   return (
     <View style={styles.menuContainer}>
-        {show
-          ? <View style={styles.menubackground}>
-            <TouchableHighlight
+      {show
+        ? <View style={styles.menubackground}>
+          <TouchableHighlight
             onPress={() => {
-              navigation.navigate('Accueil')
+              navigation.navigate(Eroutes.HOME_SCREEN)
               setState(state => ({
                 ...state,
                 Home: true,
@@ -79,11 +78,11 @@ export default function Menu (props: Props) {
               )
             }
             }>
-                {getImage('Home')}
-            </TouchableHighlight>
-            <TouchableHighlight
+            {getImage('Home')}
+          </TouchableHighlight>
+          <TouchableHighlight
             onPress={() => {
-              navigation.navigate('Search')
+              navigation.navigate(Eroutes.RESEARCH_SCREEN)
               setState(state => ({
                 ...state,
                 Home: false,
@@ -96,11 +95,11 @@ export default function Menu (props: Props) {
               )
             }
             }>
-                {getImage('Search')}
-            </TouchableHighlight>
-            <TouchableHighlight
+            {getImage('Search')}
+          </TouchableHighlight>
+          <TouchableHighlight
             onPress={() => {
-              navigation.navigate('Agenda')
+              navigation.navigate(Eroutes.AGENDA_SCREEN)
               setState(state => ({
                 ...state,
                 Home: false,
@@ -113,11 +112,11 @@ export default function Menu (props: Props) {
               )
             }
             }>
-                {getImage('Agenda')}
-            </TouchableHighlight>
-            <TouchableHighlight
+            {getImage('Agenda')}
+          </TouchableHighlight>
+          <TouchableHighlight
             onPress={() => {
-              navigation.navigate('Map')
+              navigation.navigate(Eroutes.MAP_SCREEN)
               setState(state => ({
                 ...state,
                 Home: false,
@@ -130,11 +129,11 @@ export default function Menu (props: Props) {
               )
             }
             }>
-                {getImage('Map')}
-            </TouchableHighlight>
-            <TouchableHighlight
+            {getImage('Map')}
+          </TouchableHighlight>
+          <TouchableHighlight
             onPress={() => {
-              navigation.navigate('Notification')
+              navigation.navigate(Eroutes.ALERTS_SCREEN)
               setState(state => ({
                 ...state,
                 Home: false,
@@ -147,11 +146,11 @@ export default function Menu (props: Props) {
               )
             }
             }>
-                {getImage('Notification')}
-            </TouchableHighlight>
-            <TouchableHighlight
+            {getImage('Notification')}
+          </TouchableHighlight>
+          <TouchableHighlight
             onPress={() => {
-              navigation.navigate('Book')
+              navigation.navigate(Eroutes.READER_SCREEN)
               setState(state => ({
                 ...state,
                 Home: false,
@@ -164,10 +163,10 @@ export default function Menu (props: Props) {
               )
             }
             }>
-                {getImage('Book')}
-            </TouchableHighlight>
+            {getImage('Book')}
+          </TouchableHighlight>
         </View>
-          : <View></View>}
+        : <View></View>}
     </View>
   )
 }

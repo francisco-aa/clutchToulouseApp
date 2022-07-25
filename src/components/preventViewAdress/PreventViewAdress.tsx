@@ -1,5 +1,5 @@
 import { LatLng, MapViewProps, Marker } from 'react-native-maps'
-import React, { FC, useEffect, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import { Map } from './preventView.style'
 
 type TPreventViewAdress = {
@@ -12,9 +12,9 @@ const PreventViewAdress: FC<TPreventViewAdress> = ({ coordinate }) => {
     mapRef.current.animateCamera({ center: { latitude: coordinate.latitude, longitude: coordinate.longitude }, zoom: 16 })
   }, [coordinate])
   return (
-        <Map ref={mapRef}>
-            <Marker coordinate={coordinate}/>
-        </Map>
+    <Map ref={mapRef}>
+      <Marker coordinate={coordinate}/>
+    </Map>
   )
 }
 

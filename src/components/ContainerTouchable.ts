@@ -1,4 +1,4 @@
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import styled from 'styled-components'
 
 export const ContainerTouchable = styled(TouchableOpacity)`
@@ -9,7 +9,7 @@ export const ContainerTouchable = styled(TouchableOpacity)`
   position: ${({ position }) => position || 'relative'};
   margin-bottom: ${({ marginBottom }) => marginBottom || 0}px;
 `
-export const Container = styled.View`
+export const Container = styled(View)`
   display: ${({ display }) => display || 'flex'};
   flex-direction: ${({ direction }) => direction || 'row'};
   justify-content: ${({ justify }) => justify || 'center'};
@@ -18,7 +18,7 @@ export const Container = styled.View`
   margin-bottom: ${({ marginBottom }) => marginBottom || 0}px;
 `
 
-export const Content = styled.View`
+export const Content = styled(View)`
   height: 75%;
   padding: 15px 15px 0px 15px;
   width: 100%;

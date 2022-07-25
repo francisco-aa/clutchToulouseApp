@@ -1,31 +1,32 @@
-import CarrouselContainer from '../components/CarrouselContainer'
-import { BackHandler, ScrollView, StyleSheet } from 'react-native'
-import Header from '../components/headers/Header'
-import React, { useEffect, useState, useCallback } from 'react'
-import * as Font from 'expo-font'
-import * as SplashScreen from 'expo-splash-screen'
+import { BackHandler } from 'react-native'
+import CarrouselContainer from '../../components/CarrouselContainer'
 import { useFocusEffect } from '@react-navigation/native'
+import { useEffect, useState, useCallback, FC } from 'react'
+import * as SplashScreen from 'expo-splash-screen'
+import Header from '../../components/headers/Header'
+import * as Font from 'expo-font'
+import * as S from './Home.style'
 
-type Props = {}
+type THomeScreen = {}
 
-export default function Accueil (props: Props) {
+const HomeScreen: FC<THomeScreen> = () => {
   useFocusEffect(
     useCallback(() => {
       const onBackPress = () => {
         BackHandler.exitApp()
         return true
       }
-      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+      BackHandler.addEventListener('hardwareBackPress', onBackPress)
 
       return () =>
-        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress)
     }, [])
   )
 
   const getFonts = async () => await Font.loadAsync({
-    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.otf'),
-    'Poppins-Italic': require('../../assets/fonts/Poppins-Italic.otf'),
-    'Poppins-SemiBoldItalic': require('../../assets/fonts/Poppins-SemiBoldItalic.otf')
+    'Poppins-Bold': require('../../../assets/fonts/Poppins-Bold.otf'),
+    'Poppins-Italic': require('../../../assets/fonts/Poppins-Italic.otf'),
+    'Poppins-SemiBoldItalic': require('../../../assets/fonts/Poppins-SemiBoldItalic.otf')
   })
 
   const [fontsloaded, setFontsLoaded] = useState(false)
@@ -58,18 +59,13 @@ export default function Accueil (props: Props) {
     return null
   }
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.container} onLayout={onLayoutRootView}>
-      <Header bgTexture={require('../../assets/images/Textures/TEXTURE6.png')} />
+    <S.HomeScroller showsVerticalScrollIndicator={false} onLayout={onLayoutRootView}>
+      <Header bgTexture={require('../../../assets/images/Textures/TEXTURE6.png')} />
       <CarrouselContainer type='category'/>
       <CarrouselContainer type='headline'/>
       <CarrouselContainer type='Today'/>
-    </ScrollView>
+    </S.HomeScroller>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginBottom: 50
-  }
-})
+export default HomeScreen

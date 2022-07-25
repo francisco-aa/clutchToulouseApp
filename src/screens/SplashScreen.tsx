@@ -1,14 +1,12 @@
 import { Animated, Dimensions, Image, StyleSheet, Text, View } from 'react-native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import React, { useEffect, useRef, useState } from 'react'
-import { RouteParams } from '../navigation/RootNavigator'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import Eroutes from '../routes/Eroutes'
 
 export const SplashScreen = () => {
   const startAnimation = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current
 
-  const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>()
+  const navigation = useNavigation()
   const [stateCblack, setstateCblack] = useState(false)
   const [stateL, setstateL] = useState(false)
   const [stateU, setstateU] = useState(false)
@@ -62,9 +60,9 @@ export const SplashScreen = () => {
           { translateX: startAnimation.x }
         ]
       }]}>
-          {stateCblack
-            ? <Image style={{ top: 10, margin: 4 }} source={require('../../assets/images/logo/C1.png')}/>
-            : <Image style={{ top: 10, margin: 4 }} source={require('../../assets/images/Clutch_icon_green.png')}/>}
+        {stateCblack
+          ? <Image style={{ top: 10, margin: 4 }} source={require('../../assets/images/logo/C1.png')}/>
+          : <Image style={{ top: 10, margin: 4 }} source={require('../../assets/images/Clutch_icon_green.png')}/>}
         {stateL ? <Image style={{ margin: 4 }} source={require('../../assets/images/logo/L.png')}/> : <Text></Text>}
         {stateU ? <Image style={{ top: 14, margin: 4 }} source={require('../../assets/images/logo/U.png')}/> : <Text></Text>}
         {stateT ? <Image style={{ margin: 4 }} source={require('../../assets/images/logo/T.png')}/> : <Text></Text>}
