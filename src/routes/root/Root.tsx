@@ -5,7 +5,6 @@ import AlertsStack from '../alertsStack/AlertsStack'
 import ReaderStack from '../readerStack/ReaderStack'
 import MapStack from '../mapStack/MapStack'
 import { Image } from 'react-native'
-import Eroutes from '../Eroutes'
 import HomeStack from '../homeStack/HomeStack'
 
 const Root = () => {
