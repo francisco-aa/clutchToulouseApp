@@ -14,7 +14,7 @@ export default function HeaderActions ({ hasBackBtn }: Props) {
     if (hasBackBtn) {
       return navigation.goBack()
     }
-    return navigation.navigate(Eroutes.ALERTS_SCREEN)
+    return navigation.navigate('Alerts')
   }
 
   return (
