@@ -1,6 +1,5 @@
 import TitleStyle from './titleStyle'
-import { useFonts } from 'expo-font'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 type TTitle = {
     title: string,
@@ -13,15 +12,14 @@ type TTitle = {
     marginBottom: number
 }
 const Title: FC<TTitle> = ({ title, marginTop, weight, transform, align, size, color, marginBottom }) => {
-  
-    return (
-            <TitleStyle style={{
-              marginTop,
-              marginBottom
-            }} font={'Poppins-Bold'} align={align} weight={weight} transform={transform} size={size} color={color}>
-                {title}
-            </TitleStyle>
-    )
+  return (
+    <TitleStyle style={{
+      marginTop,
+      marginBottom
+    }} font={'Poppins-Bold'} align={align} weight={weight} transform={transform} size={size} color={color}>
+      {title}
+    </TitleStyle>
+  )
 }
 
 export default Title

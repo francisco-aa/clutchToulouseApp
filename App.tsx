@@ -2,7 +2,6 @@ import NotificationsHandler from './src/screens/alerts/notifications/Notificatio
 import AppNavigation from './src/routes/AppNavigation'
 import { store } from './src/redux/store'
 import { Provider } from 'react-redux'
-import React from 'react'
 
 // à voir plus tard pour les thèmes
 /* const MyTheme = {
@@ -14,10 +13,10 @@ import React from 'react'
 
 const App = () => {
   return (
-          <Provider store={store}>
-              <NotificationsHandler/>
-                  <AppNavigation/>
-          </Provider>
+    <Provider store={store}>
+      <NotificationsHandler/>
+      <AppNavigation/>
+    </Provider>
   )
 }
 

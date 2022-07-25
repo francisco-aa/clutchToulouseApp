@@ -1,7 +1,7 @@
-import { TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
 
-export const CategoryItemStyle = styled(TouchableOpacity)`
+export const CategoryItemContainer = styled(TouchableOpacity)<{color: string}>`
   width: 100%;
   flex-direction: row;
   justify-content: center;
@@ -10,7 +10,7 @@ export const CategoryItemStyle = styled(TouchableOpacity)`
   padding: 25px 10px;
   margin-top: 20px;
 `
-export const CategoryName = styled.Text`
+export const CategoryName = styled(Text)`
 color: white;
   text-transform: uppercase;
   font-weight: bold;

@@ -4,7 +4,7 @@ import { format, getHours } from 'date-fns'
 import { Text } from 'react-native'
 import fr from 'date-fns/locale/fr'
 import { capitalize } from 'lodash'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 type TMessage = {
     event: Ievent,

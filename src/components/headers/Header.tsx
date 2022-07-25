@@ -1,6 +1,5 @@
 import { Image, ImageBackground, ImageSourcePropType, StyleSheet, View } from 'react-native'
 import HeaderActions from './HeaderActions'
-import React from 'react'
 
 type Props = {
     bgTexture: ImageSourcePropType;
@@ -23,8 +22,8 @@ const Header = ({ bgTexture }: Props): JSX.Element => {
         <HeaderActions hasBackBtn={false} />
       </ImageBackground>
       <Image
-          style={styles.logo}
-          source={require('../../../assets/images/clutch/Clutch_icon_1.png')}
+        style={styles.logo}
+        source={require('../../../assets/images/clutch/Clutch_icon_1.png')}
       />
     </View>
   )

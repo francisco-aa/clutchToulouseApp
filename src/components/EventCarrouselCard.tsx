@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppDispatch } from '../redux/hooks'
 import Ievent from '../redux/slices/Ievent'
 import { colors } from '../utils/appUtils'
@@ -19,16 +19,16 @@ export default function EventCarrouselCard (props: Props) {
   }
   function GetEventCardColor (type:number) {
     switch (type) {
-      case 1:
-        return colors[0]
-      case 2:
-        return colors[1]
-      case 3:
-        return colors[2]
-      case 4:
-        return colors[3]
-      case 5:
-        return colors[0]
+    case 1:
+      return colors[0]
+    case 2:
+      return colors[1]
+    case 3:
+      return colors[2]
+    case 4:
+      return colors[3]
+    case 5:
+      return colors[0]
     }
   }
 

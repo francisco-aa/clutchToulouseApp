@@ -3,8 +3,8 @@ import Loading from '../../../../components/loading/Loading'
 import { TGetDataError } from '../../../../redux/store'
 import Ievent from '../../../../redux/slices/Ievent'
 import { Text } from 'react-native'
-import React, { FC } from 'react'
 import { isEmpty } from 'lodash'
+import { FC } from 'react'
 
 type TResearchContent = {
   error: TGetDataError,

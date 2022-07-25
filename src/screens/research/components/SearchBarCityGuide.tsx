@@ -6,8 +6,8 @@ import { TouchableOpacity, View } from 'react-native'
 import { clone, filter, isUndefined } from 'lodash'
 import Ievent from '../../../redux/slices/Ievent'
 import { compareAsc } from 'date-fns/esm/fp'
-import { format } from 'date-fns'
 import fr from 'date-fns/locale/fr'
+import { format } from 'date-fns'
 
 type TSearchBarCityGuide = {
   events: Ievent[] | undefined,
@@ -21,49 +21,55 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataF
   const [renderDatePicker, setRenderDatePicker] = useState<boolean>(false)
 
   const handleSearch = () => {
+    const theTernary = (event: Ievent) => (
+      (event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase())) ||
+      (event.location.street_name && event.location.street_name.toLowerCase().includes(currentResearch.toLowerCase()))
+    )
+
     switch (currentFilter) {
-      case 'place':
-        if (events && currentResearch !== '') {
-          const updatedData = filter(clone(events), event => {
-            if (event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase()) || event.location.street_name && event.location.street_name.toLowerCase().includes(currentResearch.toLowerCase())) {
-              return event
-            }
-          })
-          setDataFiltered(updatedData as Ievent[])
-        } else if (events && currentResearch === '') {
-          refresh()
-        }
-        break
-      case 'calendar':
-        if (events && !isUndefined(dateFilter)) {
-          const updatedData = filter(clone(events), event => {
-            if (event.start_date && compareAsc(new Date(event.start_date), new Date(dateFilter)) === -1) {
-              return event
-            }
-          })
-          setDataFiltered(updatedData as Ievent[])
-        } else if (events && currentResearch === '') {
-          refresh()
-        }
-        break
-      case 'categories':
-        if (eventsByCategory && currentResearch !== '') {
-          const updatedData = filter(clone(eventsByCategory), event => {
-            if (event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase()) || event.location.street_name && event.location.street_name.toLowerCase().includes(currentResearch.toLowerCase()) || event.name && event.name.toLowerCase().includes(currentResearch.toLowerCase())) {
-              return event
-            }
-          })
-          dispatch({ type: 'events/setCurrentEvents', payload: updatedData })
-        } else if (eventsByCategory && currentResearch === '') {
-          dispatch({ type: 'events/setCurrentEvents', payload: null })
-          refresh()
-        }
+    case 'place':
+      if (events && currentResearch !== '') {
+        const updatedData = filter(clone(events), event => {
+          if (theTernary(event) || (event.name && event.name.toLowerCase().includes(currentResearch.toLowerCase()))) {
+            return event
+          }
+        })
+        setDataFiltered(updatedData as Ievent[])
+      } else if (events && currentResearch === '') {
+        refresh()
+      }
+      break
+    case 'calendar':
+      if (events && !isUndefined(dateFilter)) {
+        const updatedData = filter(clone(events), event => {
+          if (event.start_date && compareAsc(new Date(event.start_date), new Date(dateFilter)) === -1) {
+            return event
+          }
+        })
+        setDataFiltered(updatedData as Ievent[])
+      } else if (events && currentResearch === '') {
+        refresh()
+      }
+      break
+    case 'categories':
+      if (eventsByCategory && currentResearch !== '') {
+        const updatedData = filter(clone(eventsByCategory), event => {
+          if (theTernary(event)) {
+            return event
+          }
+        })
+        dispatch({ type: 'events/setCurrentEvents', payload: updatedData })
+      } else if (eventsByCategory && currentResearch === '') {
+        dispatch({ type: 'events/setCurrentEvents', payload: null })
+        refresh()
+      }
     }
   }
 
   const handleOnChangeDate = (event: Event, date: Date | undefined) => {
     if (date) {
       dispatch({ type: 'events/setDateFilter', payload: date?.toDateString() })
+      handleSearch()
     }
     return setRenderDatePicker(false)
   }
@@ -89,15 +95,15 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataF
                 name: 'search'
               }}
             />
-              {renderDatePicker && (
-                <>
-                  <RNDateTimePicker onChange={handleOnChangeDate} value={new Date(dateFilter)}/>
-                </>
-              )}
-              <TouchableOpacity style={{ position: 'absolute', height: 50, width: 310 }} onPress={() => setRenderDatePicker(true)}>
-              </TouchableOpacity>
+            {renderDatePicker && (
+              <>
+                <RNDateTimePicker onChange={handleOnChangeDate} value={new Date(dateFilter)}/>
+              </>
+            )}
+            <TouchableOpacity style={{ position: 'absolute', height: 50, width: 310 }} onPress={() => setRenderDatePicker(true)}>
+            </TouchableOpacity>
           </View>
-          )
+        )
         : (
           <SearchBar onSearch={handleSearch}
             currentSearch={currentResearch}
@@ -107,7 +113,7 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataF
               name: 'search'
             }}
           />
-          )}
+        )}
     </>
   )
 }

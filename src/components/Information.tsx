@@ -1,7 +1,8 @@
 import Container, { ContainerTouchable } from './ContainerTouchable'
 import { FontAwesome5 } from '@expo/vector-icons'
 import styled from 'styled-components'
-import React, { FC } from 'react'
+import { View } from 'react-native'
+import { FC } from 'react'
 
 type TInformation = {
   text: string,
@@ -15,6 +16,7 @@ type TInformation = {
 }
 
 const TextStyle = styled.Text`
+  width: 80%;
   font-weight: ${({ bold }) => bold ? 'bold' : 'normal'};
   text-decoration: ${({ underline }) => underline ? 'underline' : 'none'};
   color: ${({ color }) => color || 'black'};
@@ -27,18 +29,22 @@ const Information: FC<TInformation> = ({ text, icon, bold, underline, color, onP
           <ContainerTouchable display={display} onPress={onPress} position={'relative'} justify={'space-around'} align={'center'} style={{
             marginTop: 5
           }}>
-            <FontAwesome5 style={{ marginRight: 15 }} name={icon} size={18} color="black" />
+            <View style={{ width: 30 } }>
+              <FontAwesome5 name={icon} size={18} color="black" />
+            </View>
             <TextStyle bold={bold} underline={underline} color={color}>{text}</TextStyle>
           </ContainerTouchable>
-          )
+        )
         : (
           <Container display={display} onPress={onPress} position={'relative'} justify={'space-around'} align={'center'} style={{
             marginTop: 5
           }}>
-            <FontAwesome5 style={{ marginRight: 15 }} name={icon} size={18} color="black" />
+            <View style={{ width: 30 } }>
+              <FontAwesome5 name={icon} size={18} color="black" />
+            </View>
             <TextStyle bold={bold} underline={underline} color={color}>{text}</TextStyle>
           </Container>
-          )}
+        )}
     </>
   )
 }

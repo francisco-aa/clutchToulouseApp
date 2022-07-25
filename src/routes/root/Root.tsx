@@ -4,10 +4,9 @@ import AgendaStack from '../agendaStack/AgendaStack'
 import AlertsStack from '../alertsStack/AlertsStack'
 import ReaderStack from '../readerStack/ReaderStack'
 import MapStack from '../mapStack/MapStack'
-import Accueil from '../../screens/Accueil'
 import { Image } from 'react-native'
 import Eroutes from '../Eroutes'
-import React from 'react'
+import HomeStack from '../homeStack/HomeStack'
 
 const Root = () => {
   const Tab = createBottomTabNavigator()
@@ -19,14 +18,14 @@ const Root = () => {
       tabBarShowLabel: false,
       tabBarStyle: { backgroundColor: 'black', left: 10, right: 10, position: 'absolute', borderTopLeftRadius: 15, borderTopRightRadius: 15 }
     })} >
-      <Tab.Screen name={Eroutes.HOME_SCREEN} options={{
+      <Tab.Screen name={'Home'} options={{
         headerShown: false,
         tabBarIcon: ({ color, size }) => (
           <Image source={color === 'white'
             ? require('../../../assets/images/Menu/Home.png')
             : require('../../../assets/images/Menu/Home_active.png') }/>
         )
-      }} component={Accueil}/>
+      }} component={HomeStack}/>
       <Tab.Screen name={'Research'} options={{
         headerShown: false,
         tabBarIcon: ({ color, size }) => (

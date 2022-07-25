@@ -2,7 +2,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import AlertsScreen from '../../screens/alerts/AlertsScreen'
 import NavigationOptions from '../NavigationOptions'
 import Eroutes from '../Eroutes'
-import React from 'react'
 
 const AlertsStack = () => {
   const Stack = createNativeStackNavigator()

@@ -1,7 +1,7 @@
 import { Fontisto, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import Container from '../../../components/ContainerTouchable'
 import { useAppSelector } from '../../../redux/hooks'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 type TFilters = {
   onChangeFilter: (filter: string) => any

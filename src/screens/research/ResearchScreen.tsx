@@ -1,3 +1,4 @@
+import ResearchContent from './components/ResearchContent/ResearchContent'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import SearchBarCityGuide from './components/SearchBarCityGuide'
 import HeaderIcons from '../../components/headers/HeadersIcons'
@@ -6,11 +7,10 @@ import Container from '../../components/ContainerTouchable'
 import ScreenWrapper from '../../components/ScreenWrapper'
 import CategoriesList from './components/CategoriesList'
 import Title from '../../components/title/Title'
-import { ScrollView } from 'react-native'
 import Ievent from '../../redux/slices/Ievent'
 import Filters from './components/Filters'
-import React, { useState } from 'react'
-import ResearchContent from './components/ResearchContent/ResearchContent'
+import { ScrollView } from 'react-native'
+import { useState } from 'react'
 
 const ResearchScreen = () => {
   const dispatch = useAppDispatch()
@@ -35,12 +35,12 @@ const ResearchScreen = () => {
         {currentFilter === 'categories'
           ? (
             <CategoriesList/>
-            )
+          )
           : (
             <Container direction={'column'}>
               <ResearchContent error={error} data={!dataFiltered ? data : dataFiltered} isLoading={isLoading}/>
             </Container>
-            )}
+          )}
       </ScrollView>
     </ScreenWrapper>
   )

@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "doc": "node docgen.js"
+    "doc": "node docgen.js",
+    "lint": "eslint --fix ."
   },
   "dependencies": {
     "@expo-google-fonts/dev": "^0.2.2",

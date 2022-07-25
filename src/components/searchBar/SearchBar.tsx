@@ -1,6 +1,6 @@
 import { SearchBarStyle, SearchBarContainer } from './searchBar.style'
 import { FontAwesome } from '@expo/vector-icons'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 type TSearchBar = {
   placeholder: string,

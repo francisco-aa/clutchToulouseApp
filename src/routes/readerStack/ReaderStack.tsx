@@ -2,7 +2,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import NavigationOptions from '../NavigationOptions'
 import Book from '../../screens/Book'
 import Eroutes from '../Eroutes'
-import React from 'react'
 
 const ReaderStack = () => {
   const Stack = createNativeStackNavigator()
