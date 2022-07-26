@@ -1,12 +1,17 @@
 import React, { Fragment, useState } from 'react'
 import { Map, markerStyle } from '../../components/map/mapView.style'
 import { Callout, Marker } from 'react-native-maps'
-import { Button, Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View, LogBox } from 'react-native'
 import { useGetAllEventsQuery } from '../../api/events.service'
 import fr from 'date-fns/locale/fr'
 import { FontAwesome } from '@expo/vector-icons'
 import { format } from 'date-fns'
 import DateTimePicker from 'react-native-modal-datetime-picker'
+import Button from 'react-native-button'
+
+LogBox.ignoreLogs([
+  'ViewPropTypes will be removed'
+])
 
 const styles = StyleSheet.create({
   title: {
@@ -24,6 +29,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#ffffff',
     padding: 5
+  },
+  icon: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 12,
+    color: '#ffffff',
+    marginLeft: 5
   }
 })
 
@@ -253,13 +264,20 @@ const MapScreen = () => {
       </Map>
       <View style={styleDateBox.dateBox}>
         <Button
-          title={selectedDate.toLocaleDateString()}
-          onPress={showDatePicker}
-          color={'white'}
-        />
+          onPress={showDatePicker}>
+          <FontAwesome
+            name="calendar"
+            style={styles.icon}
+            size={12}
+            color='#ffff'/>
+          <Text style={styles.date}>
+            {selectedDate.toLocaleDateString()}
+          </Text>
+        </Button>
         <DateTimePicker
           isVisible={isDatePickerVisible}
           mode="date"
+          date={selectedDate}
           onConfirm={handleConfirm}
           onCancel={hideDatePicker}
         />
@@ -267,5 +285,4 @@ const MapScreen = () => {
     </>
   )
 }
-
 export default MapScreen
