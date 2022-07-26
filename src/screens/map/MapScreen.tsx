@@ -1,102 +1,166 @@
-import { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Map, markerStyle } from '../../components/map/mapView.style'
 import { Callout, Marker } from 'react-native-maps'
-import { Image, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View, LogBox } from 'react-native'
 import { useGetAllEventsQuery } from '../../api/events.service'
 import fr from 'date-fns/locale/fr'
+import { FontAwesome } from '@expo/vector-icons'
 import { format } from 'date-fns'
+import DateTimePicker from 'react-native-modal-datetime-picker'
+import Button from 'react-native-button'
 
-const styles = {
+LogBox.ignoreLogs([
+  'ViewPropTypes will be removed'
+])
+
+const styles = StyleSheet.create({
   title: {
     fontFamily: 'Poppins-Bold',
     fontSize: 12,
-    color: '#000000',
-    marginBottom: 5
+    color: '#000000'
   },
   description: {
     fontFamily: 'Poppins-SemiBoldItalic',
     fontSize: 10,
     color: '#000000'
+  },
+  date: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 12,
+    color: '#ffffff',
+    padding: 5
+  },
+  icon: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 12,
+    color: '#ffffff',
+    marginLeft: 5
   }
-}
+})
+
+const styleDateBox = StyleSheet.create({
+  dateBox: {
+    position: 'absolute',
+    top: 35,
+    right: 5,
+    alignSelf: 'center',
+    backgroundColor: 'rgb(0,0,0)',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    flexDirection: 'row',
+    padding: 2
+  }
+})
 
 const MapScreen = () => {
+  const { data } = useGetAllEventsQuery()
+  const [selectedDate, setSelectedDate] = useState(new Date())
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
+  let events: any[] = []
+  const eventsByLocation: { lieu: any, events: any[] }[] = []
+
+  function loadMarkers (date: Date) {
+    return (new Date(date).getMonth() === selectedDate.getMonth() &&
+            new Date(date).getDate() === selectedDate.getDate() &&
+            new Date(date).getFullYear() === selectedDate.getFullYear())
+  }
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true)
+  }
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false)
+  }
+
+  const handleConfirm = (date) => {
+    setSelectedDate(date)
+    hideDatePicker()
+  }
   const MapMarkers = () => {
-    const today = new Date('2022-10-22') // à changer, on doit afficher les events du jour
-    const { data } = useGetAllEventsQuery('')
-    let markers: any[] = []
-
-    function isToday (date: Date) {
-      return (new Date(date).getMonth() === today.getMonth() &&
-                new Date(date).getDate() === today.getDate() &&
-                new Date(date).getFullYear() === today.getFullYear())
-    }
-
-    function samePlace (marker: any) {
-      markers.forEach((m, index) => {
-        if (marker.location.name === m.location.name && new Date(marker.start_date) < new Date(m.start_date)) {
-          markers.splice(index, 1)
+    if (data) {
+      events = data.filter(d => (loadMarkers(new Date(d.start_date))))
+      events.forEach(event => {
+        if (!eventsByLocation.find(evt => evt.lieu === event.location.name)) {
+          // si le lieu de cet event existe pas
+          eventsByLocation.push({ lieu: event.location.name, events: [event] })
+        } else {
+          // si le lieu de cet event existe déjà
+          const index = eventsByLocation.findIndex(evt => evt.lieu === event.location.name)
+          eventsByLocation[index].events.push(event)
         }
       })
     }
-
-    if (data) {
-      markers = data.filter(d => (isToday(new Date(d.start_date))))
-      markers.forEach(marker => samePlace(marker))
-    }
     return (
       <>
-        {markers && markers.map((marker) => (
-          <Fragment key={marker.id}>
-            {
-              marker.location.latitude && marker.location.longitude
-                ? <Marker coordinate={{
-                  latitude: marker.location.latitude,
-                  longitude: marker.location.longitude
+        {eventsByLocation && eventsByLocation.map(event => (
+          <Fragment key={event.lieu}>
+            {event.events.length === 1 && event.events.map(evt => (
+              evt.location.latitude && evt.location.longitude
+                ? <Marker key={evt.id} coordinate={{
+                  latitude: evt.location.latitude,
+                  longitude: evt.location.longitude
                 }}
                 title="Titre"
                 description="description"
                 >
-                  {marker.category === 1 &&
+                  {evt.category === 1 &&
+                                            <Image
+                                              style={markerStyle.markerImage}
+                                              resizeMode={'contain'}
+                                              source={require('../../../assets/images/markers/Fant_violet.png')}
+                                            />
+                  }{evt.category === 2 &&
                                         <Image
                                           style={markerStyle.markerImage}
                                           resizeMode={'contain'}
-                                          source={require('../../../assets/images/markers/Fant_violet.png')}
+                                          source={require('../../../assets/images/markers/Fant_bleu.png')}
                                         />
-                  }{marker.category === 2 &&
-                                    <Image
-                                      style={markerStyle.markerImage}
-                                      resizeMode={'contain'}
-                                      source={require('../../../assets/images/markers/Fant_bleu.png')}
-                                    />
-                  }{marker.category === 3 &&
-                                    <Image
-                                      style={markerStyle.markerImage}
-                                      resizeMode={'contain'}
-                                      source={require('../../../assets/images/markers/Fant_black.png')}
-                                    />
-                  }{marker.category === 4 &&
-                                    <Image
-                                      style={markerStyle.markerImage}
-                                      resizeMode={'contain'}
-                                      source={require('../../../assets/images/markers/Fant_jaune.png')}
-                                    />
-                  }{marker.category === 5 &&
-                                    <Image
-                                      style={markerStyle.markerImage}
-                                      resizeMode={'contain'}
-                                      source={require('../../../assets/images/markers/Fant_rose.png')}
-                                    />
+                  }{evt.category === 3 &&
+                                        <Image
+                                          style={markerStyle.markerImage}
+                                          resizeMode={'contain'}
+                                          source={require('../../../assets/images/markers/Fant_black.png')}
+                                        />
+                  }{evt.category === 4 &&
+                                        <Image
+                                          style={markerStyle.markerImage}
+                                          resizeMode={'contain'}
+                                          source={require('../../../assets/images/markers/Fant_jaune.png')}
+                                        />
+                  }{evt.category === 5 &&
+                                        <Image
+                                          style={markerStyle.markerImage}
+                                          resizeMode={'contain'}
+                                          source={require('../../../assets/images/markers/Fant_rose.png')}
+                                        />
                   }
                   <Callout>
+                    <View style={markerStyle.popupHeader}>
+                      <Text style={styles.title}>
+                        <FontAwesome
+                          name="map-marker"
+                          size={15}
+                          color='#000000'/>
+                        {'  ' + event.events[0].location.name}</Text>
+                    </View>
                     <View style={markerStyle.popup}>
-                      <Text style={styles.title}>{marker.name}</Text>
                       <Text style={styles.description}>
-                        {'Lieu : ' + marker.location.name}</Text>
+                        <FontAwesome
+                          name="music"
+                          size={10}
+                          color='#000000'/>
+                        {'  ' + evt.name}
+                      </Text>
                       <Text
-                        style={styles.description}>{'Date : ' + format(new Date(marker.start_date), 'PP', { locale: fr })}</Text>
-                      <Text
-                        style={styles.description}>{'Heure : ' + new Date(marker.start_date).toLocaleTimeString('fr', {
+                        style={styles.description}>
+                        <FontAwesome
+                          name="clock-o"
+                          size={10}
+                          color='#000000'/>
+                        {'  ' + new Date(evt.start_date).toLocaleTimeString('fr', {
                           hour: '2-digit',
                           minute: '2-digit'
                         })}</Text>
@@ -104,9 +168,84 @@ const MapScreen = () => {
                   </Callout>
                 </Marker>
                 : null
+            ))
+            }
+            {event.events.length > 1 &&
+                            event.events[0].location.latitude && event.events[0].location.longitude
+              ? <Marker key={event.events[0].id} coordinate={{
+                latitude: event.events[0].location.latitude,
+                longitude: event.events[0].location.longitude
+              }}
+              title="Titre"
+              description="description"
+              >
+                {event.events[0].category === 1 &&
+                                        <Image
+                                          style={markerStyle.markerImage}
+                                          resizeMode={'contain'}
+                                          source={require('../../../assets/images/markers/Fant_violet.png')}
+                                        />
+                }{event.events[0].category === 2 &&
+                                    <Image
+                                      style={markerStyle.markerImage}
+                                      resizeMode={'contain'}
+                                      source={require('../../../assets/images/markers/Fant_bleu.png')}
+                                    />
+                }{event.events[0].category === 3 &&
+                                    <Image
+                                      style={markerStyle.markerImage}
+                                      resizeMode={'contain'}
+                                      source={require('../../../assets/images/markers/Fant_black.png')}
+                                    />
+                }{event.events[0].category === 4 &&
+                                    <Image
+                                      style={markerStyle.markerImage}
+                                      resizeMode={'contain'}
+                                      source={require('../../../assets/images/markers/Fant_jaune.png')}
+                                    />
+                }{event.events[0].category === 5 &&
+                                    <Image
+                                      style={markerStyle.markerImage}
+                                      resizeMode={'contain'}
+                                      source={require('../../../assets/images/markers/Fant_rose.png')}
+                                    />
+                }
+                <Callout>
+                  <View style={markerStyle.popupHeader}>
+                    <Text style={styles.title}>
+                      <FontAwesome
+                        name="map-marker"
+                        size={15}
+                        color='#000000'/>
+                      {'  ' + event.events[0].location.name}</Text>
+                  </View>
+                  {event.events.map(evt => (
+                    <View key={evt.name} style={markerStyle.popup}>
+                      <Text style={styles.description}>
+                        <FontAwesome
+                          name="music"
+                          size={10}
+                          color='#000000'/>
+                        {'  ' + evt.name}
+                      </Text>
+                      <Text
+                        style={styles.description}>
+                        <FontAwesome
+                          name="clock-o"
+                          size={10}
+                          color='#000000'/>
+                        {'  ' + format(new Date(evt!.start_date), 'p', { locale: fr })}
+                      </Text>
+                    </View>
+                  ))
+                  }
+                </Callout>
+              </Marker>
+              : null
             }
           </Fragment>
-        ))
+        )
+        )
         }
       </>
     )
@@ -123,8 +262,27 @@ const MapScreen = () => {
       >
         <MapMarkers/>
       </Map>
+      <View style={styleDateBox.dateBox}>
+        <Button
+          onPress={showDatePicker}>
+          <FontAwesome
+            name="calendar-o"
+            style={styles.icon}
+            size={12}
+            color='#ffff'/>
+          <Text style={styles.date}>
+            {selectedDate.toLocaleDateString()}
+          </Text>
+        </Button>
+        <DateTimePicker
+          isVisible={isDatePickerVisible}
+          mode="date"
+          date={selectedDate}
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
+      </View>
     </>
   )
 }
-
 export default MapScreen
