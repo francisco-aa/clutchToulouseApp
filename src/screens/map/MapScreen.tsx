@@ -266,7 +266,7 @@ const MapScreen = () => {
         <Button
           onPress={showDatePicker}>
           <FontAwesome
-            name="calendar"
+            name="calendar-o"
             style={styles.icon}
             size={12}
             color='#ffff'/>
