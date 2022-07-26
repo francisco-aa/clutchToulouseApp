@@ -1,12 +1,17 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Map, markerStyle } from '../../components/map/mapView.style'
 import { Callout, Marker } from 'react-native-maps'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View, LogBox } from 'react-native'
 import { useGetAllEventsQuery } from '../../api/events.service'
 import fr from 'date-fns/locale/fr'
 import { FontAwesome } from '@expo/vector-icons'
-import { capitalize } from 'lodash'
 import { format } from 'date-fns'
+import DateTimePicker from 'react-native-modal-datetime-picker'
+import Button from 'react-native-button'
+
+LogBox.ignoreLogs([
+  'ViewPropTypes will be removed'
+])
 
 const styles = StyleSheet.create({
   title: {
@@ -24,6 +29,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#ffffff',
     padding: 5
+  },
+  icon: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 12,
+    color: '#ffffff',
+    marginLeft: 5
   }
 })
 
@@ -44,34 +55,47 @@ const styleDateBox = StyleSheet.create({
 })
 
 const MapScreen = () => {
+  const { data } = useGetAllEventsQuery()
+  const [selectedDate, setSelectedDate] = useState(new Date())
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
+  let events: any[] = []
+  const eventsByLocation: { lieu: any, events: any[] }[] = []
+
+  function loadMarkers (date: Date) {
+    return (new Date(date).getMonth() === selectedDate.getMonth() &&
+            new Date(date).getDate() === selectedDate.getDate() &&
+            new Date(date).getFullYear() === selectedDate.getFullYear())
+  }
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true)
+  }
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false)
+  }
+
+  const handleConfirm = (date) => {
+    setSelectedDate(date)
+    hideDatePicker()
+  }
   const MapMarkers = () => {
-    const today = new Date('2022-10-22') // à changer, on doit afficher les events du jour
-    const { data } = useGetAllEventsQuery()
-    let todaysEvents: any[] = []
-    const todaysEventsByLocation: { lieu: any, events: any[] }[] = []
-
-    function isToday (date: Date) {
-      return (new Date(date).getMonth() === today.getMonth() &&
-                new Date(date).getDate() === today.getDate() &&
-                new Date(date).getFullYear() === today.getFullYear())
-    }
-
     if (data) {
-      todaysEvents = data.filter(d => (isToday(new Date(d.start_date))))
-      todaysEvents.forEach(event => {
-        if (!todaysEventsByLocation.find(evt => evt.lieu === event.location.name)) {
+      events = data.filter(d => (loadMarkers(new Date(d.start_date))))
+      events.forEach(event => {
+        if (!eventsByLocation.find(evt => evt.lieu === event.location.name)) {
           // si le lieu de cet event existe pas
-          todaysEventsByLocation.push({ lieu: event.location.name, events: [event] })
+          eventsByLocation.push({ lieu: event.location.name, events: [event] })
         } else {
           // si le lieu de cet event existe déjà
-          const index = todaysEventsByLocation.findIndex(evt => evt.lieu === event.location.name)
-          todaysEventsByLocation[index].events.push(event)
+          const index = eventsByLocation.findIndex(evt => evt.lieu === event.location.name)
+          eventsByLocation[index].events.push(event)
         }
       })
     }
     return (
       <>
-        {todaysEventsByLocation && todaysEventsByLocation.map(event => (
+        {eventsByLocation && eventsByLocation.map(event => (
           <Fragment key={event.lieu}>
             {event.events.length === 1 && event.events.map(evt => (
               evt.location.latitude && evt.location.longitude
@@ -239,16 +263,26 @@ const MapScreen = () => {
         <MapMarkers/>
       </Map>
       <View style={styleDateBox.dateBox}>
-        <Text style={styles.date}>
+        <Button
+          onPress={showDatePicker}>
           <FontAwesome
             name="calendar-o"
-            size={13}
+            style={styles.icon}
+            size={12}
             color='#ffff'/>
-          {'  ' + capitalize(format(new Date(2022, 9, 22), 'P', { locale: fr }))}
-        </Text>
+          <Text style={styles.date}>
+            {selectedDate.toLocaleDateString()}
+          </Text>
+        </Button>
+        <DateTimePicker
+          isVisible={isDatePickerVisible}
+          mode="date"
+          date={selectedDate}
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
       </View>
     </>
   )
 }
-
 export default MapScreen
