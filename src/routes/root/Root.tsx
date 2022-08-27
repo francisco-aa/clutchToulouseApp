@@ -34,14 +34,14 @@ const Root = () => {
 
         )
       }} component={ResearchStack}/>
-      <Tab.Screen name={'Agenda'} options={{
+      {/* <Tab.Screen name={'Agenda'} options={{
         headerShown: false,
         tabBarIcon: ({ color, size }) => (
           <Image source={color === 'white'
             ? require('../../../assets/images/Menu/Agenda.png')
             : require('../../../assets/images/Menu/Agenda_active.png')}/>
         )
-      }} component={AgendaStack}/>
+      }} component={AgendaStack}/> */}
       <Tab.Screen name={'Map'} options={{
         headerShown: false,
         tabBarIcon: ({ color, size }) => (
@@ -58,14 +58,14 @@ const Root = () => {
             : require('../../../assets/images/Menu/Notification_active.png')}/>
         )
       }} component={AlertsStack}/>
-      <Tab.Screen name={'Reader'} options={{
+      {/* <Tab.Screen name={'Reader'} options={{
         headerShown: false,
         tabBarIcon: ({ color, size }) => (
           <Image source={color === 'white'
             ? require('../../../assets/images/Menu/Book.png')
             : require('../../../assets/images/Menu/Book_active.png')}/>
         )
-      }} component={ReaderStack}/>
+      }} component={ReaderStack}/> */}
     </Tab.Navigator>
   )
 }

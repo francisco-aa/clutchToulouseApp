@@ -13,7 +13,7 @@ const AlertsScreen = () => {
     <ScreenWrapper>
       <ScrollView style={{ marginBottom: 40 }} showsVerticalScrollIndicator={false}>
         <HeaderIcons/>
-        <TitleWithImage title={'ALERTES'} image={require('../../../assets/images/clutch/Clutch_signature.png')}/>
+        <TitleWithImage title={'ENVIES'} image={require('../../../assets/images/clutch/Clutch_signature.png')}/>
         {sortBy(alerts, event => new Date(event.start_date)).map((event, index) => (
           <MessageContainer index={index} key={index} >
             <Message index={index} event={event}/>

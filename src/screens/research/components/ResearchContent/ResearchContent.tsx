@@ -21,14 +21,14 @@ const ResearchContent: FC<TResearchContent> = ({ error, data, isLoading }) => {
 
   if (isLoading) {
     return (
-      <Loading color={'#625A96'}/>
+      <Loading color={'#ffffff'}/>
     )
   }
 
   // si pas d'events
   if (!data || isEmpty(data)) {
     return (
-      <Text>Désolé, aucun évènement ne correspond à votre recherche</Text>
+      <Text style={{ color: '#fff' }}>Désolé, aucun évènement ne correspond à votre recherche</Text>
     )
   }
 

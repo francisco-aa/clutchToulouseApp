@@ -19,7 +19,7 @@ const CategoryCarrouselCard: FC<TCategoryCarrouselCard> = ({ category, onPress }
     case 4:
       return require('../../../../assets/images/tickets/Ticket_4.png')
     case 5:
-      return require('../../../../assets/images/tickets/Ticket_1.png')
+      return require('../../../../assets/images/tickets/Ticket_5.png')
     }
   }
 

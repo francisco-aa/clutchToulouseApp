@@ -20,7 +20,7 @@ const CategoriesList = () => {
   const [list, setList] = useState<Icategory[]>(CATEGORIES_LIST)
   const [events, setEvents] = useState<Ievent[] | null>([])
   const { eventsByCategory, currentResearch } = useAppSelector(state => state.events)
-  const { data, error, isLoading } = useGetAllEventsQuery('')
+  const { data, error, isLoading } = useGetAllEventsQuery('page=1&itemsPerPage=200&start_date%5Bstrictly_after%5D=' + new Date().toISOString().slice(0, 10))
 
   const handlePress = (category: Icategory) => {
     batch(() => {
@@ -43,7 +43,6 @@ const CategoriesList = () => {
   useEffect(() => {
     // lors de la sélection du thème
     if (selectedCategory) {
-      console.log('FILTER LIST', list)
       // garde le thème sélectionné uniquement
       const updatedList = filter(list, cat => cat.name === selectedCategory.name)
       setList(updatedList)
@@ -73,7 +72,7 @@ const CategoriesList = () => {
 
   const listEvents = () => {
     if (isLoading) {
-      return <Loading color={'#625A96'}/>
+      return <Loading color={'#ffffff'}/>
     }
     return (
       events

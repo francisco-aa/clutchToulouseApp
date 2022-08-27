@@ -47,7 +47,7 @@ const CardEvent: FC<TCardEvent> = ({ color, tags, marginTop = 20, event }) => {
           name={isFavorite ? 'heart' : 'heart-o'}
           onPress={() => dispatch(isFavorite ? { type: 'alerts/disableAlert', payload: event['@id'] } : { type: 'alerts/setAlerts', payload: event })}
           size={24}
-          color={isFavorite ? '#00ADBB' : 'black'}
+          color={isFavorite ? '#00ADBB' : 'white'}
         />
         <Container justify={'center'} style={{ textAlign: 'center', marginRight: 30 }}>
           <Title title={event.name} transform={'uppercase'} marginTop={0} size={20} marginBottom={0}color={'white'}/>

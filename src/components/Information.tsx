@@ -2,7 +2,9 @@ import Container, { ContainerTouchable } from './ContainerTouchable'
 import { FontAwesome5 } from '@expo/vector-icons'
 import styled from 'styled-components'
 import { View } from 'react-native'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
+import { Link } from '@react-navigation/native'
+import window from '@react-navigation/native/src/__mocks__/window'
 
 type TInformation = {
   text: string,

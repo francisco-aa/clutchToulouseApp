@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { Map, markerStyle } from '../../components/map/mapView.style'
 import { Callout, Marker } from 'react-native-maps'
-import { Image, StyleSheet, Text, View, LogBox } from 'react-native'
+import { Image, StyleSheet, Text, View, LogBox, Appearance } from 'react-native'
 import { useGetAllEventsQuery } from '../../api/events.service'
 import fr from 'date-fns/locale/fr'
 import { FontAwesome } from '@expo/vector-icons'
@@ -10,7 +10,9 @@ import DateTimePicker from 'react-native-modal-datetime-picker'
 import Button from 'react-native-button'
 
 LogBox.ignoreLogs([
-  'ViewPropTypes will be removed'
+  'ViewPropTypes will be removed from React Native',
+  'SerializableStateInvariantMiddleware',
+  'Node of type rule not supported as an inline style'
 ])
 
 const styles = StyleSheet.create({
@@ -55,10 +57,13 @@ const styleDateBox = StyleSheet.create({
 })
 
 const MapScreen = () => {
-  const { data } = useGetAllEventsQuery()
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
   let events: any[] = []
+  const currentMonth = selectedDate.getMonth() + 1
+  const dayBefore = selectedDate.getDate() - 1 + '-' + currentMonth + '-' + selectedDate.getFullYear()
+  const tomorrow = selectedDate.getDate() + 1 + '-' + currentMonth + '-' + selectedDate.getFullYear()
+  const { data } = useGetAllEventsQuery('start_date[strictly_before]=' + tomorrow + '&start_date[strictly_after]=' + dayBefore)
   const eventsByLocation: { lieu: any, events: any[] }[] = []
 
   function loadMarkers (date: Date) {
@@ -93,10 +98,11 @@ const MapScreen = () => {
         }
       })
     }
+    console.log('EVENTS', eventsByLocation)
     return (
       <>
-        {eventsByLocation && eventsByLocation.map(event => (
-          <Fragment key={event.lieu}>
+        {eventsByLocation && eventsByLocation.map((event, index) => (
+          <Fragment key={index}>
             {event.events.length === 1 && event.events.map(evt => (
               evt.location.latitude && evt.location.longitude
                 ? <Marker key={evt.id} coordinate={{
@@ -110,7 +116,7 @@ const MapScreen = () => {
                                             <Image
                                               style={markerStyle.markerImage}
                                               resizeMode={'contain'}
-                                              source={require('../../../assets/images/markers/Fant_violet.png')}
+                                              source={Appearance.getColorScheme() === 'dark' ? require('../../../assets/images/markers/Fant_violet_dark.png') : require('../../../assets/images/markers/Fant_violet.png')}
                                             />
                   }{evt.category === 2 &&
                                         <Image
@@ -137,7 +143,7 @@ const MapScreen = () => {
                                           source={require('../../../assets/images/markers/Fant_rose.png')}
                                         />
                   }
-                  <Callout>
+                  <Callout key={evt.id}>
                     <View style={markerStyle.popupHeader}>
                       <Text style={styles.title}>
                         <FontAwesome
@@ -160,10 +166,7 @@ const MapScreen = () => {
                           name="clock-o"
                           size={10}
                           color='#000000'/>
-                        {'  ' + new Date(evt.start_date).toLocaleTimeString('fr', {
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}</Text>
+                        {'  ' + format(new Date(evt?.start_date), 'p', { locale: fr })}</Text>
                     </View>
                   </Callout>
                 </Marker>
@@ -183,31 +186,31 @@ const MapScreen = () => {
                                         <Image
                                           style={markerStyle.markerImage}
                                           resizeMode={'contain'}
-                                          source={require('../../../assets/images/markers/Fant_violet.png')}
+                                          source={Appearance.getColorScheme() === 'dark' ? require('../../../assets/images/markers/Fant_violet_dark.png') : require('../../../assets/images/markers/Fant_violet.png')}
                                         />
                 }{event.events[0].category === 2 &&
                                     <Image
                                       style={markerStyle.markerImage}
                                       resizeMode={'contain'}
-                                      source={require('../../../assets/images/markers/Fant_bleu.png')}
+                                      source={Appearance.getColorScheme() === 'dark' ? require('../../../assets/images/markers/Fant_bleu_dark.png') : require('../../../assets/images/markers/Fant_bleu.png')}
                                     />
                 }{event.events[0].category === 3 &&
                                     <Image
                                       style={markerStyle.markerImage}
                                       resizeMode={'contain'}
-                                      source={require('../../../assets/images/markers/Fant_black.png')}
+                                      source={Appearance.getColorScheme() === 'dark' ? require('../../../assets/images/markers/Fant_black_dark.png') : require('../../../assets/images/markers/Fant_black.png')}
                                     />
                 }{event.events[0].category === 4 &&
                                     <Image
                                       style={markerStyle.markerImage}
                                       resizeMode={'contain'}
-                                      source={require('../../../assets/images/markers/Fant_jaune.png')}
+                                      source={Appearance.getColorScheme() === 'dark' ? require('../../../assets/images/markers/Fant_jaune_dark.png') : require('../../../assets/images/markers/Fant_jaune.png')}
                                     />
                 }{event.events[0].category === 5 &&
                                     <Image
                                       style={markerStyle.markerImage}
                                       resizeMode={'contain'}
-                                      source={require('../../../assets/images/markers/Fant_rose.png')}
+                                      source={Appearance.getColorScheme() === 'dark' ? require('../../../assets/images/markers/Fant_rose_dark.png') : require('../../../assets/images/markers/Fant_rose.png')}
                                     />
                 }
                 <Callout>
@@ -219,8 +222,8 @@ const MapScreen = () => {
                         color='#000000'/>
                       {'  ' + event.events[0].location.name}</Text>
                   </View>
-                  {event.events.map(evt => (
-                    <View key={evt.name} style={markerStyle.popup}>
+                  {event.events.map((evt, index) => (
+                    <View key={index} style={markerStyle.popup}>
                       <Text style={styles.description}>
                         <FontAwesome
                           name="music"
@@ -271,7 +274,7 @@ const MapScreen = () => {
             size={12}
             color='#ffff'/>
           <Text style={styles.date}>
-            {selectedDate.toLocaleDateString()}
+            {format(new Date(selectedDate), 'dd/MM/yyyy', { locale: fr })}
           </Text>
         </Button>
         <DateTimePicker
@@ -280,6 +283,7 @@ const MapScreen = () => {
           date={selectedDate}
           onConfirm={handleConfirm}
           onCancel={hideDatePicker}
+          locale={'fr_FR'}
         />
       </View>
     </>

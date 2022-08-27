@@ -2,6 +2,7 @@ import CardEvent from '../../../../../components/card/CardEvent'
 import Ievent from '../../../../../redux/slices/Ievent'
 import { map } from 'lodash'
 import { FC } from 'react'
+import Loading from '../../../../../components/loading/Loading'
 
 type TResearchContentEvents = {
     events: Ievent[] | undefined

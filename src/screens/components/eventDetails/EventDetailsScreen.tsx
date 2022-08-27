@@ -1,10 +1,10 @@
 import PreventViewAdress from '../../../components/preventViewAdress/PreventViewAdress'
 // import { CustomButton } from '../../../components/button/button.style'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
-import { ScrollView, TouchableOpacity, View } from 'react-native'
+import { Image, ScrollView, TouchableOpacity, View } from 'react-native'
 import { HeaderImage, Content } from './eventDetailsScreen.style'
 import Container from '../../../components/ContainerTouchable'
-import { Ionicons, FontAwesome } from '@expo/vector-icons'
+import { Ionicons, FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 import Information from '../../../components/Information'
 import { useNavigation } from '@react-navigation/native'
 import Title from '../../../components/title/Title'
@@ -25,12 +25,12 @@ const EventDetailsScreen = () => {
     navigation.navigate(Eroutes.LOCATION_DETAILS_SCREEN)
   }
   const isFavorite = find(alerts, ['@id', event !== undefined && event !== null ? event!['@id'] : '']) !== undefined
-
+  console.log('EVENT Category', event?.category)
   return (
     <>
       <HeaderImage source={
         event?.location?.image === null || event?.location?.image === 'clutch.gif'
-          ? require('../../../../assets/images/Textures/TEXTURE6.png')
+          ? require('../../../../assets/images/Textures/texture1.png')
           : { uri: `https://clutchmag.fr/images/locations/${event?.location?.image}` }
       }>
         <Ionicons
@@ -62,7 +62,10 @@ const EventDetailsScreen = () => {
             ? (
               <FontAwesome
                 name="heart"
-                onPress={() => dispatch({ type: 'alerts/disableAlert', payload: event !== undefined && event !== null ? event!['@id'] : '' })}
+                onPress={() => dispatch({
+                  type: 'alerts/disableAlert',
+                  payload: event !== undefined && event !== null ? event!['@id'] : ''
+                })}
                 size={35}
                 color="#625A96"/>
             )
@@ -125,9 +128,12 @@ const EventDetailsScreen = () => {
             {/* <CustomButton bold bgColor={'#625A96'} title={'AJOUTER À L’AGENDA'} onPress={() => console.log('test')}/>
             <CustomButton bold color={'#625A96'} title={'RESERVER'} onPress={() => console.log('test')}/> */}
           </Container>
-          {event?.location?.longitude && event?.location?.latitude && (
-            <PreventViewAdress coordinate={{ latitude: event.location.latitude, longitude: event.location.longitude }}/>
-          )}
+          {event?.location?.longitude && event?.location?.latitude && event?.category
+            ? <PreventViewAdress
+              coordinate={{ latitude: event?.location.latitude, longitude: event?.location.longitude }}
+              category={event?.category}/>
+            : null
+          }
         </ScrollView>
       </Content>
     </>
