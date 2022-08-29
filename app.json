@@ -25,7 +25,8 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "clutch.android.app"
+      "package": "clutch.android.app",
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
