@@ -1945,6 +1945,21 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-native-button@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-native-button/-/react-native-button-3.0.1.tgz#079cb4ddb6d69b310d6aa539ada4bae8aaa0cccc"
+  integrity sha512-USLDAsa0Ytlrj1k/vSVBhIQC5pW/Ka/xSqyu281G0T0oWtPKKxviN4coLj3sjtlplkN4IHRWC+Y57CCgXeV70A==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
+"@types/react-native@*":
+  version "0.69.5"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.69.5.tgz#7709fdbff031a5ecf1956705e6c4a07cdfe6867c"
+  integrity sha512-mSUCuGUsW2kJlZiu4GmdYVDKZX/52iyC9rm6dxAmflJj1b7kSO/CMSDy5WbcfS8QerxTqbYGTrIwHD0GnXHzbQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-native@~0.67.6":
   version "0.67.12"
   resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.67.12.tgz"
@@ -3343,15 +3358,6 @@ depd@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/depd/-/depd-1.1.2.tgz"
   integrity sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==
-
-deprecated-react-native-prop-types@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.npmjs.org/deprecated-react-native-prop-types/-/deprecated-react-native-prop-types-2.2.0.tgz"
-  integrity sha512-SiessglRbgelU8sHCrGRImdlNKfVGSp0n6+K304d0rCdHGU8wladJkPmufxE2AkjN2jy71sgekNd9IvdZp9jZg==
-  dependencies:
-    "@react-native/normalize-color" "*"
-    invariant "*"
-    prop-types "*"
 
 deprecated-react-native-prop-types@^2.3.0:
   version "2.3.0"

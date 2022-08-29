@@ -1,19 +1,12 @@
 import React, { Fragment, useState } from 'react'
 import { Map, markerStyle } from '../../components/map/mapView.style'
 import { Callout, Marker } from 'react-native-maps'
-import { Image, StyleSheet, Text, View, LogBox, Appearance } from 'react-native'
+import { Image, StyleSheet, Text, View, LogBox, Appearance, Button, TouchableHighlight } from 'react-native'
 import { useGetAllEventsQuery } from '../../api/events.service'
 import fr from 'date-fns/locale/fr'
 import { FontAwesome } from '@expo/vector-icons'
 import { format } from 'date-fns'
 import DateTimePicker from 'react-native-modal-datetime-picker'
-import Button from 'react-native-button'
-
-LogBox.ignoreLogs([
-  'ViewPropTypes will be removed from React Native',
-  'SerializableStateInvariantMiddleware',
-  'Node of type rule not supported as an inline style'
-])
 
 const styles = StyleSheet.create({
   title: {
@@ -35,8 +28,7 @@ const styles = StyleSheet.create({
   icon: {
     fontFamily: 'Poppins-Bold',
     fontSize: 12,
-    color: '#ffffff',
-    marginLeft: 5
+    color: '#ffffff'
   }
 })
 
@@ -266,17 +258,16 @@ const MapScreen = () => {
         <MapMarkers/>
       </Map>
       <View style={styleDateBox.dateBox}>
-        <Button
-          onPress={showDatePicker}>
-          <FontAwesome
-            name="calendar-o"
-            style={styles.icon}
-            size={12}
-            color='#ffff'/>
+        <TouchableHighlight onPress={showDatePicker}>
           <Text style={styles.date}>
-            {format(new Date(selectedDate), 'dd/MM/yyyy', { locale: fr })}
+            <FontAwesome
+              name="calendar-o"
+              style={styles.icon}
+              size={15}
+              color='#ffff'/>
+            {'  ' + format(new Date(selectedDate), 'dd/MM/yyyy', { locale: fr })}
           </Text>
-        </Button>
+        </TouchableHighlight>
         <DateTimePicker
           isVisible={isDatePickerVisible}
           mode="date"
