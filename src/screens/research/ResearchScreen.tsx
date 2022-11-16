@@ -17,7 +17,7 @@ const ResearchScreen = () => {
   const dispatch = useAppDispatch()
   const [dataFiltered, setDataFiltered] = useState<Ievent[] | undefined>(undefined)
   const currentFilter = useAppSelector(state => state.events.currentFilter)
-  const { data, error, isLoading, refetch } = useGetAllEventsQuery('page=1&itemsPerPage=200&start_date%5Bstrictly_after%5D=' + new Date().toISOString().slice(0, 10))
+  const { data, error, isLoading, refetch } = useGetAllEventsQuery('page=1&itemsPerPage=100&start_date%5Bstrictly_after%5D=' + new Date().toISOString().slice(0, 10))
 
   const refresh = () => {
     setDataFiltered(undefined)

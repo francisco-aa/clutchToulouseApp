@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from 'react'
-import { Map, markerStyle } from '../../components/map/mapView.style'
-import { Callout, Marker } from 'react-native-maps'
-import { Image, StyleSheet, Text, View, LogBox, Appearance, Button, TouchableHighlight } from 'react-native'
+import { Fragment, useState } from 'react'
+import { Map, mapStyles, markerStyle } from '../../components/map/mapView.style'
+import MapView, { Callout, Marker } from 'react-native-maps'
+import { Image, StyleSheet, Text, View, Appearance, TouchableHighlight } from 'react-native'
 import { useGetAllEventsQuery } from '../../api/events.service'
 import fr from 'date-fns/locale/fr'
 import { FontAwesome } from '@expo/vector-icons'
@@ -55,7 +55,7 @@ const MapScreen = () => {
   const currentMonth = selectedDate.getMonth() + 1
   const dayBefore = selectedDate.getDate() - 1 + '-' + currentMonth + '-' + selectedDate.getFullYear()
   const tomorrow = selectedDate.getDate() + 1 + '-' + currentMonth + '-' + selectedDate.getFullYear()
-  const { data } = useGetAllEventsQuery('start_date[strictly_before]=' + tomorrow + '&start_date[strictly_after]=' + dayBefore)
+  const { data } = useGetAllEventsQuery('page=1&itemsPerPage=50&start_date[strictly_before]=' + tomorrow + '&start_date[strictly_after]=' + dayBefore)
   const eventsByLocation: { lieu: any, events: any[] }[] = []
 
   function loadMarkers (date: Date) {
@@ -72,7 +72,7 @@ const MapScreen = () => {
     setDatePickerVisibility(false)
   }
 
-  const handleConfirm = (date) => {
+  const handleConfirm = (date: Date) => {
     setSelectedDate(date)
     hideDatePicker()
   }
@@ -246,8 +246,9 @@ const MapScreen = () => {
     )
   }
   return (
-    <>
-      <Map
+    <View style={mapStyles.container}>
+      <MapView
+        style={mapStyles.map}
         initialRegion={{
           latitude: 43.604466,
           longitude: 1.442929,
@@ -256,7 +257,7 @@ const MapScreen = () => {
         }}
       >
         <MapMarkers/>
-      </Map>
+      </MapView>
       <View style={styleDateBox.dateBox}>
         <TouchableHighlight onPress={showDatePicker}>
           <Text style={styles.date}>
@@ -277,7 +278,7 @@ const MapScreen = () => {
           locale={'fr_FR'}
         />
       </View>
-    </>
+    </View>
   )
 }
 export default MapScreen

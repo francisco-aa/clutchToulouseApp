@@ -10,9 +10,8 @@ type TPreventViewAdress = {
 }
 
 const PreventViewAdress: FC<TPreventViewAdress> = ({ coordinate, category }) => {
-  const mapRef = useRef<MapViewProps>(null)
   return (
-    <Map ref={mapRef}
+    <Map
       initialRegion={{
         latitude: coordinate.latitude,
         longitude: coordinate.longitude,

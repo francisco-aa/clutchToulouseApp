@@ -1,6 +1,6 @@
 {
   "name": "clutchapp",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
@@ -46,7 +46,6 @@
     "react-native-web": "0.17.7",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.3.0",
-    "react-sticky-box": "^1.0.2",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {

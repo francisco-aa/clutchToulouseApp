@@ -20,7 +20,7 @@ const CategoriesList = () => {
   const [list, setList] = useState<Icategory[]>(CATEGORIES_LIST)
   const [events, setEvents] = useState<Ievent[] | null>([])
   const { eventsByCategory, currentResearch } = useAppSelector(state => state.events)
-  const { data, error, isLoading } = useGetAllEventsQuery('page=1&itemsPerPage=200&start_date%5Bstrictly_after%5D=' + new Date().toISOString().slice(0, 10))
+  const { data, error, isLoading } = useGetAllEventsQuery('page=1&itemsPerPage=100&start_date%5Bstrictly_after%5D=' + new Date().toISOString().slice(0, 10))
 
   const handlePress = (category: Icategory) => {
     batch(() => {

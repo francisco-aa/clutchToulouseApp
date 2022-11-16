@@ -21,7 +21,7 @@ export default function CarrouselContainer (props: Props) {
   const {
     data,
     isLoading
-  } = useGetAllEventsQuery('page=1&itemsPerPage=100&start_date%5Bstrictly_after%5D=' + new Date().toISOString().slice(0, 10))
+  } = useGetAllEventsQuery('start_date%5Bstrictly_after%5D=' + new Date().toISOString().slice(0, 10))
   const [todayEvents, setTodayFiletred] = useState<Ievent[]>()
   const [headlinesEvents, setDataFiletred] = useState<Ievent[]>()
 
