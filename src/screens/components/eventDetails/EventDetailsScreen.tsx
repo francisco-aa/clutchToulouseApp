@@ -25,7 +25,6 @@ const EventDetailsScreen = () => {
     navigation.navigate(Eroutes.LOCATION_DETAILS_SCREEN)
   }
   const isFavorite = find(alerts, ['@id', event !== undefined && event !== null ? event!['@id'] : '']) !== undefined
-  console.log('EVENT Category', event?.category)
   return (
     <>
       <HeaderImage source={

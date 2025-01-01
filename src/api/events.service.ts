@@ -14,7 +14,6 @@ export const eventsApi = createApi({
     getAllEvents: builder.query<Ievent[], string>({
       query: (params) => 'events?' + params,
       transformResponse: (response: Ievent[], meta, arg) => {
-        console.log('ARGS', arg)
         return response['hydra:member'] as Ievent[]
       }
     })

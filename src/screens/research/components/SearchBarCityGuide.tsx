@@ -46,9 +46,6 @@ const SearchBarCityGuide: FC<TSearchBarCityGuide> = ({ events, refresh, setDataF
     setSelectedDate(date)
     setDatePickerVisibility(false)
   }
-  console.log('************************')
-  console.log('EVENTS', events)
-  console.log('************************')
   const handleSearch = () => {
     const theTernary = (event: Ievent) => (
       (event.location.name && event.location.name.toLowerCase().includes(currentResearch.toLowerCase())) ||

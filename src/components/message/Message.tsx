@@ -14,7 +14,6 @@ type TMessage = {
 }
 const Message: FC<TMessage> = ({ event, index }) => {
   const alerts = useAppSelector(state => state.alerts.alerts)
-  console.log('ALERTS', alerts)
   const whenEventIs = (date) => {
     const hours = getHours(new Date(date))
     if (hours < 18 && hours > 12) {

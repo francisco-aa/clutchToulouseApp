@@ -45,7 +45,6 @@ const LocationDetailsScreen = () => {
   const bGImage = (imagePath: string) => location?.image === null || location?.image === 'clutch.gif'
     ? imagePath
     : { uri: `https://clutchmag.fr/images/locations/${location?.image}` }
-  console.log('location', location)
   return (
     <>
       <HeaderImage source={bGImage(texture6)}>

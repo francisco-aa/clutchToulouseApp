@@ -90,7 +90,6 @@ const MapScreen = () => {
         }
       })
     }
-    console.log('EVENTS', eventsByLocation)
     return (
       <>
         {eventsByLocation && eventsByLocation.map((event, index) => (

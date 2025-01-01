@@ -8,11 +8,11 @@
 npm et node : [lien d'installation](https://nodejs.org/fr/).
 
 expo-cli
-```npm install -g expo-cli```
+```yarn add expo```
 
 ## Installation
 
-à la racine du projet, éxécuter : ```npm i```
+à la racine du projet, éxécuter : ```yarn install```
 
 ## Lancer le projet
 
