@@ -12,7 +12,9 @@ export const eventsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://clutchmag.fr/api/' }),
   endpoints: (builder) => ({
     getAllEvents: builder.query<Ievent[], string>({
-      query: (params) => 'events?' + params,
+      query: (params) => {
+        return 'events?' + params
+      },
       transformResponse: (response: Ievent[], meta, arg) => {
         return response['hydra:member'] as Ievent[]
       }
