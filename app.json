@@ -11,14 +11,18 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/0a13180e-cfc7-49da-b460-0b3a191952ec"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.clutchmag.clutchtoulouse"
+      "bundleIdentifier": "com.clutchmag.clutchtoulouse",
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -26,10 +30,17 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "clutch.android.app",
-      "versionCode": 4
+      "versionCode": 4,
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0a13180e-cfc7-49da-b460-0b3a191952ec"
+      }
+    },
+    "owner": "fscript98"
   }
 }
